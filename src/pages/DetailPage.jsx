@@ -1,18 +1,19 @@
 import { useParams, useNavigate } from "react-router-dom";
-import cards from "../data/cards";
-import { Button, Card, Container } from "react-bootstrap";
+import movies from "../data/cards";
+import ReviewCard from "../components/ReviewCard";
+import { Button, Card, Container, Row, Col } from "react-bootstrap";
 
 function DetailPage() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    // Trova la card corrispondente all'ID (convertendo l'id in numero)
-    const card = cards.find(c => c.id === parseInt(id));
+    // Trova il film corrispondente all'ID (convertendo l'id in numero)
+    const movie = movies.find(m => m.id === parseInt(id));
 
-    if (!card) {
+    if (!movie) {
         return (
             <div className="text-center py-5">
-                <h2>Ops! Card non trovata.</h2>
+                <h2>Ops! Film non trovato.</h2>
                 <Button variant="primary" onClick={() => navigate("/")}>Torna alla Home</Button>
             </div>
         );
@@ -20,28 +21,58 @@ function DetailPage() {
 
     return (
         <Container className="py-5">
-            <Card className="shadow-lg border-0 overflow-hidden">
-                <div className="bg-primary py-5 text-center text-white">
-                    <h1 className="display-4 fw-bold">{card.title}</h1>
-                    <p className="lead">{card.subtitle}</p>
-                </div>
-                <Card.Body className="p-5">
-                    <h3 className="mb-4">Descrizione Dettagliata</h3>
-                    <p className="fs-5 text-muted mb-5" style={{ lineHeight: '1.8' }}>
-                        {card.content} 
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                    <div className="d-flex justify-content-between align-items-center">
-                        <Button variant="outline-secondary" onClick={() => navigate(-1)}>
-                            ← Torna indietro
-                        </Button>
-                        <Button variant="primary" onClick={() => navigate("/")}>
-                            Home Page
-                        </Button>
-                    </div>
-                </Card.Body>
+            <Card className="glass-card shadow-lg border-0 overflow-hidden mb-5">
+                <Row className="g-0">
+                    <Col md={4} className="bg-dark d-flex align-items-center justify-content-center">
+                        <img 
+                            src={movie.image} 
+                            alt={movie.title} 
+                            className="img-fluid" 
+                            style={{ objectFit: 'contain', maxHeight: '500px' }}
+                        />
+                    </Col>
+                    <Col md={8}>
+                        <Card.Body className="p-4 p-lg-5 h-100 d-flex flex-column">
+                            <div className="mb-3">
+                                <span className="badge bg-primary px-3 py-2 mb-2">{movie.genre}</span>
+                                <h1 className="display-4 fw-bold mb-1 text-neon-primary">{movie.title}</h1>
+                                <p className="lead text-light opacity-75 mb-4">Regia di <strong>{movie.director}</strong> • {movie.release_year}</p>
+                            </div>
+
+                            <div className="flex-grow-1">
+                                <h5 className="fw-bold text-uppercase text-neon-secondary small mb-3">Trama</h5>
+                                <p className="fs-5 text-light opacity-80 mb-5" style={{ lineHeight: '1.8' }}>
+                                    {movie.abstract}
+                                </p>
+                            </div>
+
+                            <div className="d-flex justify-content-between align-items-center mt-auto">
+                                <Button variant="outline-secondary" onClick={() => navigate(-1)}>
+                                    ← Torna indietro
+                                </Button>
+                                <Button variant="primary" onClick={() => navigate("/")}>
+                                    Home Page
+                                </Button>
+                            </div>
+                        </Card.Body>
+                    </Col>
+                </Row>
             </Card>
+
+            <div className="reviews-section">
+                <h3 className="mb-4 fw-bold text-neon-primary">Recensioni degli utenti</h3>
+                {movie.reviews && movie.reviews.length > 0 ? (
+                    <Row>
+                        {movie.reviews.map(review => (
+                            <Col key={review.id} md={6}>
+                                <ReviewCard review={review} />
+                            </Col>
+                        ))}
+                    </Row>
+                ) : (
+                    <p className="text-muted italic">Ancora nessuna recensione per questo film.</p>
+                )}
+            </div>
         </Container>
     );
 }

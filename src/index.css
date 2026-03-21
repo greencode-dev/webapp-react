@@ -1,4 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+:root {
+  --bg-dark: #070815;
+  --bg-darker: #04050a;
+  --primary-neon: #00d2ff;
+  --primary-glow: rgba(0, 210, 255, 0.4);
+  --secondary-neon: #bd00ff;
+  --secondary-glow: rgba(189, 0, 255, 0.4);
+  --accent-cyan: #00ffff;
+  --text-main: #f8f9fa;
+  --text-muted: #a0a0c0;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+}
 
 * {
   margin: 0;
@@ -7,20 +22,144 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
   min-height: 100vh;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(0, 210, 255, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(189, 0, 255, 0.05) 0%, transparent 40%);
+  background-attachment: fixed;
 }
 
-/* Personalizzazioni aggiuntive sopra Bootstrap */
-a {
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-darker);
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-neon);
+}
+
+/* Glassmorphism Utilities */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.25rem;
+  box-shadow: var(--card-shadow);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.9);
+}
+
+/* Neon Text Glows */
+.text-neon-primary {
+  color: var(--primary-neon);
+  text-shadow: 0 0 10px var(--primary-glow), 0 0 20px var(--primary-glow);
+}
+
+.text-neon-secondary {
+  color: var(--secondary-neon);
+  text-shadow: 0 0 10px var(--secondary-glow), 0 0 20px var(--secondary-glow);
+}
+
+.text-gradient {
+  background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+/* Hero & Page Layouts */
+.about-hero {
+  position: relative;
+  min-height: 60vh;
+  background: linear-gradient(rgba(7, 8, 21, 0.6), rgba(7, 8, 21, 0.8)), url('./assets/main-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem;
+  margin-bottom: 4rem;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* Bootstrap Overrides */
+.navbar {
+  background: rgba(7, 8, 21, 0.8) !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 1rem 0;
+}
+
+.navbar .nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 500;
+  padding: 0.5rem 1.2rem !important;
+  margin: 0 0.2rem;
   transition: all 0.3s ease;
+  position: relative;
+}
+
+.navbar .nav-link:hover, 
+.navbar .nav-link.active {
+  color: var(--primary-neon) !important;
+  text-shadow: 0 0 8px var(--primary-glow);
+}
+
+.navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--secondary-neon), transparent);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+  width: 80%;
 }
 
 .card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 1.25rem !important;
+  overflow: hidden;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
+.btn-primary {
+  background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
+  border: none;
+  box-shadow: 0 0 15px rgba(189, 0, 255, 0.3);
+  transition: all 0.3s ease;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(189, 0, 255, 0.5);
+  background: linear-gradient(45deg, var(--secondary-neon), var(--primary-neon));
 }
