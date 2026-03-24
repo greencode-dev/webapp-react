@@ -1,5 +1,7 @@
 # 🎬 CineLab - Neon Cinematic Experience
 
+![Anteprima Home Page](./docs/images/homepage-preview.png)
+
 Benvenuto in **CineLab**, la tua piattaforma definitiva per esplorare il mondo del cinema con un'interfaccia moderna, immersiva e premium. Il progetto adotta un **Neon Theme** completo con effetti glassmorphism, animazioni fluide e una palette cyan/magenta curata.
 
 ---
