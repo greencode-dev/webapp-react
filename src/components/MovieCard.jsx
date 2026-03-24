@@ -5,13 +5,13 @@ function MovieCard({ movie }) {
 
     return (
         <div className="card glass-card h-100 border-0 overflow-hidden">
-            <div className="bg-dark d-flex align-items-center justify-content-center" style={{ height: '400px' }}>
+            <div className="poster-wrapper">
                 <img 
                     src={movie.image} 
-                    className="img-fluid h-100" 
+                    className="poster-img" 
                     alt={movie.title} 
-                    style={{ objectFit: 'contain' }}
                 />
+                <div className="poster-overlay"></div>
             </div>
             <div className="card-body d-flex flex-column bg-transparent">
                 <h5 className="card-title fw-bold text-neon-primary">{movie.title}</h5>

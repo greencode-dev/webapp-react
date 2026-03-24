@@ -23,13 +23,15 @@ function DetailPage() {
         <Container className="py-5">
             <Card className="glass-card shadow-lg border-0 overflow-hidden mb-5">
                 <Row className="g-0">
-                    <Col md={4} className="bg-dark d-flex align-items-center justify-content-center">
-                        <img 
-                            src={movie.image} 
-                            alt={movie.title} 
-                            className="img-fluid" 
-                            style={{ objectFit: 'contain', maxHeight: '500px' }}
-                        />
+                    <Col md={4} className="p-4 d-flex align-items-center justify-content-center">
+                        <div className="poster-detail overflow-hidden">
+                            <img 
+                                src={movie.image} 
+                                alt={movie.title} 
+                                className="img-fluid" 
+                                style={{ maxHeight: '500px', width: 'auto' }}
+                            />
+                        </div>
                     </Col>
                     <Col md={8}>
                         <Card.Body className="p-4 p-lg-5 h-100 d-flex flex-column">
