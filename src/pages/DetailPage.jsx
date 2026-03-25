@@ -1,14 +1,35 @@
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import movies from "../data/cards";
+import { getMovie } from "../services/api";
 import ReviewCard from "../components/ReviewCard";
 import { Button, Card, Container, Row, Col } from "react-bootstrap";
 
 function DetailPage() {
     const { id } = useParams();
     const navigate = useNavigate();
+    const [movie, setMovie] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // Trova il film corrispondente all'ID (convertendo l'id in numero)
-    const movie = movies.find(m => m.id === parseInt(id));
+    useEffect(() => {
+        getMovie(id)
+            .then(data => {
+                setMovie(data);
+            })
+            .catch(error => {
+                console.error("Errore durante il recupero del film:", error);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, [id]);
+
+    if (isLoading) {
+        return (
+            <Container className="py-5 text-center">
+                <h2 className="text-neon-primary mb-4 mt-5">Caricamento in corso...</h2>
+            </Container>
+        );
+    }
 
     if (!movie) {
         return (
@@ -35,10 +56,21 @@ function DetailPage() {
                     </Col>
                     <Col md={8}>
                         <Card.Body className="p-4 p-lg-5 h-100 d-flex flex-column">
-                            <div className="mb-3">
-                                <span className="badge bg-primary px-3 py-2 mb-2">{movie.genre}</span>
-                                <h1 className="display-4 fw-bold mb-1 text-neon-primary">{movie.title}</h1>
-                                <p className="lead text-light opacity-75 mb-4">Regia di <strong>{movie.director}</strong> • {movie.release_year}</p>
+                            <div className="mb-3 d-flex justify-content-between align-items-start flex-wrap gap-3">
+                                <div>
+                                    <span className="badge bg-primary px-3 py-2 mb-2">{movie.genre}</span>
+                                    <h1 className="display-4 fw-bold mb-1 text-neon-primary">{movie.title}</h1>
+                                    <p className="lead text-light opacity-75 mb-0">Regia di <strong>{movie.director}</strong> • {movie.release_year}</p>
+                                </div>
+                                {movie.average_vote && (
+                                    <div className="text-center bg-dark bg-opacity-50 px-4 py-3 rounded-4 border border-secondary shadow">
+                                        <div className="d-flex align-items-baseline justify-content-center">
+                                            <h2 className="text-neon-secondary fw-bold mb-0 me-1">⭐ {parseFloat(movie.average_vote).toFixed(1)}</h2>
+                                            <span className="text-light opacity-50 fs-5">/ 5</span>
+                                        </div>
+                                        <small className="text-uppercase text-muted fw-bold mt-1 d-block" style={{fontSize: '0.75rem', letterSpacing: '1px'}}>Voto Medio</small>
+                                    </div>
+                                )}
                             </div>
 
                             <div className="flex-grow-1">
@@ -48,12 +80,9 @@ function DetailPage() {
                                 </p>
                             </div>
 
-                            <div className="d-flex justify-content-between align-items-center mt-auto">
-                                <Button variant="outline-secondary" onClick={() => navigate(-1)}>
+                            <div className="mt-auto text-end">
+                                <Button variant="outline-secondary" className="px-4" onClick={() => navigate(-1)}>
                                     ← Torna indietro
-                                </Button>
-                                <Button variant="primary" onClick={() => navigate("/")}>
-                                    Home Page
                                 </Button>
                             </div>
                         </Card.Body>

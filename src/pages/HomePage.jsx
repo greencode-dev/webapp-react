@@ -1,8 +1,20 @@
+import { useState, useEffect } from "react"
 import MovieCard from "../components/MovieCard"
 import { Row, Col, Container } from "react-bootstrap"
-import movies from "../data/cards"
+import { getMovies } from "../services/api"
 
 function HomePage() {
+    const [movies, setMovies] = useState([]);
+
+    useEffect(() => {
+        getMovies()
+            .then(data => {
+                setMovies(data);
+            })
+            .catch(error => {
+                console.error("Errore durante il recupero dei film:", error);
+            });
+    }, []);
     return (
         <Container className="py-5">
             <div className="text-center mb-5 hero-text-animate">

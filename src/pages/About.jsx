@@ -1,11 +1,21 @@
 import MovieCard from "../components/MovieCard"
 import { Row, Col } from "react-bootstrap"
-import movies from "../data/cards"
-import { useEffect, useRef } from "react"
+import { getMovies } from "../services/api"
+import { useState, useEffect, useRef } from "react"
 
 function AboutPage() {
-    const featuredMovies = movies.slice(0, 3);
+    const [featuredMovies, setFeaturedMovies] = useState([]);
     const observerRef = useRef(null);
+
+    useEffect(() => {
+        getMovies()
+            .then(data => {
+                setFeaturedMovies(data.slice(0, 3));
+            })
+            .catch(error => {
+                console.error("Errore durante il recupero dei film:", error);
+            });
+    }, []);
 
     useEffect(() => {
         observerRef.current = new IntersectionObserver(
