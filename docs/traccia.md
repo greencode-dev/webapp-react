@@ -1,60 +1,24 @@
-# Progetto: WebApp React
+Ciao studente, completiamo la nostra applicazione collegando il frontend React al backend Express che restituisce in json i dati del DB.
 
-Iniziamo a realizzare il frontend che visualizzerà i dati della nostra Web API.
+MILESTONE 1
+Installate il pacchetto cors sull'applicazione express webapp-express
+Importate, configurate e abilitate il CORS per l'indirizzo su cui gira la vostra applicazione React
+Mini-bonus: impostate l'indirizzo del frontend nel file .env invece che schiantato a mano in stringa
 
----
+MILESTONE 2
+Spostiamoci su webapp-react. Nella pagina con la lista dei film aggiungiamo una chiamata axios per recuperarli dalla nostra web-api, stampandoli in console
+Se tutto funziona, spostiamo i dati in uno state su cui iteriamo per generare le cards dei film
 
-## 🏗️ MILESTONE 0: Pianificazione
+MILESTONE 3
+Come la milestone precedente, ma per recuperare il dettaglio del singolo film (titolo, autore, ecc..)
+Una volte stampati in pagina i dati del film, procedete a generare dinamicamente le card delle recensioni. Prima verificate che la vostra web-api restituisca quel dato (v. postman e/o console.log)
+Mini-bonus: attenzione alle dipendenze dello useEffect
 
-Ragionate sulla struttura dell'applicazione che volete realizzare:
+BONUS
+Caricate le immagini nel public del backend, ma visualizzatele da React
+Super-bonus: nel controller che recupera i dati del singolo film modificate la query per restituire anche la media delle relative recensioni. Vi serviranno una join e la funzione AVG: componete prima la query funzionante su Workbench (es. per id=3) e poi vi spostate su express parametrizzando l'id.
+Migliorate il layout come credete
 
-- Di quali e quante pagine ho bisogno?
-- Avranno bisogno di qualche componente?
-- Ci sono componenti riutilizzabili più volte?
-- Di quali props hanno bisogno?
-
-> [!TIP]
-> Iniziate a immaginare il risultato finale prima di scrivere una sola riga di codice.
-
----
-
-## 🚀 MILESTONE 1: Setup
-
-- **Avvio Progetto**: Iniziate un nuovo progetto React con Vite.
-- **Cleanup**: Ripulite lo scaffold da file e codice di esempio non necessari.
-- **Verifica**: Assicuratevi che tutto funzioni correttamente.
-
----
-
-## 🛣️ MILESTONE 2: Routing & Layout
-
-- **React Router**: Installate `react-router-dom`.
-- **Layout**: Create un layout di base per la vostra applicazione.
-- **Pagine**: Create almeno 2 pagine:
-  - Una per la lista dei film.
-  - Una per il dettaglio del film (usando l'id come parametro).
-- **Rotte**: Impostate le rotte per navigare tra le pagine.
-
----
-
-## 🎬 MILESTONE 3: Componenti & Mock Data
-
-- **Layout Elenco**: Nella pagina dei film, preparate il layout per accogliere una lista di card.
-- **Componente Card**: Realizzate il componente `MovieCard`. Deve accettare i dati del film tramite `props`.
-- **Mocking**: Nella pagina, preparate un oggetto con la stessa struttura di un film e passatelo al componente card.
-- **Link**: La card deve avere un link che punta a `/movies/:id`.
-
-> [!NOTE]
-> **MINI-BONUS**: Potete preparare un array in cui ripetere più volte lo stesso film, o addirittura film diversi. Non perdeteci troppo tempo, martedì prenderemo i dati reali dalle Web API!
-
----
-
-## ⭐ BONUS
-
-- **Dettaglio**: Nella pagina di dettaglio, predisponete un titolo e una descrizione placeholder.
-- **Recensioni**: Sotto il dettaglio, implementate delle **ReviewCard** (voto, autore, testo, ecc.).
-
----
-
-**Buon Lavoro!** 👨‍💻👩‍💻
-
+NOTE
+Ricordatevi che dovrete lavorare con due VS Code aperti ognuno su un un progetto (express e react) e lanciare i relativi server di sviluppo
+Nel live coding pushato mancano le key quando si itera su qualcosa.map. Per far scomparire il warning assicuratevi di iterare correttamente. I vostri dati hanno un id 😉
