@@ -5,19 +5,37 @@ const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
 });
 
-export function getMovies(page = 1, limit = 10, search = '') {
+export function getMovies(page = 1, limit = 10, search = '', sortBy = 'latest') {
     // In sviluppo, se non è configurata un'API, usiamo i dati locali con ritardo simulato
     if (import.meta.env.DEV && !import.meta.env.VITE_API_URL) {
         return new Promise((resolve) => {
-            // Simulazione logica backend: Filtro -> Paginazione
-            let filtered = [...moviesData];
+            // Calcoliamo la media dei voti dinamicamente per ogni film (simulando AVG() del DB)
+            const processedData = moviesData.map((m) => {
+                const totalRating = m.reviews?.reduce((acc, rev) => acc + rev.rating, 0) || 0;
+                const avg = m.reviews?.length ? totalRating / m.reviews.length : 0;
+                return { ...m, average_vote: avg };
+            });
+
+            let filtered = [...processedData];
+
+            // Simulazione logica backend: Filtro
             if (search) {
+                const s = search.toLowerCase();
                 filtered = filtered.filter(
                     (m) =>
-                        m.title.toLowerCase().includes(search.toLowerCase()) ||
-                        m.abstract.toLowerCase().includes(search.toLowerCase()),
+                        m.title.toLowerCase().includes(s) ||
+                        m.genre.toLowerCase().includes(s) ||
+                        m.director.toLowerCase().includes(s) ||
+                        m.release_year.toString().includes(s) ||
+                        (m.actors && m.actors.some((a) => a.toLowerCase().includes(s))),
                 );
             }
+
+            // Ordinamento
+            if (sortBy === 'latest') filtered.sort((a, b) => b.release_year - a.release_year);
+            if (sortBy === 'oldest') filtered.sort((a, b) => a.release_year - b.release_year);
+            if (sortBy === 'rating_desc') filtered.sort((a, b) => b.average_vote - a.average_vote);
+            if (sortBy === 'rating_asc') filtered.sort((a, b) => a.average_vote - b.average_vote);
 
             const total = filtered.length;
             const start = (page - 1) * limit;
@@ -35,13 +53,22 @@ export function getMovies(page = 1, limit = 10, search = '') {
     }
     // Invio dei parametri come query string: /movies?page=1&limit=3&search=abc
     return api
-        .get('/movies', { params: { page, limit, search } })
+        .get('/movies', { params: { page, limit, search, sortBy } })
         .then((response) => response.data);
 }
 
 export function getMovie(id) {
     if (import.meta.env.DEV && !import.meta.env.VITE_API_URL) {
-        const movie = moviesData.find((m) => m.id === parseInt(id)); // Converte l'id in numero per il confronto
+        const found = moviesData.find((m) => m.id === parseInt(id));
+
+        // Calcoliamo la media dinamica anche per il dettaglio
+        let movie = null;
+        if (found) {
+            const totalRating = found.reviews?.reduce((acc, rev) => acc + rev.rating, 0) || 0;
+            const avg = found.reviews?.length ? totalRating / found.reviews.length : 0;
+            movie = { ...found, average_vote: avg };
+        }
+
         return new Promise((resolve) => {
             setTimeout(() => resolve(movie), 300); // Risolve direttamente con l'oggetto film
         });

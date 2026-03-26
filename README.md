@@ -8,15 +8,15 @@ Benvenuto in **CineLab**, la tua piattaforma definitiva per esplorare il mondo d
 
 ## ✨ Caratteristiche del Design
 
-| Elemento             | Dettaglio                                                                            |
-| :------------------- | :----------------------------------------------------------------------------------- |
-| **Neon Aesthetic**   | Palette vibrante (Cyan `#00d2ff` & Magenta `#bd00ff`) con effetti di bagliore (glow) |
-| **Glassmorphism**    | Card con effetto vetro sfumato (`backdrop-filter: blur`) e bordi semi-trasparenti    |
-| **Typography**       | Font [Inter](https://fonts.google.com/specimen/Inter) con pesi 300–800 e gradienti   |
-| **Micro-animations** | Hover sulle card, scroll-reveal, anelli orbitanti nella pagina About                 |
-| **Data Fetching**    | Custom Hook `useFetch` con gestione centralizzata di Loading e Error states          |
-| **Features**         | Ricerca con debouncing, paginazione server-side (simulata) e Skeleton Loaders        |
-| **UX**               | Transizioni fluide tra stati di caricamento e contenuti reali                        |
+| Elemento             | Dettaglio                                                                             |
+| :------------------- | :------------------------------------------------------------------------------------ |
+| **Neon Aesthetic**   | Palette vibrante (Cyan `#00d2ff` & Magenta `#bd00ff`) con effetti di bagliore (glow)  |
+| **Glassmorphism**    | Card con effetto vetro sfumato (`backdrop-filter: blur`) e bordi semi-trasparenti     |
+| **Typography**       | Font [Inter](https://fonts.google.com/specimen/Inter) con pesi 300–800 e gradienti    |
+| **Micro-animations** | Hover sulle card, scroll-reveal, anelli orbitanti nella pagina About                  |
+| **Data Fetching**    | Custom Hook `useFetch` con gestione centralizzata di Loading e Error states           |
+| **Features**         | Ricerca avanzata (Attori, Regista, Anno), Ordinamento, Paginazione e Skeleton Loaders |
+| **UX**               | Transizioni fluide tra stati di caricamento e contenuti reali                         |
 
 ---
 

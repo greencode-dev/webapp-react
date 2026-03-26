@@ -30,7 +30,7 @@ Per nuovi elementi UI, preferisci le variabili CSS in `index.css`:
 
 Il progetto simula il comportamento di un server reale. Quando aggiungi filtri:
 
-1. Passa le dipendenze al hook `useFetch` come array: `useFetch(getMovies, [page, limit, search])`.
+1. Passa le dipendenze al hook `useFetch` come array: `useFetch(getMovies, [page, limit, search, sortBy])`.
 2. L'hook rigenererà la chiamata automaticamente al cambio di uno dei parametri.
 3. Usa il **debouncing** per la ricerca testuale per evitare chiamate eccessive.
 

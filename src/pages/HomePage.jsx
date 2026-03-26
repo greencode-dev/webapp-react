@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
 import MovieCard from '../components/MovieCard';
-import { Row, Col, Container, Pagination } from 'react-bootstrap'; // Rimosso Spinner
+import { Row, Col, Container, Pagination } from 'react-bootstrap';
 import { getMovies } from '../services/api';
 import useFetch from '../hooks/useFetch';
 import ErrorDisplay from '../components/ErrorDisplay';
 import SearchBar from '../components/SearchBar';
 import MovieCardSkeleton from '../components/MovieCardSkeleton';
+import SortSelector from '../components/SortSelector';
 
 function HomePage() {
     const [searchTerm, setSearchTerm] = useState(''); // Nuovo stato per il termine di ricerca
     const [debouncedSearch, setDebouncedSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1); // Stato per la pagina corrente
+    const [sortBy, setSortBy] = useState('latest'); // Stato per l'ordinamento
     const moviesPerPage = 3; // Numero di film da mostrare per pagina
 
     // Debounce: aggiorna debouncedSearch dopo 500ms di inattività nell'input
@@ -25,7 +27,7 @@ function HomePage() {
         loading,
         error,
         refetch: fetchMovies,
-    } = useFetch(getMovies, [currentPage, moviesPerPage, debouncedSearch]);
+    } = useFetch(getMovies, [currentPage, moviesPerPage, debouncedSearch, sortBy]);
 
     // I dati ora arrivano già filtrati e paginati dal server
     const moviesList = data?.data || [];
@@ -39,6 +41,11 @@ function HomePage() {
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
         setCurrentPage(1); // Reset alla prima pagina durante la ricerca
+    };
+
+    const handleSortChange = (e) => {
+        setSortBy(e.target.value);
+        setCurrentPage(1);
     };
 
     if (error) {
@@ -60,12 +67,15 @@ function HomePage() {
             <SearchBar
                 value={searchTerm}
                 onChange={handleSearch}
-                placeholder="Cerca un film per titolo o trama..."
+                placeholder="Cerca un film per titolo o genere..."
             />
 
-            <h2 className="mb-4 text-neon-primary border-bottom border-secondary pb-3">
-                I film in evidenza
-            </h2>
+            <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
+                <h2 className="text-neon-primary mb-3 mb-md-0">I film in evidenza</h2>
+
+                <SortSelector value={sortBy} onChange={handleSortChange} />
+            </div>
+
             <Row className="g-4">
                 {loading ? (
                     // Mostriamo 3 skeleton durante il caricamento

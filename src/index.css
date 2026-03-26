@@ -113,6 +113,46 @@
 }
 
 /* ==========================================================================
+   NEON SORT SELECTOR
+   ========================================================================== */
+
+.neon-select-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.neon-select-wrapper:focus-within {
+    border-color: var(--secondary-neon);
+    box-shadow: 0 0 15px var(--secondary-glow);
+}
+
+.neon-select-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.neon-select {
+    background-color: transparent !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    box-shadow: none !important;
+    padding-right: 2rem !important;
+}
+
+/* ==========================================================================
    SKELETON ANIMATIONS
    ========================================================================== */
 
