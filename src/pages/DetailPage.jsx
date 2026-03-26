@@ -4,19 +4,14 @@ import useFetch from '../hooks/useFetch';
 import ReviewCard from '../components/ReviewCard';
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 import ErrorDisplay from '../components/ErrorDisplay';
+import MovieDetailSkeleton from '../components/MovieDetailSkeleton';
 
 function DetailPage() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { data: movie, loading, error, refetch: fetchMovie } = useFetch(getMovie, id);
+    const { data: movie, loading, error, refetch: fetchMovie } = useFetch(getMovie, [id]);
 
-    if (loading) {
-        return (
-            <Container className="py-5 text-center">
-                <h2 className="text-neon-primary mb-4 mt-5">Caricamento in corso...</h2>
-            </Container>
-        );
-    }
+    if (loading) return <MovieDetailSkeleton />;
 
     if (error) {
         return <ErrorDisplay message={error} onRetry={fetchMovie} />;

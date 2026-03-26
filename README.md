@@ -15,7 +15,8 @@ Benvenuto in **CineLab**, la tua piattaforma definitiva per esplorare il mondo d
 | **Typography**       | Font [Inter](https://fonts.google.com/specimen/Inter) con pesi 300–800 e gradienti   |
 | **Micro-animations** | Hover sulle card, scroll-reveal, anelli orbitanti nella pagina About                 |
 | **Data Fetching**    | Custom Hook `useFetch` con gestione centralizzata di Loading e Error states          |
-| **Features**         | Ricerca testuale in tempo reale e paginazione fluida                                 |
+| **Features**         | Ricerca con debouncing, paginazione server-side (simulata) e Skeleton Loaders        |
+| **UX**               | Transizioni fluide tra stati di caricamento e contenuti reali                        |
 
 ---
 

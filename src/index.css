@@ -64,6 +64,107 @@
     outline: none;
 }
 
+/* ==========================================================================
+   ADVANCED NEON SEARCH BAR
+   ========================================================================== */
+
+.search-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.neon-search-group {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px !important; /* Design ultra-arrotondato */
+    padding: 4px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: var(--card-shadow);
+}
+
+.neon-search-group:focus-within {
+    border-color: var(--primary-neon);
+    box-shadow: 0 0 25px var(--primary-glow);
+    transform: scale(1.02);
+}
+
+.neon-search-icon {
+    background: transparent !important;
+    border: none !important;
+    font-size: 1.2rem;
+    padding-left: 20px !important;
+    color: var(--primary-neon);
+    text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.neon-search-input {
+    background: transparent !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: none !important;
+    padding: 12px 20px !important;
+    font-size: 1.1rem;
+}
+
+.neon-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* ==========================================================================
+   SKELETON ANIMATIONS
+   ========================================================================== */
+
+.skeleton {
+    background: rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.skeleton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.08), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Utility for line clamping */
+.text-truncate-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Home Hero Animation */
+.hero-text-animate {
+    animation: hero-fade-in 1.2s ease-out forwards;
+}
+
+@keyframes hero-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 * {
     margin: 0;
     padding: 0;

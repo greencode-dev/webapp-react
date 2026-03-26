@@ -5,8 +5,8 @@ import { useEffect, useRef } from 'react';
 import useFetch from '../hooks/useFetch';
 
 function AboutPage() {
-    const { data: movies } = useFetch(getMovies);
-    const featuredMovies = movies ? movies.slice(0, 3) : [];
+    const { data } = useFetch(getMovies, [1, 3]);
+    const featuredMovies = data?.data || [];
     const observerRef = useRef(null);
 
     useEffect(() => {

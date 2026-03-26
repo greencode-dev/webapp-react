@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const useFetch = (fetchFunction, ...args) => {
+const useFetch = (fetchFunction, deps = []) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -9,7 +9,7 @@ const useFetch = (fetchFunction, ...args) => {
     const fetchData = useCallback(() => {
         setLoading(true);
         setError(null);
-        fetchFunction(...args)
+        fetchFunction(...deps)
             .then((result) => {
                 setData(result);
             })
@@ -20,7 +20,7 @@ const useFetch = (fetchFunction, ...args) => {
             .finally(() => {
                 setLoading(false);
             });
-    }, [fetchFunction, ...args]); // Dipendenze per useCallback
+    }, [fetchFunction, ...deps]); // Usiamo lo spread dell'array di dipendenze
 
     useEffect(() => {
         fetchData();

@@ -26,15 +26,22 @@ Per nuovi elementi UI, preferisci le variabili CSS in `index.css`:
 - `--secondary-neon` per i bagliori magenta.
 - Classe `.glass-card` per contenitori con effetto vetro.
 
-## 4. Paginazione Client-side
+## 4. Paginazione e Ricerca (Server-side pattern)
 
-Se aggiungi una nuova lista, segui il pattern in `HomePage.jsx`:
+Il progetto simula il comportamento di un server reale. Quando aggiungi filtri:
 
-1. Filtra l'array originale (Search).
-2. Usa `.slice()` per estrarre il subset basato su `currentPage`.
-3. Resetta `currentPage` a 1 ogni volta che il filtro cambia.
+1. Passa le dipendenze al hook `useFetch` come array: `useFetch(getMovies, [page, limit, search])`.
+2. L'hook rigenererà la chiamata automaticamente al cambio di uno dei parametri.
+3. Usa il **debouncing** per la ricerca testuale per evitare chiamate eccessive.
 
-## 5. API Service
+## 5. Skeleton Loaders
+
+Invece di usare spinner bloccanti, usa i componenti Skeleton (`MovieCardSkeleton`, `MovieDetailSkeleton`):
+
+- Mantengono il layout stabile durante il caricamento (prevenendo il Layout Shift).
+- Usano l'animazione `.shimmer` definita in `index.css`.
+
+## 6. API Service
 
 Tutte le chiamate vanno in `src/services/api.js`.
 Assicurati di gestire sempre il doppio scenario:
