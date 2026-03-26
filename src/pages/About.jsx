@@ -158,7 +158,7 @@ function AboutPage() {
                 </div>
                 <Row className="g-4">
                     {featuredMovies.map((movie) => (
-                        <Col key={movie.id} lg={4} md={6}>
+                        <Col key={movie.id} lg={4} md={6} className="about-animate">
                             <MovieCard movie={movie} />
                         </Col>
                     ))}

@@ -82,12 +82,33 @@
     padding: 4px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: var(--card-shadow);
+    position: relative;
+    overflow: hidden;
 }
 
 .neon-search-group:focus-within {
     border-color: var(--primary-neon);
     box-shadow: 0 0 25px var(--primary-glow);
     transform: scale(1.02);
+}
+
+.neon-search-group::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to bottom, transparent, var(--primary-glow), transparent);
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.neon-search-group:focus-within::after {
+    opacity: 1;
+    animation: search-scanline 2.5s linear infinite;
 }
 
 .neon-search-icon {
@@ -110,6 +131,81 @@
 
 .neon-search-input::placeholder {
     color: rgba(255, 255, 255, 0.4) !important;
+    transition: all 0.3s ease;
+}
+
+.neon-search-input:focus::placeholder {
+    animation: placeholder-flicker 4s linear infinite;
+}
+
+@keyframes placeholder-flicker {
+    0%,
+    19.999%,
+    22%,
+    62.999%,
+    64%,
+    64.999%,
+    70%,
+    100% {
+        opacity: 0.4;
+        text-shadow: none;
+    }
+    20%,
+    21.999%,
+    63%,
+    63.999%,
+    65%,
+    69.999% {
+        opacity: 1;
+        text-shadow: 0 0 10px var(--primary-glow);
+        color: var(--primary-neon) !important;
+    }
+}
+
+@keyframes search-scanline {
+    0% {
+        top: -20px;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+.search-progress-container {
+    max-width: 660px;
+    margin: -15px auto 25px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.search-progress-container.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-progress-bar {
+    width: 30%;
+    height: 100%;
+    background: var(--primary-neon);
+    box-shadow: 0 0 15px var(--primary-glow);
+    animation: progress-slide 1.5s infinite ease-in-out;
+}
+
+@keyframes progress-slide {
+    0% {
+        transform: translateX(-150%);
+    }
+    50% {
+        width: 60%;
+    }
+    100% {
+        transform: translateX(450%);
+    }
 }
 
 /* ==========================================================================
@@ -269,6 +365,150 @@ h6,
     }
 }
 
+/* Glitch Effect for Hero Title */
+.glitch-title {
+    position: relative;
+    cursor: default;
+}
+
+.glitch-title::before,
+.glitch-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    display: none;
+    z-index: -1;
+}
+
+.glitch-title:hover::before,
+.glitch-title:hover::after {
+    display: block;
+}
+
+.glitch-title:hover::before {
+    color: var(--primary-neon);
+    animation: glitch-anim-1 0.4s infinite linear alternate-reverse;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    transform: translate(-3px, -2px);
+}
+
+.glitch-title:hover::after {
+    color: var(--secondary-neon);
+    animation: glitch-anim-2 0.4s infinite linear alternate-reverse;
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    transform: translate(3px, 2px);
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        transform: translate(-3px, -2px);
+    }
+    100% {
+        clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%);
+        transform: translate(3px, 2px);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+        transform: translate(3px, 2px);
+    }
+    100% {
+        clip-path: polygon(0 80%, 100% 80%, 100% 95%, 0 95%);
+        transform: translate(-3px, -2px);
+    }
+}
+
+/* Results Container Transitions */
+.results-transition {
+    transition:
+        opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.4s ease;
+}
+
+.results-loading {
+    opacity: 0.3;
+    transform: translateY(10px);
+    pointer-events: none;
+}
+
+/* Holographic Materialization Effect */
+.movie-card-appearance {
+    position: relative;
+    animation: cyber-materialize 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
+    animation-delay: calc(var(--entry-index, 0) * 0.1s);
+}
+
+.movie-card-appearance::before {
+    content: '';
+    position: absolute;
+    /* Allineamento al bordo della card (Bootstrap Col gutter 12px) */
+    top: 0;
+    bottom: 0;
+    left: 12px;
+    right: 12px;
+    border: 2px solid var(--primary-neon);
+    border-radius: 1.25rem; /* Match glass-card */
+    pointer-events: none;
+    z-index: 10;
+    filter: drop-shadow(0 0 5px var(--primary-neon));
+    opacity: 0;
+    animation: border-trace 0.8s linear both;
+    animation-delay: calc(var(--entry-index, 0) * 0.1s);
+}
+
+@keyframes border-trace {
+    0% {
+        opacity: 0;
+        clip-path: polygon(0 0, 0 0, 0 0, 0 0, 0 0);
+    }
+    5% {
+        opacity: 1;
+    }
+    25% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+    }
+    50% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+    }
+    75% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+    }
+    95% {
+        opacity: 1;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+    }
+    100% {
+        opacity: 0;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+    }
+}
+
+@keyframes cyber-materialize {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+        filter: brightness(2) blur(10px);
+        clip-path: inset(100% 0 0 0);
+    }
+    40% {
+        opacity: 1;
+        filter: brightness(1.5) blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: brightness(1) blur(0);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -314,14 +554,9 @@ body {
 
 .glass-card:hover {
     background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--primary-neon) !important;
     transform: translateY(-8px);
     box-shadow: 0 15px 45px rgba(0, 0, 0, 0.9);
-}
-
-/* Movie Card Glitch Effect */
-.glass-card:hover {
-    border-color: var(--primary-neon) !important;
     animation: card-border-flicker 2s infinite;
 }
 

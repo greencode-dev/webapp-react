@@ -63,3 +63,12 @@ Per applicare l'effetto glitch a un testo:
 ```
 
 Il CSS userà `content: attr(data-text)` per creare i cloni cromatici necessari all'animazione senza duplicare il testo nel DOM.
+
+## 8. Materializzazione Olografica
+
+Per l'ingresso dei risultati di ricerca, usiamo un pattern a cascata:
+
+1. Il genitore (Col) riceve la classe `.movie-card-appearance`.
+2. Viene iniettata una variabile CSS `--entry-index` via style inline.
+3. Il CSS calcola il ritardo: `animation-delay: calc(var(--entry-index) * 0.1s)`.
+4. Viene eseguito il "Perimeter Scan" tramite lo pseudo-elemento `::before` con `clip-path`.

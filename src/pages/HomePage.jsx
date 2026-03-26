@@ -72,13 +72,18 @@ function HomePage() {
                 placeholder="Cerca un film per titolo o genere..."
             />
 
+            {/* Neon Search Progress Indicator */}
+            <div className={`search-progress-container ${loading ? 'visible' : ''}`}>
+                <div className="search-progress-bar"></div>
+            </div>
+
             <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
                 <h2 className="text-neon-primary mb-3 mb-md-0">I film in evidenza</h2>
 
                 <SortSelector value={sortBy} onChange={handleSortChange} />
             </div>
 
-            <Row className="g-4">
+            <Row className={`g-4 results-transition ${loading ? 'results-loading' : ''}`}>
                 {loading ? (
                     // Mostriamo 3 skeleton durante il caricamento
                     [...Array(moviesPerPage)].map((_, index) => (
@@ -87,15 +92,20 @@ function HomePage() {
                         </Col>
                     ))
                 ) : moviesList.length > 0 ? (
-                    moviesList.map((movie) => (
-                        <Col key={movie.id} md={6} lg={4}>
+                    moviesList.map((movie, index) => (
+                        <Col
+                            key={movie.id}
+                            md={6}
+                            lg={4}
+                            className="movie-card-appearance"
+                            style={{ '--entry-index': index }}>
                             <MovieCard movie={movie} />
                         </Col>
                     ))
                 ) : (
                     <Col>
                         <p className="text-muted text-center">
-                            Nessun film trovato con il termine "{searchTerm}".
+                            Nessun film trovato con il termine "{debouncedSearch}".
                         </p>
                     </Col>
                 )}
