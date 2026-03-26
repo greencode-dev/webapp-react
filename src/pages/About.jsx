@@ -26,7 +26,7 @@ function AboutPage() {
         animatedEls.forEach((el) => observerRef.current.observe(el));
 
         return () => observerRef.current?.disconnect();
-    }, []);
+    }, [featuredMovies]);
 
     const stats = [
         { value: '500+', label: 'Film in Database', icon: '🎬' },

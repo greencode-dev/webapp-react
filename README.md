@@ -11,9 +11,10 @@ Benvenuto in **CineLab**, la tua piattaforma definitiva per esplorare il mondo d
 | Elemento             | Dettaglio                                                                            |
 | :------------------- | :----------------------------------------------------------------------------------- |
 | **Neon Aesthetic**   | Palette vibrante (Cyan `#00d2ff` & Magenta `#bd00ff`) con effetti di bagliore (glow) |
+| **Glitch Effects**   | Animazioni digitali su titoli e card al passaggio del mouse (Hover state)            |
 | **Glassmorphism**    | Card con effetto vetro sfumato (`backdrop-filter: blur`) e bordi semi-trasparenti    |
-| **Typography**       | Font [Inter](https://fonts.google.com/specimen/Inter) con pesi 300–800 e gradienti   |
-| **Micro-animations** | Hover sulle card, scroll-reveal, anelli orbitanti nella pagina About                 |
+| **Typography**       | Font Orbitron e Exo 2                                                                |
+| **Micro-animations** | Hover interattivi, scroll-reveal con IntersectionObserver, anelli orbitanti          |
 | **Data Fetching**    | Custom Hook `useFetch` con gestione centralizzata di Loading e Error states          |
 | **Features**         | Ricerca multi-campo (Attori, Regista, Genere), Ordinamento Custom e Skeleton Loaders |
 | **UX**               | Paginazione server-side (simulata) e Dropdown con effetto Glassmorphism avanzato     |

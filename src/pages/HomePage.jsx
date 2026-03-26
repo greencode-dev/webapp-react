@@ -55,7 +55,9 @@ function HomePage() {
     return (
         <Container className="py-5">
             <div className="text-center mb-5 hero-text-animate">
-                <h1 className="display-4 mb-4 text-neon-primary fw-bold">
+                <h1
+                    className="display-4 mb-4 text-neon-primary fw-bold glitch-title"
+                    data-text="Scopri il Cinema con CineLab">
                     Scopri il Cinema con <span className="text-neon-secondary">CineLab</span>
                 </h1>
                 <p className="lead mb-5 text-neon-primary opacity-75">

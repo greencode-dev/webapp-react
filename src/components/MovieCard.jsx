@@ -21,7 +21,11 @@ function MovieCard({ movie }) {
                 <div className="poster-overlay"></div>
             </div>
             <div className="card-body d-flex flex-column bg-transparent">
-                <h5 className="card-title fw-bold text-neon-primary">{safeMovie.title}</h5>
+                <h5
+                    className="card-title fw-bold text-neon-primary card-glitch-text"
+                    data-text={safeMovie.title}>
+                    {safeMovie.title}
+                </h5>
                 <h6 className="card-subtitle mb-2 text-muted opacity-75">
                     {safeMovie.director} ({safeMovie.release_year})
                 </h6>

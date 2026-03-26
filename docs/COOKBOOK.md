@@ -48,3 +48,18 @@ Assicurati di gestire sempre il doppio scenario:
 
 - **DEV**: Ritorna una Promise con i dati mock se `VITE_API_URL` manca.
 - **PROD**: Usa l'istanza `axios` configurata.
+
+## 7. Effetto Glitch (Cyberpunk Style)
+
+Per applicare l'effetto glitch a un testo:
+
+1. Aggiungi la classe `.glitch-title` (per titoli grandi) o `.card-glitch-text` (per testi piccoli).
+2. Importante: aggiungi l'attributo `data-text` con lo stesso contenuto del tag:
+
+```jsx
+<h1 className="glitch-title" data-text="Titolo">
+    Titolo
+</h1>
+```
+
+Il CSS userà `content: attr(data-text)` per creare i cloni cromatici necessari all'animazione senza duplicare il testo nel DOM.
