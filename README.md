@@ -8,12 +8,14 @@ Benvenuto in **CineLab**, la tua piattaforma definitiva per esplorare il mondo d
 
 ## ✨ Caratteristiche del Design
 
-| Elemento | Dettaglio |
-|:---|:---|
-| **Neon Aesthetic** | Palette vibrante (Cyan `#00d2ff` & Magenta `#bd00ff`) con effetti di bagliore (glow) |
-| **Glassmorphism** | Card con effetto vetro sfumato (`backdrop-filter: blur`) e bordi semi-trasparenti |
-| **Typography** | Font [Inter](https://fonts.google.com/specimen/Inter) con pesi 300–800 e gradienti |
-| **Micro-animations** | Hover sulle card, scroll-reveal, anelli orbitanti nella pagina About |
+| Elemento             | Dettaglio                                                                            |
+| :------------------- | :----------------------------------------------------------------------------------- |
+| **Neon Aesthetic**   | Palette vibrante (Cyan `#00d2ff` & Magenta `#bd00ff`) con effetti di bagliore (glow) |
+| **Glassmorphism**    | Card con effetto vetro sfumato (`backdrop-filter: blur`) e bordi semi-trasparenti    |
+| **Typography**       | Font [Inter](https://fonts.google.com/specimen/Inter) con pesi 300–800 e gradienti   |
+| **Micro-animations** | Hover sulle card, scroll-reveal, anelli orbitanti nella pagina About                 |
+| **Data Fetching**    | Custom Hook `useFetch` con gestione centralizzata di Loading e Error states          |
+| **Features**         | Ricerca testuale in tempo reale e paginazione fluida                                 |
 
 ---
 
@@ -50,36 +52,33 @@ src/
 
 Classi utility riutilizzabili definite in `index.css`:
 
-| Classe | Effetto |
-|:---|:---|
-| `.text-neon-primary` | Testo cyan con text-shadow glow |
-| `.text-neon-secondary` | Testo magenta con text-shadow glow |
-| `.text-gradient` | Gradiente cyan → magenta con `-webkit-background-clip` |
-| `.glass-card` | Sfondo semi-trasparente con blur, bordo e shadow |
-| `.btn-primary` | Bottone con gradiente neon e hover animato |
-| `.poster-wrapper` | Contenitore poster con aspect-ratio 2:3 e zoom on hover |
-| `.about-animate` | Scroll-reveal fade-in (richiede `IntersectionObserver`) |
+| Classe                 | Effetto                                                 |
+| :--------------------- | :------------------------------------------------------ |
+| `.text-neon-primary`   | Testo cyan con text-shadow glow                         |
+| `.text-neon-secondary` | Testo magenta con text-shadow glow                      |
+| `.text-gradient`       | Gradiente cyan → magenta con `-webkit-background-clip`  |
+| `.glass-card`          | Sfondo semi-trasparente con blur, bordo e shadow        |
+| `.btn-primary`         | Bottone con gradiente neon e hover animato              |
+| `.poster-wrapper`      | Contenitore poster con aspect-ratio 2:3 e zoom on hover |
+| `.about-animate`       | Scroll-reveal fade-in (richiede `IntersectionObserver`) |
 
 ### Variabili CSS principali
 
 ```css
---bg-dark:         #070815
---primary-neon:    #00d2ff
---secondary-neon:  #bd00ff
---glass-bg:        rgba(255, 255, 255, 0.03)
---glass-border:    rgba(255, 255, 255, 0.08)
+--bg-dark: #070815 --primary-neon: #00d2ff --secondary-neon: #bd00ff
+    --glass-bg: rgba(255, 255, 255, 0.03) --glass-border: rgba(255, 255, 255, 0.08);
 ```
 
 ---
 
 ## 🗺️ Pagine e Routing
 
-| Percorso | Componente | Descrizione |
-|:---|:---|:---|
-| `/` | `HomePage` | Griglia dei film con card interattive |
-| `/about` | `About` | Hero animato, statistiche, missione e film in evidenza |
-| `/details/:id` | `DetailPage` | Dettaglio singolo film con poster, trama e recensioni |
-| `*` | `NotFound` | Pagina 404 con redirect alla home |
+| Percorso       | Componente   | Descrizione                                            |
+| :------------- | :----------- | :----------------------------------------------------- |
+| `/`            | `HomePage`   | Griglia dei film con card interattive                  |
+| `/about`       | `About`      | Hero animato, statistiche, missione e film in evidenza |
+| `/details/:id` | `DetailPage` | Dettaglio singolo film con poster, trama e recensioni  |
+| `*`            | `NotFound`   | Pagina 404 con redirect alla home                      |
 
 ---
 

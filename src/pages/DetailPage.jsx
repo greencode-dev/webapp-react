@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getMovie } from '../services/api';
 import useFetch from '../hooks/useFetch';
