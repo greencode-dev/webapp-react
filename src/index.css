@@ -126,6 +126,8 @@
     padding: 0.5rem 1.25rem;
     border-radius: 50px;
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
 }
 
 .neon-select-wrapper:focus-within {
@@ -137,19 +139,67 @@
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-muted);
+    letter-spacing: 2px;
     white-space: nowrap;
 }
 
-.neon-select {
-    background-color: transparent !important;
+.neon-dropdown-toggle {
     border: none !important;
-    color: white !important;
-    font-weight: 600 !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
     cursor: pointer;
     box-shadow: none !important;
-    padding-right: 2rem !important;
+    padding: 0 0.5rem !important;
+    transition: text-shadow 0.3s ease !important;
+}
+
+.neon-dropdown-toggle:hover {
+    text-shadow: 0 0 10px var(--secondary-glow);
+}
+
+.neon-dropdown-menu {
+    background: rgba(7, 8, 21, 0.85) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 12px !important;
+    margin-top: 10px !important;
+    padding: 0.5rem !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    z-index: 1050 !important;
+    animation: dropdown-fade-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform-origin: top center;
+}
+
+@keyframes dropdown-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.neon-dropdown-menu .dropdown-item {
+    color: var(--text-main) !important;
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.neon-dropdown-menu .dropdown-item:hover {
+    background: rgba(189, 0, 255, 0.1) !important;
+    color: var(--secondary-neon) !important;
+}
+
+.neon-dropdown-menu .dropdown-item.active {
+    background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon)) !important;
+    color: white !important;
 }
 
 /* ==========================================================================

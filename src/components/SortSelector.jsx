@@ -1,16 +1,30 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 
 function SortSelector({ value, onChange }) {
+    const sortLabels = {
+        latest: 'Più recenti',
+        oldest: 'Meno recenti',
+        rating_desc: 'Voto più alto',
+        rating_asc: 'Voto più basso',
+    };
+
     return (
         <div className="neon-select-wrapper">
-            <span className="neon-select-label">Ordina per:</span>
-            <Form.Select size="sm" className="neon-select" value={value} onChange={onChange}>
-                <option value="latest">Più recenti</option>
-                <option value="oldest">Meno recenti</option>
-                <option value="rating_desc">Voto più alto</option>
-                <option value="rating_asc">Voto più basso</option>
-            </Form.Select>
+            <span className="neon-select-label text-neon-secondary">Ordina per:</span>
+            <Dropdown onSelect={(val) => onChange({ target: { value: val } })}>
+                <Dropdown.Toggle variant="none" className="neon-dropdown-toggle">
+                    {sortLabels[value]}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className="neon-dropdown-menu">
+                    {Object.entries(sortLabels).map(([key, label]) => (
+                        <Dropdown.Item key={key} eventKey={key} active={value === key}>
+                            {label}
+                        </Dropdown.Item>
+                    ))}
+                </Dropdown.Menu>
+            </Dropdown>
         </div>
     );
 }

@@ -12,7 +12,7 @@ const { data, loading, error, refetch } = useFetch(apiFunction, arg1, arg2);
 
 ## 2. Gestione Errori
 
-Non gestire gli errori localmente. Usa il componente `ErrorDisplay` passando la funzione di `refetch` ottenuta dal hook:
+Non gestire gli errori localmente. Usa il componente `ErrorDisplay`:
 
 ```javascript
 if (error) return <ErrorDisplay message={error} onRetry={refetch} />;
