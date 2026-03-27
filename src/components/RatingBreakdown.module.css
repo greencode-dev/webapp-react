@@ -1,0 +1,56 @@
+.container {
+    border: 1px solid var(--glass-border);
+}
+
+.starLabel {
+    min-width: 40px;
+    font-size: 0.85rem;
+    color: var(--primary-neon);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.progressTrack {
+    flex-grow: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+    margin: 0 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progressBar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
+    box-shadow: 0 0 10px var(--primary-glow);
+    border-radius: 3px;
+    width: 0;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.countLabel {
+    min-width: 25px;
+    text-align: right;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    font-family: monospace;
+    color: var(--secondary-neon);
+}
+
+.ratingRow {
+    cursor: pointer;
+    padding: 4px 8px;
+    margin: 0 -8px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.ratingRow:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.activeRow {
+    background: rgba(0, 210, 255, 0.1);
+    border-color: rgba(0, 210, 255, 0.3);
+}

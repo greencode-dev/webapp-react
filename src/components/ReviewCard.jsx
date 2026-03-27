@@ -1,38 +1,39 @@
-import { Card } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import styles from './ReviewCard.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
-function ReviewCard({ review }) {
-    if (!review) return null;
-
-    const author = review.author || review.name || 'Anonimo';
-    const rating = review.rating || review.vote || 0;
-
-    const renderStars = (starRating) => {
-        return [...Array(5)].map((_, i) => (
-            <FontAwesomeIcon
-                key={i}
-                icon={faStar}
-                className={i < Math.round(starRating) ? '' : 'opacity-25'}
-            />
-        ));
-    };
+const ReviewCard = ({ review }) => {
+    const { author, rating, text } = review;
 
     return (
-        <Card className={`${styles.reviewCard} mb-4 border-0 text-white`}>
-            <Card.Body>
-                <div className="d-flex justify-content-between align-items-center mb-4">
-                    <div className="d-flex align-items-center gap-2">
-                        <div className={styles.avatar}>{author.charAt(0).toUpperCase()}</div>
-                        <h6 className={`${styles.author} mb-0`}>{author}</h6>
+        <div className={`glass-card p-3 ${styles.reviewCard}`}>
+            <div className="d-flex justify-content-between align-items-start mb-2">
+                <div className="d-flex align-items-center">
+                    <div className={styles.avatarWrapper}>
+                        <FontAwesomeIcon icon={faUserCircle} className={styles.avatarIcon} />
                     </div>
-                    <span className={styles.ratingStars}>{renderStars(rating)}</span>
+                    <h6 className="mb-0 ms-2 text-neon-secondary text-uppercase ls-1">{author}</h6>
                 </div>
-                <p className={styles.reviewText}>"{review.text}"</p>
-            </Card.Body>
-        </Card>
+
+                <div className={styles.starsWrapper}>
+                    {[...Array(5)].map((_, i) => (
+                        <FontAwesomeIcon
+                            key={i}
+                            icon={faStar}
+                            className={i < rating ? styles.starFilled : styles.starEmpty}
+                        />
+                    ))}
+                </div>
+            </div>
+
+            <div className={styles.content}>
+                <p className="mb-0 opacity-75 italic">
+                    <span className={styles.quote}>"</span>
+                    {text}
+                </p>
+            </div>
+        </div>
     );
-}
+};
 
 export default ReviewCard;

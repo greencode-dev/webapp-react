@@ -76,4 +76,22 @@ export function getMovie(id) {
     return api.get(`/movies/${id}`).then((response) => response.data);
 }
 
+export function postReview(id, data) {
+    if (import.meta.env.DEV && !import.meta.env.VITE_API_URL) {
+        // Simulazione persistenza nel mock locale per permettere il refresh dei dati
+        const movie = moviesData.find((m) => m.id === parseInt(id));
+        if (movie) {
+            if (!movie.reviews) movie.reviews = [];
+            const newReview = { id: Date.now(), ...data };
+            movie.reviews.push(newReview);
+        }
+
+        return new Promise((resolve) => {
+            console.log(`Mock API: Invio recensione per film ${id}`, data);
+            setTimeout(() => resolve({ success: true }), 500);
+        });
+    }
+    return api.post(`/movies/${id}/reviews`, data).then((response) => response.data);
+}
+
 export default api;

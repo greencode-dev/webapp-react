@@ -106,6 +106,96 @@ const movies = [
             },
         ],
     },
+    {
+        id: 6,
+        title: 'Pulp Fiction',
+        director: 'Quentin Tarantino',
+        genre: 'Crime',
+        release_year: 1994,
+        average_vote: 4.9,
+        actors: ['John Travolta', 'Uma Thurman', 'Samuel L. Jackson'],
+        abstract:
+            'Le vite di due sicari, un pugile, la moglie di un gangster e due banditi si intrecciano in quattro storie di violenza e redenzione.',
+        image: '/movies_cover/pulp_fiction.webp',
+        reviews: [
+            {
+                id: 8,
+                author: 'Roberto Blu',
+                rating: 5,
+                text: 'Dialoghi iconici e una regia magistrale.',
+            },
+        ],
+    },
+    {
+        id: 7,
+        title: 'Le ali della libertà',
+        director: 'Frank Darabont',
+        genre: 'Drama',
+        release_year: 1994,
+        average_vote: 5.0,
+        actors: ['Tim Robbins', 'Morgan Freeman'],
+        abstract:
+            'Due uomini imprigionati instaurano un legame nel corso di diversi anni, trovando consolazione e alla fine la redenzione attraverso atti di comune decenza.',
+        image: '/movies_cover/the_shawshank_redemption.webp',
+        reviews: [
+            {
+                id: 9,
+                author: 'Paola Arancio',
+                rating: 5,
+                text: 'Una storia di speranza meravigliosa.',
+            },
+        ],
+    },
+    {
+        id: 8,
+        title: 'Il cavaliere oscuro',
+        director: 'Christopher Nolan',
+        genre: 'Action/Crime',
+        release_year: 2008,
+        average_vote: 4.9,
+        actors: ['Christian Bale', 'Heath Ledger', 'Aaron Eckhart'],
+        abstract:
+            'Batman deve accettare una delle più grandi sfide psicologiche e fisiche della sua lotta contro l’ingiustizia quando il Joker semina il caos a Gotham City.',
+        image: '/movies_cover/the_dark_knight.webp',
+        reviews: [
+            {
+                id: 10,
+                author: 'Fabio Grigio',
+                rating: 5,
+                text: 'L’interpretazione di Heath Ledger è leggendaria.',
+            },
+        ],
+    },
+    {
+        id: 9,
+        title: 'Fight Club',
+        director: 'David Fincher',
+        genre: 'Drama',
+        release_year: 1999,
+        average_vote: 4.6,
+        actors: ['Brad Pitt', 'Edward Norton', 'Helena Bonham Carter'],
+        abstract:
+            'Un impiegato d’ufficio insonne e un eccentrico produttore di sapone formano un club di combattimento sotterraneo che si trasforma in qualcosa di molto più oscuro.',
+        image: '/movies_cover/fight_club.webp',
+        reviews: [
+            { id: 11, author: 'Sandro Marrone', rating: 4, text: 'Provocatorio e visionario.' },
+        ],
+    },
+    {
+        id: 10,
+        title: 'Forrest Gump',
+        director: 'Robert Zemeckis',
+        genre: 'Drama/Romance',
+        release_year: 1994,
+        average_vote: 4.8,
+        actors: ['Tom Hanks', 'Robin Wright'],
+        abstract:
+            'La storia di un uomo con un basso quoziente intellettivo che assiste e influenza involontariamente diversi eventi storici del XX secolo negli Stati Uniti.',
+        image: '/movies_cover/forrest_gump.webp',
+        reviews: [
+            { id: 12, author: 'Caterina Viola', rating: 5, text: 'Commovente e intramontabile.' },
+        ],
+    },
 ];
 
 export default movies;

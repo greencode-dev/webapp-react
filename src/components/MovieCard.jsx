@@ -15,7 +15,7 @@ function MovieCard({ movie }) {
         abstract: movie.abstract || 'Descrizione non disponibile',
     };
 
-    const maxTilt = 10; // Gradi massimi di inclinazione
+    const maxTilt = 5; // Gradi massimi di inclinazione
 
     const handleMouseMove = (e) => {
         const card = e.currentTarget;

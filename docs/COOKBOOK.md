@@ -107,3 +107,20 @@ Per ottimizzare il caricamento della pagina ed evitare il Layout Shift:
 1. Usa sempre `loading="lazy"` sulle immagini dei poster.
 2. Assicurati che il contenitore dell'immagine abbia un `aspect-ratio` definito via CSS (es. `2/3` per i poster).
 3. Fornisci sempre un attributo `alt` descrittivo per l'accessibilità.
+
+## 12. Sistema di Rating Interattivo
+
+Per i form di valutazione, sostituiamo i dropdown con icone `faStar`:
+
+- Usa uno stato `hoverRating` per il feedback visivo al passaggio del mouse.
+- Applica classi CSS con `drop-shadow` per l'effetto neon sulle stelle attive.
+- Gestisci il click per persistere la scelta nell'oggetto di stato del form.
+
+## 13. Filtri Dinamici su Dati Derivati
+
+Quando implementi filtri sulla UI (es. RatingBreakdown):
+
+1. Usa `useMemo` per calcolare la lista filtrata basandoti su uno stato di filtro (es. `filterRating`).
+2. Implementa una funzione di "toggle" (clicca per attivare, clicca di nuovo per disattivare).
+3. Fornisci sempre un feedback visivo dell'azione e un pulsante di reset rapido.
+4. Gestisci il caso "Empty State" se il filtro non produce risultati.
