@@ -71,6 +71,7 @@ function HomePage() {
                 value={searchTerm}
                 onChange={handleSearch}
                 placeholder="Cerca un film per titolo o genere..."
+                loading={loading}
             />
 
             {/* Neon Search Progress Indicator */}

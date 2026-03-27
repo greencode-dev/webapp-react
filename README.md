@@ -92,6 +92,7 @@ Classi utility riutilizzabili definite in `index.css`:
 - **React 19** — UI library
 - **React Router 7** — Navigazione SPA con rotte dinamiche
 - **CSS Modules** — Scoping locale degli stili e ottimizzazione performance
+- **Font Awesome** — Set di icone SVG scalabili e accessibili
 - **React Bootstrap 2** — Componenti layout (Grid, Navbar, Card)
 - **Bootstrap 5.3** — Utilities CSS di base
 - **Vite 8** — Build tool e dev server

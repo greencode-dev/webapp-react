@@ -53,7 +53,7 @@ Assicurati di gestire sempre il doppio scenario:
 
 Per applicare l'effetto glitch a un testo:
 
-1. Aggiungi la classe `.glitch-title` (per titoli grandi) o `.card-glitch-text` (per testi piccoli).
+1. Applica le classi dal relativo modulo CSS (es. `styles.glitchTitle` o `styles.cardGlitchText`).
 2. Importante: aggiungi l'attributo `data-text` con lo stesso contenuto del tag:
 
 ```jsx
@@ -72,3 +72,12 @@ Per l'ingresso dei risultati di ricerca, usiamo un pattern a cascata:
 2. Viene iniettata una variabile CSS `--entry-index` via style inline.
 3. Il CSS calcola il ritardo: `animation-delay: calc(var(--entry-index) * 0.1s)`.
 4. Viene eseguito il "Perimeter Scan" tramite lo pseudo-elemento `::before` con `clip-path`.
+
+## 9. Icone (Font Awesome)
+
+Per mantenere la coerenza visiva e l'accessibilità:
+
+1. Usa `FontAwesomeIcon` invece delle emoji.
+2. Importa icone specifiche per ridurre il peso del bundle: `import { faStar } from '@fortawesome/free-solid-svg-icons'`.
+3. Per i loghi social, usa il pacchetto `@fortawesome/free-brands-svg-icons`.
+4. Applica stili neon (glow) via CSS Modules sfruttando il selettore `svg`.

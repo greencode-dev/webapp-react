@@ -1,4 +1,6 @@
 import { Card } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import styles from './ReviewCard.module.css';
 
 function ReviewCard({ review }) {
@@ -8,7 +10,13 @@ function ReviewCard({ review }) {
     const rating = review.rating || review.vote || 0;
 
     const renderStars = (starRating) => {
-        return '⭐'.repeat(Math.round(starRating));
+        return [...Array(5)].map((_, i) => (
+            <FontAwesomeIcon
+                key={i}
+                icon={faStar}
+                className={i < Math.round(starRating) ? '' : 'opacity-25'}
+            />
+        ));
     };
 
     return (

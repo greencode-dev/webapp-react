@@ -3,6 +3,18 @@ import { Row, Col } from 'react-bootstrap';
 import { getMovies } from '../services/api';
 import { useEffect, useRef } from 'react';
 import useFetch from '../hooks/useFetch';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faFilm,
+    faCommentDots,
+    faBolt,
+    faStar,
+    faMagnifyingGlass,
+    faComments,
+    faTrophy,
+    faRocket,
+    faClapperboard,
+} from '@fortawesome/free-solid-svg-icons';
 import styles from './About.module.css';
 
 function AboutPage() {
@@ -30,27 +42,27 @@ function AboutPage() {
     }, [featuredMovies]);
 
     const stats = [
-        { value: '500+', label: 'Film in Database', icon: '🎬' },
-        { value: '10k+', label: 'Recensioni', icon: '✍️' },
-        { value: '24/7', label: 'Aggiornamenti', icon: '⚡' },
-        { value: '4.9', label: 'Rating Utenti', icon: '⭐' },
+        { value: '500+', label: 'Film in Database', icon: faFilm },
+        { value: '10k+', label: 'Recensioni', icon: faCommentDots },
+        { value: '24/7', label: 'Aggiornamenti', icon: faBolt },
+        { value: '4.9', label: 'Rating Utenti', icon: faStar },
     ];
 
     const features = [
         {
-            icon: '🔍',
+            icon: faMagnifyingGlass,
             title: 'Scopri',
             description:
                 'Esplora un catalogo in costante espansione con filtri avanzati e raccomandazioni personalizzate.',
         },
         {
-            icon: '💬',
+            icon: faComments,
             title: 'Condividi',
             description:
                 'Lascia le tue recensioni, leggi le opinioni della community e confronta i punti di vista.',
         },
         {
-            icon: '🏆',
+            icon: faTrophy,
             title: 'Colleziona',
             description:
                 'Crea la tua watchlist personale, tieni traccia dei film visti e scopri nuove gemme nascoste.',
@@ -64,7 +76,8 @@ function AboutPage() {
                 <div className={styles.aboutHeroParticles}></div>
                 <div className={`${styles.heroContent} text-center ${styles.aboutAnimate}`}>
                     <span className="about-badge mb-4 d-inline-block">
-                        🎥 La tua piattaforma cinema
+                        <FontAwesomeIcon icon={faClapperboard} className="me-2" />
+                        La tua piattaforma cinema
                     </span>
                     <h1 className="display-1 fw-bold mb-3">
                         <span className="text-neon-primary">Cine</span>
@@ -87,7 +100,9 @@ function AboutPage() {
                             <div
                                 className={`${styles.aboutStatCard} card text-center ${styles.aboutAnimate}`}
                                 style={{ animationDelay: `${index * 0.1}s` }}>
-                                <div className="about-stat-icon">{stat.icon}</div>
+                                <div className={styles.aboutStatIcon}>
+                                    <FontAwesomeIcon icon={stat.icon} />
+                                </div>
                                 <h3 className="about-stat-value">{stat.value}</h3>
                                 <p className="about-stat-label mb-0">{stat.label}</p>
                             </div>
@@ -123,7 +138,9 @@ function AboutPage() {
                             <div
                                 className={`${styles.aboutMissionRing} ${styles.aboutMissionRing2}`}></div>
                             <div className={styles.aboutMissionCenter}>
-                                <span className={styles.aboutMissionEmoji}>🎞️</span>
+                                <span className={styles.aboutMissionEmoji}>
+                                    <FontAwesomeIcon icon={faRocket} />
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -142,7 +159,9 @@ function AboutPage() {
                             <div
                                 className={`${styles.aboutFeatureCard} card h-100 ${styles.aboutAnimate}`}
                                 style={{ animationDelay: `${index * 0.15}s` }}>
-                                <div className="about-feature-icon">{feature.icon}</div>
+                                <div className={styles.aboutFeatureIcon}>
+                                    <FontAwesomeIcon icon={feature.icon} />
+                                </div>
                                 <h4 className="fw-bold text-neon-primary mb-3">{feature.title}</h4>
                                 <p className="text-secondary mb-0">{feature.description}</p>
                             </div>

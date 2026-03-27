@@ -3,6 +3,8 @@ import { getMovie } from '../services/api';
 import useFetch from '../hooks/useFetch';
 import ReviewCard from '../components/ReviewCard';
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import ErrorDisplay from '../components/ErrorDisplay';
 import MovieDetailSkeleton from '../components/MovieDetailSkeleton';
 import styles from './DetailPage.module.css';
@@ -58,7 +60,11 @@ function DetailPage() {
                                         <div className={styles.voteContainer}>
                                             <div className="d-flex align-items-baseline justify-content-center">
                                                 <h2 className="text-neon-secondary fw-bold mb-0 me-1">
-                                                    ⭐ {parseFloat(movie.average_vote).toFixed(1)}
+                                                    <FontAwesomeIcon
+                                                        icon={faStar}
+                                                        className="me-2"
+                                                    />
+                                                    {parseFloat(movie.average_vote).toFixed(1)}
                                                 </h2>
                                                 <span className="text-light opacity-50 fs-5">
                                                     / 5
@@ -81,7 +87,8 @@ function DetailPage() {
                                     variant="outline-secondary"
                                     className="px-4"
                                     onClick={() => navigate(-1)}>
-                                    ← Torna indietro
+                                    <FontAwesomeIcon icon={faArrowLeft} className="me-2" /> Torna
+                                    indietro
                                 </Button>
                             </div>
                         </Card.Body>

@@ -46,7 +46,7 @@ function MovieDetailSkeleton() {
                 <Row>
                     {[1, 2].map((i) => (
                         <Col key={i} md={6}>
-                            <div className={styles.reviewSkeletonCard}>
+                            <div className={`${styles.reviewSkeletonCard} mb-4 p-4`}>
                                 <div className={`${styles.flexRow} mb-3`}>
                                     {/* Avatar e Nome */}
                                     <div className={`${styles.avatar} me-3`}></div>
