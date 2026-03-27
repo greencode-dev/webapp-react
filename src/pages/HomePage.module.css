@@ -97,6 +97,8 @@
     margin-bottom: 2rem;
     border-bottom: 1px solid var(--glass-border);
     padding-bottom: 1rem;
+    position: relative;
+    z-index: auto; /* IMPORTANTE: Permette ai figli di competere nel contesto globale senza creare un muro */
 }
 
 @media (min-width: 768px) {
@@ -105,10 +107,24 @@
     }
 }
 
+.movieGrid {
+    position: relative;
+    z-index: 1;
+    padding-top: 1rem;
+    /* Assicura che nessun contenitore intermedio tagli i bagliori neon */
+    overflow: visible !important;
+}
+
 .movieCardAppearance {
     position: relative;
     animation: cyber-materialize 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
     animation-delay: calc(var(--entry-index, 0) * 0.1s);
+    z-index: 1;
+}
+
+.movieCardAppearance:hover {
+    /* Eleva la card sopra la linea di divisione della testata */
+    z-index: 20;
 }
 
 /* Holographic Scanline (Perimeter Trace) */
@@ -172,7 +188,8 @@
         opacity: 1;
         transform: translateY(0) scale(1);
         filter: brightness(1) blur(0);
-        clip-path: inset(0 0 0 0);
+        /* SOLUZIONE: Rimuoviamo il clip-path alla fine per evitare il taglio del poster durante l'hover */
+        clip-path: none;
     }
 }
 

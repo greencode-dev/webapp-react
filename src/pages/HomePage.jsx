@@ -87,7 +87,7 @@ function HomePage() {
             </div>
 
             <Row
-                className={`g-4 ${styles.resultsTransition} ${loading ? styles.resultsLoading : ''}`}>
+                className={`g-4 ${styles.movieGrid} ${styles.resultsTransition} ${loading ? styles.resultsLoading : ''}`}>
                 {loading ? (
                     // Mostriamo 3 skeleton durante il caricamento
                     [...Array(moviesPerPage)].map((_, index) => (

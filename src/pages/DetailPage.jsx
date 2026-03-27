@@ -7,7 +7,6 @@ import ReviewForm from '../components/ReviewForm';
 import ReviewCard from '../components/ReviewCard';
 import RatingBreakdown from '../components/RatingBreakdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styles from './DetailPage.module.css';
 import { faStar, faCalendarAlt, faFilm, faUserTie } from '@fortawesome/free-solid-svg-icons';
 
 const DetailPage = () => {
@@ -53,16 +52,17 @@ const DetailPage = () => {
                 style={{ '--entry-index': 1 }}>
                 <Col lg={4} className="mb-4 mb-lg-0">
                     <div
-                        className={`poster-wrapper rounded-4 overflow-hidden border border-info shadow-lg ${styles.posterContainer}`}>
+                        className="poster-wrapper rounded-4 overflow-hidden border border-info shadow-lg"
+                        style={{ boxShadow: '0 0 25px var(--primary-glow)' }}>
                         <img
                             src={movie.image}
                             alt={movie.title}
-                            className={`img-fluid w-100 ${styles.posterImage}`}
+                            className="img-fluid w-100 object-fit-cover"
                         />
                     </div>
                 </Col>
                 <Col lg={8} className="movie-card-appearance" style={{ '--entry-index': 2 }}>
-                    <h1 className="glitch-title mb-3 text-neon-primary" data-text={movie.title}>
+                    <h1 className="glitch-title mb-3" data-text={movie.title}>
                         {movie.title}
                     </h1>
 
@@ -107,14 +107,13 @@ const DetailPage = () => {
 
             <hr className="my-5 border-secondary opacity-25" />
 
-            <h3
-                className="text-neon-primary mb-4 movie-card-appearance"
-                style={{ '--entry-index': 3 }}>
-                Recensioni <small className="text-muted fs-6">({movie.reviews?.length || 0})</small>
-            </h3>
-
-            <Row className="movie-card-appearance" style={{ '--entry-index': 4 }}>
+            <Row className="movie-card-appearance" style={{ '--entry-index': 3 }}>
                 <Col lg={7} className="mb-5 mb-lg-0">
+                    <h3 className="text-neon-primary mb-4">
+                        Recensioni{' '}
+                        <small className="text-muted fs-6">({movie.reviews?.length || 0})</small>
+                    </h3>
+
                     {/* Visualizzazione della distribuzione voti */}
                     <RatingBreakdown
                         reviews={movie.reviews}
@@ -123,13 +122,9 @@ const DetailPage = () => {
                     />
 
                     {filterRating && (
-                        <div
-                            className={`mb-3 d-flex align-items-center justify-content-between ${styles.filterInfo}`}>
+                        <div className="mb-3 d-flex align-items-center justify-content-between">
                             <span className="text-muted small">
-                                Filtro attivo:{' '}
-                                <strong>
-                                    {filterRating} {filterRating === 1 ? 'Stella' : 'Stelle'}
-                                </strong>
+                                Filtro attivo: <strong>{filterRating} stelle</strong>
                             </span>
                             <button
                                 className="btn btn-link btn-sm text-neon-primary p-0 text-decoration-none"

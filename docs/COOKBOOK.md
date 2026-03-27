@@ -51,45 +51,9 @@ Assicurati di gestire sempre il doppio scenario:
 
 ## 7. Effetto Glitch (Cyberpunk Style)
 
-Per applicare l'effetto glitch a un testo:
-
-1. Applica le classi dal relativo modulo CSS (es. `styles.glitchTitle` o `styles.cardGlitchText`).
-2. Importante: aggiungi l'attributo `data-text` con lo stesso contenuto del tag:
-
-```jsx
-<h1 className="glitch-title" data-text="Titolo">
-    Titolo
-</h1>
-```
-
-Il CSS userà `content: attr(data-text)` per creare i cloni cromatici necessari all'animazione senza duplicare il testo nel DOM.
-
-## 8. Materializzazione Olografica
-
-Per l'ingresso dei risultati di ricerca, usiamo un pattern a cascata:
-
-1. Il genitore (Col) riceve la classe `.movie-card-appearance`.
 2. Viene iniettata una variabile CSS `--entry-index` via style inline.
 3. Il CSS calcola il ritardo: `animation-delay: calc(var(--entry-index) * 0.1s)`.
 4. Viene eseguito il "Perimeter Scan" tramite lo pseudo-elemento `::before` con `clip-path`.
-
-## 9. Icone (Font Awesome)
-
-Per mantenere la coerenza visiva e l'accessibilità:
-
-1. Usa `FontAwesomeIcon` invece delle emoji.
-2. Importa icone specifiche per ridurre il peso del bundle: `import { faStar } from '@fortawesome/free-solid-svg-icons'`.
-3. Per i loghi social, usa il pacchetto `@fortawesome/free-brands-svg-icons`.
-4. Applica stili neon (glow) via CSS Modules sfruttando il selettore `svg`.
-
-## 10. Interattività Avanzata (Mouse Tracking)
-
-Per effetti come Tilt 3D o Spotlight:
-
-1. Usa `onMouseMove` per catturare le coordinate relative: `e.clientX - rect.left`.
-2. Inietta i valori come variabili CSS: `card.style.setProperty('--mouse-x', \`${x}px\`)`.
-3. Nel CSS, usa `var(--mouse-x)` all'interno di `radial-gradient` o `transform`.
-4. Ricorda sempre il reset su `onMouseLeave`.
 
 ## 10. Interattività Avanzata (Mouse Tracking)
 
@@ -127,7 +91,46 @@ Quando implementi filtri sulla UI (es. RatingBreakdown):
 
 ## 14. Animazione Neon Pulse (Breathing Glow)
 
-Per simulare un'atmosfera cyberpunk realistica senza affaticare l'utente, applichiamo l'effetto flicker solo agli elementi di branding:
+Per simulare un'atmosfera cyberpunk realistica senza affaticare l'utente, applichiamo l'effetto "respiro" solo agli elementi di branding:
+
+1. Usa la classe `.neon-pulse` per applicare un'animazione di respiro al bagliore.
+2. L'animazione varia dolcemente il `text-shadow` e l' `opacity` per creare un effetto "vivo".
+
+## 15. Risoluzione Clipping e Z-Index
+
+Quando le card si sollevano (`translateY`) e vengono tagliate o finiscono sotto altri elementi:
+
+1. Assicurati che il contenitore (`movieGrid`) abbia `overflow: visible`.
+2. Rimuovi `clip-path` al termine delle animazioni di ingresso (`100% { clip-path: none; }`).
+3. Gestisci gli `z-index` globalmente impostando i contenitori padri su `z-index: auto` e gli elementi in hover su un valore superiore (es. `20`).
+
+## 16. Sistema di Bozze (Persistence)
+
+Per migliorare la UX nei form:
+
+1. Usa `localStorage` per salvare lo stato del form in tempo reale tramite `useEffect`.
+2. Implementa una funzione "Reset Matrix" per permettere all'utente di pulire i dati salvati.
+3. Rimuovi la chiave dal storage solo dopo una risposta positiva dal server.
+
+## 14. Animazione Neon Pulse (Breathing Glow)
+
+Per simulare un'atmosfera cyberpunk realistica senza affaticare l'utente, applichiamo l'effetto "respiro" solo agli elementi di branding:
 
 1. Usa la classe `.neon-pulse` per applicare un'animazione di respiro al bagliore.
 2. L'animazione varia dolcemente il `text-shadow` e l' `opacity` per creare un effetto "vivo" e meno aggressivo del flicker.
+
+## 15. Risoluzione Conflitti Z-Index (Lifting Pattern)
+
+Per gestire correttamente sovrapposizioni tra card animate e menu a tendina:
+
+1. **Spaziatura (Clearance)**: Usa `padding-top` o `margin-top` sul contenitore della griglia per dare spazio alle card di sollevarsi senza toccare la sezione precedente.
+2. **Priorità Funzionale**: La testata (`sectionHeader`) deve avere uno `z-index` superiore alla griglia per permettere ai dropdown di aprirsi sopra i contenuti.
+3. **Animazioni 3D**: Ricorda che `transform` crea un nuovo stacking context; la spaziatura fisica è spesso più affidabile del solo `z-index`.
+
+## 16. Sistema di Bozze (Persistence)
+
+Per migliorare la UX nei form lunghi:
+
+1. Usa `localStorage.setItem` agganciato a un `useEffect` che osserva lo stato del form.
+2. Usa chiavi univoche basate sull'ID della risorsa (es. `review_draft_${movieId}`).
+3. Rimuovi la bozza solo dopo un invio con successo o tramite azione esplicita di "Clear".

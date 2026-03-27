@@ -15,6 +15,8 @@ Benvenuto in **CineLab**, la tua piattaforma definitiva per esplorare il mondo d
 | **3D Tilt & Light**   | Card interattive con inclinazione 3D e spotlight dinamico basato sul mouse           |
 | **Holographic Entry** | Materializzazione delle card con scansione laser perimetrale e blur dinamico         |
 | **Glassmorphism**     | Card con effetto vetro sfumato (`backdrop-filter: blur`) e bordi semi-trasparenti    |
+| **Smart Drafts**      | Salvataggio automatico delle recensioni in locale per evitare perdite di dati        |
+| **Dynamic Filtering** | Riepilogo voti interattivo con filtraggio delle recensioni in tempo reale            |
 | **Typography**        | Font Orbitron e Exo 2                                                                |
 | **Micro-animations**  | Hover interattivi, scroll-reveal con IntersectionObserver, anelli orbitanti          |
 | **Data Fetching**     | Custom Hook `useFetch` con gestione centralizzata di Loading e Error states          |

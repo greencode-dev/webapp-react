@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { postReview } from '../services/api';
 import styles from './ReviewForm.module.css';
@@ -28,8 +28,28 @@ const ReviewForm = ({ movieId, onReviewSuccess }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [hoverRating, setHoverRating] = useState(0);
 
+    // Caricamento bozza dal localStorage (Milestone Bonus)
+    useEffect(() => {
+        const savedDraft = localStorage.getItem(`review_draft_${movieId}`);
+        if (savedDraft) {
+            setFormData(JSON.parse(savedDraft));
+        }
+    }, [movieId]);
+
+    // Salvataggio bozza automatica
+    useEffect(() => {
+        if (formData.author || formData.text) {
+            localStorage.setItem(`review_draft_${movieId}`, JSON.stringify(formData));
+        }
+    }, [formData, movieId]);
+
     // Validazione semplice (Bonus)
     const isFormValid = formData.author.trim().length >= 2 && formData.text.trim().length >= 5;
+
+    const clearDraft = () => {
+        setFormData(initialForm);
+        localStorage.removeItem(`review_draft_${movieId}`);
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -55,6 +75,7 @@ const ReviewForm = ({ movieId, onReviewSuccess }) => {
                     'Recensione inviata con successo! Il sistema olografico si sta aggiornando...',
             });
             setFormData(initialForm);
+            localStorage.removeItem(`review_draft_${movieId}`);
 
             // Milestone 3: Notifica il padre per aggiornare i dati
             if (onReviewSuccess) {
@@ -113,9 +134,6 @@ const ReviewForm = ({ movieId, onReviewSuccess }) => {
                                 onClick={() => setFormData((prev) => ({ ...prev, rating: star }))}
                             />
                         ))}
-                        {/* <span className="ms-3 text-muted small">
-                            {formData.rating} {formData.rating === 1 ? 'Stella' : 'Stelle'}
-                        </span> */}
                     </div>
                 </Form.Group>
 
@@ -134,6 +152,15 @@ const ReviewForm = ({ movieId, onReviewSuccess }) => {
                             required
                         />
                         <div className={styles.counterContainer}>
+                            {formData.text.length > 0 && (
+                                <button
+                                    type="button"
+                                    className={styles.glitchClearBtn}
+                                    onClick={clearDraft}
+                                    data-text="Reset Matrix">
+                                    Reset Matrix
+                                </button>
+                            )}
                             <span
                                 className={`${styles.charCounter} ${formData.text.length >= MAX_CHARS * 0.9 ? styles.counterWarning : ''}`}>
                                 {formData.text.length} / {MAX_CHARS}

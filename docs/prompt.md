@@ -17,3 +17,5 @@ fine - Aggiungi un contatore di caratteri in tempo reale per il campo commento n
 Aggiungi un pulsante per cancellare rapidamente tutto il testo nel ReviewForm con un effetto glitch.
 
 Implementa un sistema di salvataggio bozza nel localStorage per non perdere la recensione se si ricarica la pagina.
+
+Applica un leggero effetto di sfocatura (backdrop-filter) alla sectionHeader per rendere il passaggio delle card ancora più cinematico.

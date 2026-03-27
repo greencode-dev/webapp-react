@@ -60,8 +60,50 @@
 /* --- Character Counter --- */
 .counterContainer {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 5px;
+}
+
+.glitchClearBtn {
+    background: transparent;
+    border: none;
+    color: var(--secondary-neon);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+}
+
+.glitchClearBtn:hover {
+    text-shadow:
+        2px 0 #00ffff,
+        -2px 0 #ff0055;
+    animation: button-glitch 0.3s infinite;
+}
+
+@keyframes button-glitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 1px);
+    }
+    40% {
+        transform: translate(2px, -1px);
+    }
+    60% {
+        transform: translate(-1px, -1px);
+    }
+    80% {
+        transform: translate(1px, 1px);
+    }
+    100% {
+        transform: translate(0);
+    }
 }
 
 .charCounter {
