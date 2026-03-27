@@ -1,0 +1,85 @@
+.selectWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
+}
+
+.selectWrapper:focus-within {
+    border-color: var(--secondary-neon);
+    box-shadow: 0 0 15px var(--secondary-glow);
+}
+
+.selectLabel {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+.dropdownToggle {
+    border: none !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    cursor: pointer;
+    box-shadow: none !important;
+    padding: 0 0.5rem !important;
+    transition: text-shadow 0.3s ease !important;
+}
+
+.dropdownToggle:hover {
+    text-shadow: 0 0 10px var(--secondary-glow);
+}
+
+.dropdownMenu {
+    background: rgba(7, 8, 21, 0.85) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 12px !important;
+    margin-top: 10px !important;
+    padding: 0.5rem !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    z-index: 1050 !important;
+    animation: dropdownFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transform-origin: top center;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.dropdownMenu :global(.dropdown-item) {
+    color: var(--text-main) !important;
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.dropdownMenu :global(.dropdown-item):hover {
+    background: rgba(189, 0, 255, 0.1) !important;
+    color: var(--secondary-neon) !important;
+}
+
+.dropdownMenu :global(.dropdown-item).active {
+    background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon)) !important;
+    color: white !important;
+}

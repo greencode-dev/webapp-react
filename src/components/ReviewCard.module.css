@@ -1,0 +1,55 @@
+.reviewCard {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.reviewCard:hover {
+    border-color: var(--secondary-neon);
+    box-shadow: 0 0 20px rgba(189, 0, 255, 0.15);
+    transform: translateY(-5px);
+}
+
+.author {
+    font-weight: 700;
+    color: var(--primary-neon);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+}
+
+.avatar {
+    background-color: var(--primary-neon);
+    color: var(--bg-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.ratingStars {
+    color: #ffc107;
+    text-shadow: 0 0 8px rgba(255, 193, 7, 0.4);
+    margin-bottom: 0.5rem;
+}
+
+.reviewText {
+    color: var(--text-main);
+    font-style: italic;
+    line-height: 1.6;
+    /* Incorporiamo qui l'utility di troncamento se necessaria */
+    border-left: 3px solid var(--primary-neon);
+    padding-left: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

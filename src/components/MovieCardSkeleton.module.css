@@ -1,0 +1,85 @@
+.skeletonBase {
+    background: rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.skeletonBase::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.08), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.cardContainer {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.25rem;
+    height: 100%;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.posterArea {
+    composes: skeletonBase;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: 1.25rem 1.25rem 0 0;
+}
+
+.contentArea {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.titleLine {
+    composes: skeletonBase;
+    height: 1.5rem;
+    width: 70%;
+    margin-bottom: 1rem;
+}
+
+.textLine {
+    composes: skeletonBase;
+    height: 0.8rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.textLineShort {
+    composes: textLine;
+    width: 60%;
+}
+
+.w90 {
+    width: 90%;
+}
+
+.w50 {
+    width: 50%;
+}
+
+.footerBadge {
+    composes: skeletonBase;
+    height: 24px;
+    width: 60px;
+    border-radius: 20px;
+}
+
+.footerBtn {
+    composes: skeletonBase;
+    height: 32px;
+    width: 100px;
+    border-radius: 5px;
+}

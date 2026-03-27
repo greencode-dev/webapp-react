@@ -1,0 +1,79 @@
+.detailCard {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.25rem;
+}
+
+.posterColumn {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.posterWrapper {
+    border-radius: 1.25rem;
+    box-shadow: 0 0 30px rgba(0, 210, 255, 0.2);
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    transition: box-shadow 0.4s ease;
+}
+
+.posterWrapper:hover {
+    box-shadow: 0 0 40px var(--primary-glow);
+}
+
+.posterImg {
+    max-height: 500px;
+    width: auto;
+    display: block;
+}
+
+.infoBody {
+    padding: 3rem !important;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.headerRow {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.genreBadge {
+    background: var(--primary-neon) !important;
+    color: var(--bg-dark) !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.voteContainer {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--card-shadow);
+}
+
+.voteLabel {
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.abstractText {
+    font-size: 1.2rem;
+    color: var(--text-main);
+    opacity: 0.85;
+    line-height: 1.8;
+}

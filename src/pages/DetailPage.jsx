@@ -5,6 +5,7 @@ import ReviewCard from '../components/ReviewCard';
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 import ErrorDisplay from '../components/ErrorDisplay';
 import MovieDetailSkeleton from '../components/MovieDetailSkeleton';
+import styles from './DetailPage.module.css';
 
 function DetailPage() {
     const { id } = useParams();
@@ -30,23 +31,18 @@ function DetailPage() {
 
     return (
         <Container className="py-5">
-            <Card className="glass-card shadow-lg border-0 overflow-hidden mb-5">
+            <Card className={`${styles.detailCard} shadow-lg border-0 overflow-hidden mb-5`}>
                 <Row className="g-0">
-                    <Col md={4} className="p-4 d-flex align-items-center justify-content-center">
-                        <div className="poster-detail overflow-hidden">
-                            <img
-                                src={movie.image}
-                                alt={movie.title}
-                                className="img-fluid"
-                                style={{ maxHeight: '500px', width: 'auto' }}
-                            />
+                    <Col md={4} className={styles.posterColumn}>
+                        <div className={styles.posterWrapper}>
+                            <img src={movie.image} alt={movie.title} className={styles.posterImg} />
                         </div>
                     </Col>
                     <Col md={8}>
-                        <Card.Body className="p-4 p-lg-5 h-100 d-flex flex-column">
-                            <div className="mb-3 d-flex justify-content-between align-items-start flex-wrap gap-3">
+                        <Card.Body className={styles.infoBody}>
+                            <div className={styles.headerRow}>
                                 <div>
-                                    <span className="badge bg-primary px-3 py-2 mb-2">
+                                    <span className={`${styles.genreBadge} badge mb-2`}>
                                         {movie.genre}
                                     </span>
                                     <h1 className="display-4 fw-bold mb-1 text-neon-primary">
@@ -59,7 +55,7 @@ function DetailPage() {
                                 </div>
                                 {movie.average_vote != null &&
                                     !isNaN(parseFloat(movie.average_vote)) && (
-                                        <div className="text-center bg-dark bg-opacity-50 px-4 py-3 rounded-4 border border-secondary shadow">
+                                        <div className={styles.voteContainer}>
                                             <div className="d-flex align-items-baseline justify-content-center">
                                                 <h2 className="text-neon-secondary fw-bold mb-0 me-1">
                                                     ⭐ {parseFloat(movie.average_vote).toFixed(1)}
@@ -68,14 +64,7 @@ function DetailPage() {
                                                     / 5
                                                 </span>
                                             </div>
-                                            <small
-                                                className="text-uppercase text-muted fw-bold mt-1 d-block"
-                                                style={{
-                                                    fontSize: '0.75rem',
-                                                    letterSpacing: '1px',
-                                                }}>
-                                                Voto Medio
-                                            </small>
+                                            <small className={styles.voteLabel}>Voto Medio</small>
                                         </div>
                                     )}
                             </div>
@@ -84,11 +73,7 @@ function DetailPage() {
                                 <h5 className="fw-bold text-uppercase text-neon-secondary small mb-3">
                                     Trama
                                 </h5>
-                                <p
-                                    className="fs-5 text-light opacity-80 mb-5"
-                                    style={{ lineHeight: '1.8' }}>
-                                    {movie.abstract}
-                                </p>
+                                <p className={styles.abstractText}>{movie.abstract}</p>
                             </div>
 
                             <div className="mt-auto text-end">

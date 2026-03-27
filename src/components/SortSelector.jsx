@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
+import styles from './SortSelector.module.css';
 
 function SortSelector({ value, onChange }) {
     const sortLabels = {
@@ -10,14 +11,14 @@ function SortSelector({ value, onChange }) {
     };
 
     return (
-        <div className="neon-select-wrapper">
-            <span className="neon-select-label text-neon-secondary">Ordina per:</span>
+        <div className={styles.selectWrapper}>
+            <span className={`${styles.selectLabel} text-neon-secondary`}>Ordina per:</span>
             <Dropdown onSelect={(val) => onChange({ target: { value: val } })}>
-                <Dropdown.Toggle variant="none" className="neon-dropdown-toggle">
+                <Dropdown.Toggle variant="none" className={styles.dropdownToggle}>
                     {sortLabels[value]}
                 </Dropdown.Toggle>
 
-                <Dropdown.Menu className="neon-dropdown-menu">
+                <Dropdown.Menu className={styles.dropdownMenu}>
                     {Object.entries(sortLabels).map(([key, label]) => (
                         <Dropdown.Item key={key} eventKey={key} active={value === key}>
                             {label}

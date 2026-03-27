@@ -11,7 +11,7 @@ Benvenuto in **CineLab**, la tua piattaforma definitiva per esplorare il mondo d
 | Elemento              | Dettaglio                                                                            |
 | :-------------------- | :----------------------------------------------------------------------------------- |
 | **Neon Aesthetic**    | Palette vibrante (Cyan `#00d2ff` & Magenta `#bd00ff`) con effetti di bagliore (glow) |
-| **Glitch Effects**    | Animazioni digitali su titoli e card al passaggio del mouse (Hover state)            |
+| **Glitch Effects**    | Animazioni digitali tramite CSS Modules e attributi `data-text`                      |
 | **Holographic Entry** | Materializzazione delle card con scansione perimetrale laser e blur dinamico         |
 | **Glassmorphism**     | Card con effetto vetro sfumato (`backdrop-filter: blur`) e bordi semi-trasparenti    |
 | **Typography**        | Font Orbitron e Exo 2                                                                |
@@ -62,7 +62,7 @@ Classi utility riutilizzabili definite in `index.css`:
 | `.text-neon-primary`   | Testo cyan con text-shadow glow                         |
 | `.text-neon-secondary` | Testo magenta con text-shadow glow                      |
 | `.text-gradient`       | Gradiente cyan → magenta con `-webkit-background-clip`  |
-| `.glass-card`          | Sfondo semi-trasparente con blur, bordo e shadow        |
+| `.card`                | Base globale per i contenitori glassmorphism            |
 | `.btn-primary`         | Bottone con gradiente neon e hover animato              |
 | `.poster-wrapper`      | Contenitore poster con aspect-ratio 2:3 e zoom on hover |
 | `.about-animate`       | Scroll-reveal fade-in (richiede `IntersectionObserver`) |
@@ -91,6 +91,7 @@ Classi utility riutilizzabili definite in `index.css`:
 
 - **React 19** — UI library
 - **React Router 7** — Navigazione SPA con rotte dinamiche
+- **CSS Modules** — Scoping locale degli stili e ottimizzazione performance
 - **React Bootstrap 2** — Componenti layout (Grid, Navbar, Card)
 - **Bootstrap 5.3** — Utilities CSS di base
 - **Vite 8** — Build tool e dev server

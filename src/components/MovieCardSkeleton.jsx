@@ -1,32 +1,26 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
+import styles from './MovieCardSkeleton.module.css';
 
 function MovieCardSkeleton() {
     return (
-        <div
-            className="card glass-card h-100 border-0 overflow-hidden"
-            style={{ minHeight: '450px' }}>
+        <div className={`${styles.cardContainer} h-100 border-0 overflow-hidden`}>
             {/* Immagine Poster Skeleton */}
-            <div className="poster-wrapper skeleton" style={{ aspectRatio: '2/3' }}></div>
+            <div className={styles.posterArea}></div>
 
-            <div className="card-body d-flex flex-column bg-transparent">
+            <div className={`${styles.contentArea} d-flex flex-column bg-transparent`}>
                 {/* Titolo */}
-                <div className="skeleton mb-2" style={{ height: '24px', width: '70%' }}></div>
+                <div className={`${styles.titleLine} mb-2`}></div>
                 {/* Regista e Anno */}
-                <div className="skeleton mb-3" style={{ height: '16px', width: '50%' }}></div>
+                <div className={`${styles.textLine} ${styles.w50} mb-3`}></div>
 
                 {/* Descrizione (3 righe) */}
-                <div className="skeleton mb-1" style={{ height: '14px', width: '100%' }}></div>
-                <div className="skeleton mb-1" style={{ height: '14px', width: '90%' }}></div>
-                <div className="skeleton mb-3" style={{ height: '14px', width: '95%' }}></div>
+                <div className={`${styles.textLine} mb-1`}></div>
+                <div className={`${styles.textLine} ${styles.w90} mb-1`}></div>
+                <div className={`${styles.textLineShort} mb-3`}></div>
 
                 <div className="mt-auto d-flex justify-content-between align-items-center">
-                    <div
-                        className="skeleton"
-                        style={{ height: '24px', width: '60px', borderRadius: '20px' }}></div>
-                    <div
-                        className="skeleton"
-                        style={{ height: '32px', width: '100px', borderRadius: '5px' }}></div>
+                    <div className={styles.footerBadge}></div>
+                    <div className={styles.footerBtn}></div>
                 </div>
             </div>
         </div>

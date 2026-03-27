@@ -7,6 +7,7 @@ import ErrorDisplay from '../components/ErrorDisplay';
 import SearchBar from '../components/SearchBar';
 import MovieCardSkeleton from '../components/MovieCardSkeleton';
 import SortSelector from '../components/SortSelector';
+import styles from './HomePage.module.css';
 
 function HomePage() {
     const [searchTerm, setSearchTerm] = useState(''); // Nuovo stato per il termine di ricerca
@@ -54,9 +55,9 @@ function HomePage() {
 
     return (
         <Container className="py-5">
-            <div className="text-center mb-5 hero-text-animate">
+            <div className={`${styles.heroSection} ${styles.heroTextAnimate}`}>
                 <h1
-                    className="display-4 mb-4 text-neon-primary fw-bold glitch-title"
+                    className={`display-4 mb-4 text-neon-primary fw-bold ${styles.glitchTitle}`}
                     data-text="Scopri il Cinema con CineLab">
                     Scopri il Cinema con <span className="text-neon-secondary">CineLab</span>
                 </h1>
@@ -73,17 +74,18 @@ function HomePage() {
             />
 
             {/* Neon Search Progress Indicator */}
-            <div className={`search-progress-container ${loading ? 'visible' : ''}`}>
-                <div className="search-progress-bar"></div>
+            <div className={`${styles.searchProgressContainer} ${loading ? styles.visible : ''}`}>
+                <div className={styles.searchProgressBar}></div>
             </div>
 
-            <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
+            <div className={styles.sectionHeader}>
                 <h2 className="text-neon-primary mb-3 mb-md-0">I film in evidenza</h2>
 
                 <SortSelector value={sortBy} onChange={handleSortChange} />
             </div>
 
-            <Row className={`g-4 results-transition ${loading ? 'results-loading' : ''}`}>
+            <Row
+                className={`g-4 ${styles.resultsTransition} ${loading ? styles.resultsLoading : ''}`}>
                 {loading ? (
                     // Mostriamo 3 skeleton durante il caricamento
                     [...Array(moviesPerPage)].map((_, index) => (
@@ -97,7 +99,7 @@ function HomePage() {
                             key={movie.id}
                             md={6}
                             lg={4}
-                            className="movie-card-appearance"
+                            className={styles.movieCardAppearance}
                             style={{ '--entry-index': index }}>
                             <MovieCard movie={movie} />
                         </Col>

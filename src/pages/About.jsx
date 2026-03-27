@@ -3,6 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import { getMovies } from '../services/api';
 import { useEffect, useRef } from 'react';
 import useFetch from '../hooks/useFetch';
+import styles from './About.module.css';
 
 function AboutPage() {
     const { data } = useFetch(getMovies, [1, 3]);
@@ -14,7 +15,7 @@ function AboutPage() {
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('about-visible');
+                        entry.target.classList.add(styles.aboutVisible);
                         observerRef.current.unobserve(entry.target);
                     }
                 });
@@ -22,7 +23,7 @@ function AboutPage() {
             { threshold: 0.15 },
         );
 
-        const animatedEls = document.querySelectorAll('.about-animate');
+        const animatedEls = document.querySelectorAll(`.${styles.aboutAnimate}`);
         animatedEls.forEach((el) => observerRef.current.observe(el));
 
         return () => observerRef.current?.disconnect();
@@ -57,11 +58,11 @@ function AboutPage() {
     ];
 
     return (
-        <div className="about-page pb-5">
+        <div className={styles.aboutPage}>
             {/* Hero Section */}
-            <header className="about-hero mb-5 px-3">
-                <div className="about-hero-particles"></div>
-                <div className="hero-content text-center about-animate">
+            <header className={`${styles.aboutHero} mb-5 px-3`}>
+                <div className={styles.aboutHeroParticles}></div>
+                <div className={`${styles.heroContent} text-center ${styles.aboutAnimate}`}>
                     <span className="about-badge mb-4 d-inline-block">
                         🎥 La tua piattaforma cinema
                     </span>
@@ -84,7 +85,7 @@ function AboutPage() {
                     {stats.map((stat, index) => (
                         <Col key={index} sm={6} lg={3}>
                             <div
-                                className="about-stat-card glass-card text-center about-animate"
+                                className={`${styles.aboutStatCard} card text-center ${styles.aboutAnimate}`}
                                 style={{ animationDelay: `${index * 0.1}s` }}>
                                 <div className="about-stat-icon">{stat.icon}</div>
                                 <h3 className="about-stat-value">{stat.value}</h3>
@@ -98,7 +99,7 @@ function AboutPage() {
             {/* Mission Section */}
             <section className="container mb-5">
                 <div className="row align-items-center g-5">
-                    <div className="col-lg-6 about-animate">
+                    <div className={`col-lg-6 ${styles.aboutAnimate}`}>
                         <span className="about-section-tag">Chi Siamo</span>
                         <h2 className="display-4 fw-bold mb-4">
                             <span className="text-gradient">La Nostra Missione</span>
@@ -115,12 +116,14 @@ function AboutPage() {
                             una comunità vibrante.
                         </p>
                     </div>
-                    <div className="col-lg-6 about-animate">
+                    <div className={`col-lg-6 ${styles.aboutAnimate}`}>
                         <div className="about-mission-visual">
-                            <div className="about-mission-ring about-mission-ring-1"></div>
-                            <div className="about-mission-ring about-mission-ring-2"></div>
-                            <div className="about-mission-center">
-                                <span className="about-mission-emoji">🎞️</span>
+                            <div
+                                className={`${styles.aboutMissionRing} ${styles.aboutMissionRing1}`}></div>
+                            <div
+                                className={`${styles.aboutMissionRing} ${styles.aboutMissionRing2}`}></div>
+                            <div className={styles.aboutMissionCenter}>
+                                <span className={styles.aboutMissionEmoji}>🎞️</span>
                             </div>
                         </div>
                     </div>
@@ -129,7 +132,7 @@ function AboutPage() {
 
             {/* Features Section */}
             <section className="container mb-5">
-                <div className="text-center mb-5 about-animate">
+                <div className={`text-center mb-5 ${styles.aboutAnimate}`}>
                     <span className="about-section-tag">Perché CineLab</span>
                     <h2 className="display-5 fw-bold text-gradient">Un'esperienza completa</h2>
                 </div>
@@ -137,7 +140,7 @@ function AboutPage() {
                     {features.map((feature, index) => (
                         <Col key={index} md={4}>
                             <div
-                                className="about-feature-card glass-card h-100 about-animate"
+                                className={`${styles.aboutFeatureCard} card h-100 ${styles.aboutAnimate}`}
                                 style={{ animationDelay: `${index * 0.15}s` }}>
                                 <div className="about-feature-icon">{feature.icon}</div>
                                 <h4 className="fw-bold text-neon-primary mb-3">{feature.title}</h4>
@@ -149,7 +152,7 @@ function AboutPage() {
             </section>
 
             {/* Featured Section */}
-            <section className="container about-animate">
+            <section className={`container ${styles.aboutAnimate}`}>
                 <div className="text-center mb-5">
                     <span className="about-section-tag">In Evidenza</span>
                     <h2 className="display-6 fw-bold text-gradient">
@@ -158,7 +161,7 @@ function AboutPage() {
                 </div>
                 <Row className="g-4">
                     {featuredMovies.map((movie) => (
-                        <Col key={movie.id} lg={4} md={6} className="about-animate">
+                        <Col key={movie.id} lg={4} md={6} className={styles.aboutAnimate}>
                             <MovieCard movie={movie} />
                         </Col>
                     ))}

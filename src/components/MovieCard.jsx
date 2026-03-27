@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import styles from './MovieCard.module.css';
 
 function MovieCard({ movie }) {
     if (!movie) return null;
@@ -15,25 +16,23 @@ function MovieCard({ movie }) {
     };
 
     return (
-        <div className="card glass-card h-100 border-0 overflow-hidden">
-            <div className="poster-wrapper">
-                <img src={safeMovie.image} className="poster-img" alt={safeMovie.title} />
-                <div className="poster-overlay"></div>
+        <div className={styles.glassCard}>
+            <div className={styles.posterWrapper}>
+                <img src={safeMovie.image} className={styles.posterImg} alt={safeMovie.title} />
+                <div className={styles.posterOverlay}></div>
             </div>
-            <div className="card-body d-flex flex-column bg-transparent">
+            <div className={styles.cardBody}>
                 <h5
-                    className="card-title fw-bold text-neon-primary card-glitch-text"
+                    className={`card-title fw-bold text-neon-primary ${styles.cardGlitchText}`}
                     data-text={safeMovie.title}>
                     {safeMovie.title}
                 </h5>
-                <h6 className="card-subtitle mb-2 text-muted opacity-75">
+                <h6 className={styles.subtitle}>
                     {safeMovie.director} ({safeMovie.release_year})
                 </h6>
-                <p className="card-text text-truncate-3 flex-grow-1 text-secondary">
-                    {safeMovie.abstract}
-                </p>
-                <div className="mt-3 d-flex justify-content-between align-items-center">
-                    <span className="badge bg-info text-dark">{safeMovie.genre}</span>
+                <p className={`${styles.abstract} text-truncate-3`}>{safeMovie.abstract}</p>
+                <div className={styles.footer}>
+                    <span className={styles.genreBadge}>{safeMovie.genre}</span>
                     <Link to={`/details/${safeMovie.id}`} className="btn btn-primary btn-sm px-4">
                         Dettagli
                     </Link>

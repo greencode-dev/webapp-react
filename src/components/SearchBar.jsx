@@ -1,11 +1,12 @@
 import React from 'react';
 import { Form, InputGroup } from 'react-bootstrap';
+import styles from './SearchBar.module.css';
 
 function SearchBar({ value, onChange, placeholder }) {
     return (
-        <div className="search-container mb-5">
-            <InputGroup className="neon-search-group">
-                <InputGroup.Text className="neon-search-icon">
+        <div className={`${styles.searchContainer} mb-5`}>
+            <InputGroup className={styles.neonSearchGroup}>
+                <InputGroup.Text className={styles.neonSearchIcon}>
                     <span role="img" aria-label="search">
                         🔍
                     </span>
@@ -15,7 +16,7 @@ function SearchBar({ value, onChange, placeholder }) {
                     placeholder={placeholder || 'Cerca...'}
                     value={value}
                     onChange={onChange}
-                    className="neon-search-input"
+                    className={styles.neonSearchInput}
                 />
             </InputGroup>
         </div>

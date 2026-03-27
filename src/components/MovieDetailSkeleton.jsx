@@ -1,69 +1,37 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import styles from '../pages/MovieDetailSkeleton.module.css';
 
 function MovieDetailSkeleton() {
     return (
         <Container className="py-5">
-            <Card className="glass-card shadow-lg border-0 overflow-hidden mb-5">
-                <Row className="g-0">
+            <Card className={styles.detailCard}>
+                <Row>
                     {/* Poster Skeleton */}
-                    <Col md={4} className="p-4 d-flex align-items-center justify-content-center">
-                        <div
-                            className="skeleton"
-                            style={{
-                                width: '100%',
-                                maxWidth: '350px',
-                                aspectRatio: '2/3',
-                                borderRadius: '1.25rem',
-                            }}></div>
+                    <Col md={4} className={styles.posterContainer}>
+                        <div className={styles.heroBlock}></div>
                     </Col>
 
                     {/* Info Skeleton */}
                     <Col md={8}>
-                        <Card.Body className="p-4 p-lg-5 h-100 d-flex flex-column">
+                        <Card.Body className={styles.infoBlock}>
                             <div className="mb-4">
-                                <div
-                                    className="skeleton mb-3"
-                                    style={{
-                                        height: '32px',
-                                        width: '100px',
-                                        borderRadius: '5px',
-                                    }}></div>{' '}
+                                <div className={`${styles.genreBadge} mb-3`}></div>
                                 {/* Badge Genere */}
-                                <div
-                                    className="skeleton mb-2"
-                                    style={{ height: '60px', width: '80%' }}></div>{' '}
+                                <div className={`${styles.largeTitle} mb-2`}></div>
                                 {/* Titolo */}
-                                <div
-                                    className="skeleton"
-                                    style={{ height: '24px', width: '50%' }}></div>{' '}
+                                <div className={styles.metaLine}></div>
                                 {/* Regista/Anno */}
                             </div>
 
                             <div className="flex-grow-1">
-                                <div
-                                    className="skeleton mb-3"
-                                    style={{ height: '20px', width: '120px' }}></div>{' '}
+                                <div className={`${styles.labelLine} mb-3`}></div>
                                 {/* Label Trama */}
-                                <div
-                                    className="skeleton mb-2"
-                                    style={{ height: '18px', width: '100%' }}></div>
-                                <div
-                                    className="skeleton mb-2"
-                                    style={{ height: '18px', width: '95%' }}></div>
-                                <div
-                                    className="skeleton mb-2"
-                                    style={{ height: '18px', width: '98%' }}></div>
+                                <div className={styles.paragraph}></div>
                             </div>
 
                             <div className="mt-4 text-end">
-                                <div
-                                    className="skeleton d-inline-block"
-                                    style={{
-                                        height: '40px',
-                                        width: '160px',
-                                        borderRadius: '5px',
-                                    }}></div>{' '}
+                                <div className={styles.backButton}></div>
                                 {/* Bottone Indietro */}
                             </div>
                         </Card.Body>
@@ -73,28 +41,19 @@ function MovieDetailSkeleton() {
 
             {/* Reviews Section Skeleton */}
             <div className="reviews-section">
-                <div className="skeleton mb-4" style={{ height: '40px', width: '300px' }}></div>{' '}
+                <div className={`${styles.sectionTitle} mb-4`}></div>
                 {/* Titolo Recensioni */}
                 <Row>
                     {[1, 2].map((i) => (
                         <Col key={i} md={6}>
-                            <div className="glass-card mb-4 p-4 border-0">
-                                <div className="d-flex align-items-center mb-3">
+                            <div className={styles.reviewSkeletonCard}>
+                                <div className={`${styles.flexRow} mb-3`}>
                                     {/* Avatar e Nome */}
-                                    <div
-                                        className="skeleton rounded-circle me-3"
-                                        style={{ width: '32px', height: '32px' }}></div>
-                                    <div
-                                        className="skeleton"
-                                        style={{ height: '20px', width: '120px' }}></div>
+                                    <div className={`${styles.avatar} me-3`}></div>
+                                    <div className={styles.reviewName}></div>
                                 </div>
                                 {/* Testo recensione */}
-                                <div
-                                    className="skeleton mb-2"
-                                    style={{ height: '16px', width: '100%' }}></div>
-                                <div
-                                    className="skeleton"
-                                    style={{ height: '16px', width: '80%' }}></div>
+                                <div className={styles.reviewText}></div>
                             </div>
                         </Col>
                     ))}
