@@ -81,3 +81,12 @@ Per mantenere la coerenza visiva e l'accessibilità:
 2. Importa icone specifiche per ridurre il peso del bundle: `import { faStar } from '@fortawesome/free-solid-svg-icons'`.
 3. Per i loghi social, usa il pacchetto `@fortawesome/free-brands-svg-icons`.
 4. Applica stili neon (glow) via CSS Modules sfruttando il selettore `svg`.
+
+## 10. Interattività Avanzata (Mouse Tracking)
+
+Per effetti come Tilt 3D o Spotlight:
+
+1. Usa `onMouseMove` per catturare le coordinate relative: `e.clientX - rect.left`.
+2. Inietta i valori come variabili CSS: `card.style.setProperty('--mouse-x', \`${x}px\`)`.
+3. Nel CSS, usa `var(--mouse-x)` all'interno di `radial-gradient` o `transform`.
+4. Ricorda sempre il reset su `onMouseLeave`.

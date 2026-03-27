@@ -5,16 +5,47 @@
     border: 1px solid var(--glass-border);
     border-radius: 1.25rem;
     box-shadow: var(--card-shadow);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Separiamo le transizioni: 
+       - transform mantiene l'effetto bouncy 
+       - box-shadow usa un ease-in-out più lungo e morbido per il ritorno */
+    transition:
+        transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        box-shadow 0.5s ease-in-out,
+        border-color 0.3s ease;
+    /* Base transform per una transizione fluida dallo stato non hover */
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px);
     overflow: hidden;
     height: 100%;
+    position: relative;
+}
+
+/* Effetto scia luminosa (Spotlight) */
+.glassCard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Crea un gradiente circolare centrato sulla posizione del mouse */
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+        rgba(0, 210, 255, 0.08),
+        transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.glassCard:hover::before {
+    opacity: 1;
 }
 
 .glassCard:hover {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--primary-neon) !important;
-    transform: translateY(-8px);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.9);
+    transform: perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))
+        translateY(-8px);
+    box-shadow: 0 0 40px var(--primary-glow);
     animation: cardBorderFlicker 2s infinite;
 }
 
@@ -58,13 +89,13 @@
     56%,
     100% {
         border-color: var(--glass-border);
-        box-shadow: var(--card-shadow);
+        box-shadow: 0 0 20px var(--primary-glow);
     }
     20%,
     24%,
     55% {
         border-color: var(--primary-neon);
-        box-shadow: 0 0 15px var(--primary-glow);
+        box-shadow: 0 0 40px var(--primary-glow);
     }
 }
 
@@ -103,7 +134,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .glassCard:hover .posterImg {

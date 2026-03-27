@@ -12,7 +12,8 @@ Benvenuto in **CineLab**, la tua piattaforma definitiva per esplorare il mondo d
 | :-------------------- | :----------------------------------------------------------------------------------- |
 | **Neon Aesthetic**    | Palette vibrante (Cyan `#00d2ff` & Magenta `#bd00ff`) con effetti di bagliore (glow) |
 | **Glitch Effects**    | Animazioni digitali tramite CSS Modules e attributi `data-text`                      |
-| **Holographic Entry** | Materializzazione delle card con scansione perimetrale laser e blur dinamico         |
+| **3D Tilt & Light**   | Card interattive con inclinazione 3D e spotlight dinamico basato sul mouse           |
+| **Holographic Entry** | Materializzazione delle card con scansione laser perimetrale e blur dinamico         |
 | **Glassmorphism**     | Card con effetto vetro sfumato (`backdrop-filter: blur`) e bordi semi-trasparenti    |
 | **Typography**        | Font Orbitron e Exo 2                                                                |
 | **Micro-animations**  | Hover interattivi, scroll-reveal con IntersectionObserver, anelli orbitanti          |

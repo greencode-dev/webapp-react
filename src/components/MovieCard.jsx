@@ -15,8 +15,40 @@ function MovieCard({ movie }) {
         abstract: movie.abstract || 'Descrizione non disponibile',
     };
 
+    const maxTilt = 10; // Gradi massimi di inclinazione
+
+    const handleMouseMove = (e) => {
+        const card = e.currentTarget;
+        const rect = card.getBoundingClientRect();
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        // Calcola i valori di inclinazione, invertendo l'asse Y per un effetto più naturale
+        const rotateY = ((mouseX - centerX) / centerX) * maxTilt;
+        const rotateX = -((mouseY - centerY) / centerY) * maxTilt;
+
+        card.style.setProperty('--mouse-x', `${mouseX}px`); // Per l'effetto spotlight
+        card.style.setProperty('--mouse-y', `${mouseY}px`); // Per l'effetto spotlight
+        card.style.setProperty('--rotate-x', `${rotateX}deg`);
+        card.style.setProperty('--rotate-y', `${rotateY}deg`);
+    };
+
+    const handleMouseLeave = (e) => {
+        const card = e.currentTarget;
+        card.style.setProperty('--mouse-x', `0px`); // Reset spotlight
+        card.style.setProperty('--mouse-y', `0px`); // Reset spotlight
+        card.style.setProperty('--rotate-x', `0deg`); // Reset tilt
+        card.style.setProperty('--rotate-y', `0deg`); // Reset tilt
+    };
+
     return (
-        <div className={styles.glassCard}>
+        <div
+            className={styles.glassCard}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}>
             <div className={styles.posterWrapper}>
                 <img src={safeMovie.image} className={styles.posterImg} alt={safeMovie.title} />
                 <div className={styles.posterOverlay}></div>
