@@ -50,7 +50,12 @@ function MovieCard({ movie }) {
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}>
             <div className={styles.posterWrapper}>
-                <img src={safeMovie.image} className={styles.posterImg} alt={safeMovie.title} />
+                <img
+                    src={safeMovie.image}
+                    className={styles.posterImg}
+                    alt={safeMovie.title}
+                    loading="lazy"
+                />
                 <div className={styles.posterOverlay}></div>
             </div>
             <div className={styles.cardBody}>

@@ -90,3 +90,20 @@ Per effetti come Tilt 3D o Spotlight:
 2. Inietta i valori come variabili CSS: `card.style.setProperty('--mouse-x', \`${x}px\`)`.
 3. Nel CSS, usa `var(--mouse-x)` all'interno di `radial-gradient` o `transform`.
 4. Ricorda sempre il reset su `onMouseLeave`.
+
+## 10. Interattività Avanzata (Mouse Tracking)
+
+Per effetti come Tilt 3D o Spotlight:
+
+1. Usa `onMouseMove` per catturare le coordinate relative: `e.clientX - rect.left`.
+2. Inietta i valori come variabili CSS: `card.style.setProperty('--mouse-x', \`${x}px\`)`.
+3. Nel CSS, usa `var(--mouse-x)` all'interno di `radial-gradient` o `transform`.
+4. Ricorda sempre il reset su `onMouseLeave`.
+
+## 11. Performance delle Immagini
+
+Per ottimizzare il caricamento della pagina ed evitare il Layout Shift:
+
+1. Usa sempre `loading="lazy"` sulle immagini dei poster.
+2. Assicurati che il contenitore dell'immagine abbia un `aspect-ratio` definito via CSS (es. `2/3` per i poster).
+3. Fornisci sempre un attributo `alt` descrittivo per l'accessibilità.
