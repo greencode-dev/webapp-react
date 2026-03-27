@@ -68,11 +68,11 @@ const ReviewForm = ({ movieId, onReviewSuccess }) => {
     };
 
     return (
-        <div className={`glass-card p-4 mt-5 ${styles.formContainer}`}>
+        <div className={`glass-card p-4 ${styles.formContainer}`}>
             {/* Mostra le particelle solo quando il caricamento ha successo */}
             {status.type === 'success' && <HologramParticles />}
 
-            <h3 className="glitch-title mb-4" data-text="Lascia una Recensione">
+            <h3 className="glitch-title mb-4 text-neon-primary" data-text="Lascia una Recensione">
                 Lascia una Recensione
             </h3>
 
@@ -84,7 +84,7 @@ const ReviewForm = ({ movieId, onReviewSuccess }) => {
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
-                    <Form.Label className="text-neon-primary">Nome Utente</Form.Label>
+                    <Form.Label className="text-neon-secondary">Nome Utente</Form.Label>
                     <Form.Control
                         type="text"
                         name="author"
@@ -97,7 +97,7 @@ const ReviewForm = ({ movieId, onReviewSuccess }) => {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label className="text-neon-primary">Voto (1-5)</Form.Label>
+                    <Form.Label className="text-neon-secondary">Voto (1-5)</Form.Label>
                     <div className={styles.starRatingContainer}>
                         {[1, 2, 3, 4, 5].map((star) => (
                             <FontAwesomeIcon
@@ -120,7 +120,7 @@ const ReviewForm = ({ movieId, onReviewSuccess }) => {
                 </Form.Group>
 
                 <Form.Group className="mb-4">
-                    <Form.Label className="text-neon-primary">Il tuo Commento</Form.Label>
+                    <Form.Label className="text-neon-secondary">Il tuo Commento</Form.Label>
                     <div className="position-relative">
                         <Form.Control
                             as="textarea"

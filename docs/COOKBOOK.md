@@ -124,3 +124,10 @@ Quando implementi filtri sulla UI (es. RatingBreakdown):
 2. Implementa una funzione di "toggle" (clicca per attivare, clicca di nuovo per disattivare).
 3. Fornisci sempre un feedback visivo dell'azione e un pulsante di reset rapido.
 4. Gestisci il caso "Empty State" se il filtro non produce risultati.
+
+## 14. Animazione Neon Pulse (Breathing Glow)
+
+Per simulare un'atmosfera cyberpunk realistica senza affaticare l'utente, applichiamo l'effetto flicker solo agli elementi di branding:
+
+1. Usa la classe `.neon-pulse` per applicare un'animazione di respiro al bagliore.
+2. L'animazione varia dolcemente il `text-shadow` e l' `opacity` per creare un effetto "vivo" e meno aggressivo del flicker.

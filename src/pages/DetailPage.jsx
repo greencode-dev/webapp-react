@@ -62,7 +62,7 @@ const DetailPage = () => {
                     </div>
                 </Col>
                 <Col lg={8} className="movie-card-appearance" style={{ '--entry-index': 2 }}>
-                    <h1 className="glitch-title mb-3" data-text={movie.title}>
+                    <h1 className="glitch-title mb-3 text-neon-primary" data-text={movie.title}>
                         {movie.title}
                     </h1>
 
@@ -107,13 +107,14 @@ const DetailPage = () => {
 
             <hr className="my-5 border-secondary opacity-25" />
 
-            <Row className="movie-card-appearance" style={{ '--entry-index': 3 }}>
-                <Col lg={7} className="mb-5 mb-lg-0">
-                    <h3 className="text-neon-primary mb-4">
-                        Recensioni{' '}
-                        <small className="text-muted fs-6">({movie.reviews?.length || 0})</small>
-                    </h3>
+            <h3
+                className="text-neon-primary mb-4 movie-card-appearance"
+                style={{ '--entry-index': 3 }}>
+                Recensioni <small className="text-muted fs-6">({movie.reviews?.length || 0})</small>
+            </h3>
 
+            <Row className="movie-card-appearance" style={{ '--entry-index': 4 }}>
+                <Col lg={7} className="mb-5 mb-lg-0">
                     {/* Visualizzazione della distribuzione voti */}
                     <RatingBreakdown
                         reviews={movie.reviews}

@@ -57,9 +57,10 @@ function HomePage() {
         <Container className="py-5">
             <div className={`${styles.heroSection} ${styles.heroTextAnimate}`}>
                 <h1
-                    className={`display-4 mb-4 text-neon-primary fw-bold ${styles.glitchTitle}`}
+                    className={`display-4 mb-4 text-neon-primary fw-bold `}
                     data-text="Scopri il Cinema con CineLab">
-                    Scopri il Cinema con <span className="text-neon-secondary">CineLab</span>
+                    Scopri il Cinema con{' '}
+                    <span className="text-neon-secondary neon-pulse">CineLab</span>
                 </h1>
                 <p className="lead mb-5 text-neon-primary opacity-75">
                     Esplora la nostra selezione esclusiva di capolavori del cinema.
