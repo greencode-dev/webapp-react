@@ -47,3 +47,5 @@ Puoi aiutarmi a nascondere automaticamente le categorie che hanno un conteggio p
 Crea un componente CyberInput per sostituire i campi di testo in ReviewForm e SearchBar con effetti di glitch al focus.
 
 Come posso aggiungere un effetto 'flicker' casuale ai numeri durante l'animazione di CountUp per simulare un segnale instabile?
+
+Come posso gestire il caricamento asincrono delle categorie della Sidebar direttamente da un'API esterna?

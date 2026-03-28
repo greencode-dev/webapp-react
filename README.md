@@ -10,6 +10,12 @@ CineLab è una web application sperimentale costruita con **React** e **Vite**, 
 - **Performance Ottimizzate**: Lighthouse score eccellente grazie al lazy loading delle immagini, skeleton loaders e debouncing della ricerca.
 - **Responsive Design**: Griglia fluida ottimizzata per 8 colonne su desktop e layout adattivo per mobile.
 
+### 🛠️ Componenti Cyber UI
+
+- **CyberDropdown**: Menu a tendina con animazione "Reveal" olografica e supporto icone.
+- **CountUp**: Animazione fluida dei contatori numerici con easing quadratico.
+- **ReviewForm**: Sistema di recensioni con salvataggio bozza e particelle olografiche.
+
 ## 🛠️ Stack Tecnologico
 
 - **Frontend**: React 18, React Router 6.

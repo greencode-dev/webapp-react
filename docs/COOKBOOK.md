@@ -51,16 +51,9 @@ Assicurati di gestire sempre il doppio scenario:
 
 ## 7. Effetto Glitch (Cyberpunk Style)
 
-Per pulsanti o titoli con stile "disturbato":
-
-1. Applica la classe `.glitch-hover` definita in `index.css`.
-2. L'effetto sfrutta `clip-path` e pseudo-elementi per creare sdoppiamenti cromatici (RGB split).
-
-## 9. Animazioni di Entrata a Cascata (Staggered)
-
-1. Passa l'indice della mappa al componente: `<MovieCard index={i} />`.
-2. Viene iniettata una variabile CSS `--entry-index` via style inline nel componente.
+2. Viene iniettata una variabile CSS `--entry-index` via style inline.
 3. Il CSS calcola il ritardo: `animation-delay: calc(var(--entry-index) * 0.1s)`.
+4. Viene eseguito il "Perimeter Scan" tramite lo pseudo-elemento `::before` con `clip-path`.
 
 ## 10. Interattività Avanzata (Mouse Tracking)
 
@@ -128,58 +121,6 @@ Per facilitare la navigazione in pagine lunghe:
 2. Implementa uno stato di visibilità basato sulla soglia di 400px.
 3. Utilizza `window.scrollTo({ behavior: 'smooth' })` per la transizione fluida.
 
-## 21. Movie Cards Compatte e Neon Hover
-
-Per massimizzare la densità di informazioni senza sacrificare l'estetica:
-
-1. **Dimensioni**: Imposta un `max-width` di `160px` per una visualizzazione a griglia densa e professionale (Netflix-style).
-2. **Aspect Ratio**: Usa sempre `aspect-ratio: 2 / 3` per i poster per garantire uniformità e prevenire layout shift.
-3. **Hover Feedback**:
-    - Usa `translateY` negativo per dare profondità.
-    - Applica `box-shadow` con variabili `--primary-glow` per l'effetto neon.
-    - Scala l'immagine interna (`transform: scale(1.1)`) per un feedback dinamico.
-4. **Ottimizzazione Testi**: Per card molto piccole, usa `text-overflow: ellipsis` per evitare che titoli lunghi rompano il layout.
-5. **Grid Parent Layout (⚠️ Risoluzione Bug 3 Colonne)**: Se vedi ancora 3 colonne larghe, è perché Bootstrap sta imponendo la sua griglia a dodicesimi. **Rimuovi i componenti `<Row>` e `<Col>`** di Bootstrap nella HomePage e usa un `div` con la classe `.movieGrid`.
-
-```css
-/* Esempio in HomePage.module.css */
-.movieGrid {
-    display: grid;
-    /* minmax(140px) garantisce 5-6 colonne su desktop (1080p) e 2 su mobile */
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 24px;
-    justify-content: center;
-    padding: 20px;
-    width: 100%;
-}
-```
-
-## 23. Badge "NEW" / "HOT" sulle MovieCard
-
-Per evidenziare film recenti o popolari:
-
-1. Aggiungi un elemento `div` con classe `.badge` all'interno della `MovieCard`.
-2. Posizionalo in un angolo (es. `top: 8px; right: 8px;`) con `position: absolute`.
-3. Applica stili di testo compatti e un `box-shadow` neon.
-4. Usa un'animazione `neonPulseBadge` per un effetto di bagliore pulsante.
-5. Differenzia i badge (es. `.badgeHot`) con colori e animazioni diverse.
-
-## 24. Ottimizzazione Tipografia per Griglie Densi
-
-Per mantenere la leggibilità in griglie con 8+ colonne:
-
-1. Riduci il `font-size` dei titoli a `0.72rem` e dei meta-dati a `0.65rem`.
-2. Riduci il `padding` interno della sezione info a `6px 8px`.
-3. Utilizza `white-space: nowrap; overflow: hidden; text-overflow: ellipsis;` per titoli e generi lunghi.
-4. Limita la `max-width` del genere per evitare che spinga il voto fuori dalla card.
-   }
-
-```
-
-## 22. Supporto WebP e Modern Formats
-
-Assicurati di caricare immagini in formato WebP ove possibile. Se l'API ritorna JPG, considera l'implementazione di un proxy di trasformazione o l'uso di attributi `srcset` per servire versioni ottimizzate.
-
 ## 16. Sistema di Bozze (Persistence)
 
 Per migliorare la UX nei form lunghi:
@@ -188,37 +129,27 @@ Per migliorare la UX nei form lunghi:
 2. Usa chiavi univoche basate sull'ID della risorsa (es. `review_draft_${movieId}`).
 3. Rimuovi la bozza solo dopo un invio con successo o tramite azione esplicita di "Clear".
 
-## 25. Sidebar dei Filtri con Animazione Slide-in
+## 17. Cyber UI - CyberDropdown
 
-Per un'esperienza di filtraggio premium e modulare:
-1. **Componente Dedicato**: Sposta la logica dei filtri in `src/components/Sidebar.jsx`.
-2. **Animazione**: Applica un'animazione `slideIn` con `cubic-bezier` per un ingresso fluido da sinistra.
-3. **Logica di Filtraggio**: Nel backend (o mock API), gestisci i generi multipli dividendo la stringa dei generi del film (es. `Action/Sci-Fi`) per permettere match parziali ma precisi.
-4. **Responsive**: Su schermi piccoli, trasforma la sidebar in un elemento statico o a scomparsa per non occupare spazio orizzontale prezioso.
+Per mantenere la coerenza dei menu a tendina:
 
-## 26. Pulsante Reset con Effetto Glitch
+1. Usa il componente `CyberDropdown` invece di gestire manualmente i `Dropdown` di Bootstrap.
+2. Supporta icone personalizzate via prop `items: [{ key, label, icon }]`.
+3. Gestisce il caricamento asincrono tramite la prop `fetchItems`.
+4. Utilizza animazioni "Cyber Reveal" basate su `clip-path` per evitare conflitti con Popper.js.
 
-Per un feedback visivo aggressivo e cyberpunk:
-1. **Pseudo-elemento**: Usa `::before` con `content: attr(data-text)` per sovrapporre il testo "disturbato".
-2. **Clip-path Animation**: Crea un'animazione `@keyframes` che varia rapidamente il `clip-path` (inset) per simulare un errore di scansione digitale durante l'hover.
+## 18. Cyber UI - CountUp (Olographic Counters)
 
-## 27. Particelle Olografiche (Success Feedback)
+Per visualizzare statistiche o contatori dinamici:
 
-Per celebrare un'azione completata (es. invio recensione):
-1. **Componente Stateless**: Crea un contenitore di particelle che mappa un array vuoto per generare elementi DOM.
-2. **CSS Variables**: Usa `--i` per randomizzare il ritardo e la posizione delle particelle tramite `calc()`.
-3. **Animazione**: Combina `opacity` e `translateY` per simulare la dissolvenza di un ologramma.
+1. Usa il componente `CountUp`.
+2. Implementa un easing `easeOutQuart` per simulare una scansione olografica.
+3. Ideale per Sidebar, rating e dashboard dati.
 
-## 28. Filtraggio Multi-Genere (Logic)
+## 19. Sidebar - Dynamic Filtering Feedback
 
-Quando un film appartiene a più categorie (es. `Action/Sci-Fi`):
-1. Usa `.split('/')` per trasformare la stringa del database in un array.
-2. Usa `.some()` per verificare se almeno uno dei generi selezionati dall'utente è presente nel film.
-3. Questo garantisce che il film "Titanic" (Romance/Drama) appaia sia sotto "Romance" che sotto "Drama".
+Per migliorare la navigazione nei filtri:
 
-## 26. Pulsante Reset con Effetto Glitch
-
-Per un feedback visivo aggressivo e cyberpunk:
-1. **Pseudo-elemento**: Usa `::before` con `content: attr(data-text)` per sovrapporre il testo "disturbato".
-2. **Clip-path Animation**: Crea un'animazione `@keyframes` che varia rapidamente il `clip-path` (inset) per simulare un errore di scansione digitale durante l'hover.
-```
+1. Passa un oggetto `genreCounts` alla Sidebar.
+2. I conteggi devono aggiornarsi in tempo reale in base agli altri filtri attivi (es. Anno).
+3. Usa il `CountUp` all'interno dei label delle checkbox per un effetto "scansione dati" durante il filtraggio.

@@ -15,7 +15,7 @@ const Sidebar = ({
     onReset,
     genreCounts = {},
 }) => {
-    // Prepariamo gli anni per il componente olografico
+    // Prepariamo gli anni per il CyberDropdown
     const yearItems = [
         { key: '', label: 'Tutti gli anni', icon: faGlobe },
         ...availableYears.map((year) => ({

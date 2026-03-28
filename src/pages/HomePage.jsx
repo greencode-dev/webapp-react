@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import MovieCard from '../components/MovieCard';
 import { Container, Pagination } from 'react-bootstrap';
 import { getMovies } from '../api/api';
@@ -11,6 +11,10 @@ import ScrollToTop from '../components/ScrollToTop';
 import Sidebar from '../components/Sidebar';
 import moviesData from '../data/cards'; // Per estrarre gli anni disponibili
 import styles from './HomePage.module.css';
+
+// Setup dati per la Sidebar (definiti fuori per stabilità e per evitare ReferenceError)
+const AVAILABLE_GENRES = ['Sci-Fi', 'Action', 'Drama', 'Crime', 'Romance'];
+const AVAILABLE_YEARS = [...new Set(moviesData.map((m) => m.release_year))].sort((a, b) => b - a);
 
 function HomePage() {
     const [searchTerm, setSearchTerm] = useState(''); // Nuovo stato per il termine di ricerca
@@ -48,11 +52,13 @@ function HomePage() {
     const moviesList = data?.data || [];
     const totalPages = data ? Math.ceil(data.total / moviesPerPage) : 0;
 
-    // Setup dati per la Sidebar
-    const availableGenres = ['Sci-Fi', 'Action', 'Drama', 'Crime', 'Romance'];
-    const availableYears = [...new Set(moviesData.map((m) => m.release_year))].sort(
-        (a, b) => b - a,
-    );
+    // Calcolo dinamico dei contatori generi basato sui risultati attuali
+    const genreCounts = useMemo(() => {
+        return AVAILABLE_GENRES.reduce((acc, genre) => {
+            acc[genre] = moviesList.filter((m) => m.genre.includes(genre)).length;
+            return acc;
+        }, {});
+    }, [moviesList]);
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -126,13 +132,14 @@ function HomePage() {
 
             <div className={styles.mainLayout}>
                 <Sidebar
-                    availableGenres={availableGenres}
+                    availableGenres={AVAILABLE_GENRES}
                     selectedGenres={selectedGenres}
                     onGenreToggle={handleGenreToggle}
-                    availableYears={availableYears}
+                    availableYears={AVAILABLE_YEARS}
                     selectedYear={selectedYear}
                     onYearChange={handleYearChange}
                     onReset={handleResetFilters}
+                    genreCounts={genreCounts}
                 />
 
                 <div className={styles.gridContent}>
