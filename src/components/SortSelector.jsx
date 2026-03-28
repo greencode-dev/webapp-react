@@ -1,31 +1,38 @@
 import React from 'react';
-import { Dropdown } from 'react-bootstrap';
+import {
+    faClock,
+    faHistory,
+    faSortAmountUp,
+    faSortAmountDown,
+} from '@fortawesome/free-solid-svg-icons';
+import CyberDropdown from './CyberDropdown';
 import styles from './SortSelector.module.css';
 
 function SortSelector({ value, onChange }) {
-    const sortLabels = {
-        latest: 'Più recenti',
-        oldest: 'Meno recenti',
-        rating_desc: 'Voto più alto',
-        rating_asc: 'Voto più basso',
+    const sortConfig = {
+        latest: { label: 'Più recenti', icon: faClock },
+        oldest: { label: 'Meno recenti', icon: faHistory },
+        rating_desc: { label: 'Voto più alto', icon: faSortAmountDown },
+        rating_asc: { label: 'Voto più basso', icon: faSortAmountUp },
     };
+
+    // Trasformiamo l'oggetto in un array compatibile con CyberDropdown
+    const items = Object.entries(sortConfig).map(([key, config]) => ({
+        key,
+        label: config.label,
+        icon: config.icon,
+    }));
 
     return (
         <div className={styles.selectWrapper}>
             <span className={`${styles.selectLabel} text-neon-secondary`}>Ordina per:</span>
-            <Dropdown onSelect={(val) => onChange({ target: { value: val } })}>
-                <Dropdown.Toggle variant="none" className={styles.dropdownToggle}>
-                    {sortLabels[value]}
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu className={styles.dropdownMenu}>
-                    {Object.entries(sortLabels).map(([key, label]) => (
-                        <Dropdown.Item key={key} eventKey={key} active={value === key}>
-                            {label}
-                        </Dropdown.Item>
-                    ))}
-                </Dropdown.Menu>
-            </Dropdown>
+            <CyberDropdown
+                label={sortConfig[value].label}
+                items={items}
+                onSelect={(val) => onChange({ target: { value: val } })}
+                activeKey={value}
+                variant="none"
+            />
         </div>
     );
 }

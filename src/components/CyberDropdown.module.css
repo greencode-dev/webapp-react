@@ -1,0 +1,92 @@
+.menu {
+    background: rgba(7, 8, 21, 0.95) !important;
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border) !important;
+    padding: 0.5rem;
+    margin: 0 !important;
+}
+
+.menuVisible {
+    animation:
+        cyber-dropdown-reveal 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        neon-border-pulse 2s infinite ease-in-out 0.4s;
+}
+
+.item {
+    color: var(--text-main) !important;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+    margin: 2px 0;
+    background: transparent !important;
+}
+
+.item:hover,
+.item:focus {
+    background: rgba(0, 210, 255, 0.1) !important;
+    color: var(--primary-neon) !important;
+}
+
+.itemActive {
+    background: var(--primary-neon) !important;
+    color: var(--bg-dark) !important;
+    box-shadow: 0 0 12px var(--primary-glow);
+    font-weight: 600;
+}
+
+.iconWrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    margin-right: 10px;
+    opacity: 0.8;
+}
+
+.loader {
+    padding: 0.75rem;
+    text-align: center;
+    color: var(--primary-neon);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    animation: loader-pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes loader-pulse {
+    0%,
+    100% {
+        opacity: 0.4;
+        filter: blur(1px);
+    }
+    50% {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes cyber-dropdown-reveal {
+    0% {
+        opacity: 0;
+        filter: brightness(4) blur(15px);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    100% {
+        opacity: 1;
+        filter: brightness(1) blur(0);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+@keyframes neon-border-pulse {
+    0%,
+    100% {
+        border-color: var(--glass-border);
+        box-shadow: 0 0 8px var(--primary-glow);
+    }
+    50% {
+        border-color: var(--primary-neon);
+        box-shadow:
+            0 0 18px var(--primary-glow),
+            inset 0 0 4px var(--primary-glow);
+    }
+}

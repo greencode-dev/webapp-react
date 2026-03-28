@@ -1,5 +1,8 @@
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faUndo } from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faUndo, faCalendarAlt, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import CyberDropdown from './CyberDropdown';
+import CountUp from './CountUp';
 import styles from './Sidebar.module.css';
 
 const Sidebar = ({
@@ -10,7 +13,18 @@ const Sidebar = ({
     selectedYear,
     onYearChange,
     onReset,
+    genreCounts = {},
 }) => {
+    // Prepariamo gli anni per il componente olografico
+    const yearItems = [
+        { key: '', label: 'Tutti gli anni', icon: faGlobe },
+        ...availableYears.map((year) => ({
+            key: year.toString(),
+            label: year.toString(),
+            icon: faCalendarAlt,
+        })),
+    ];
+
     return (
         <aside className={styles.sidebar}>
             <h3 className={styles.filterTitle}>
@@ -27,21 +41,26 @@ const Sidebar = ({
                             onChange={() => onGenreToggle(genre)}
                         />
                         <span className={styles.customCheck}></span>
-                        <span className={styles.genreName}>{genre}</span>
+                        <span className={styles.genreName}>
+                            {genre}
+                            <span className={styles.genreCount}>
+                                (<CountUp end={genreCounts[genre] || 0} />)
+                            </span>
+                        </span>
                     </label>
                 ))}
             </div>
 
             <div className={`${styles.filterGroup} mt-4`}>
                 <span className={styles.groupLabel}>Anno di rilascio</span>
-                <select className={styles.yearSelect} value={selectedYear} onChange={onYearChange}>
-                    <option value="">Tutti gli anni</option>
-                    {availableYears.map((year) => (
-                        <option key={year} value={year}>
-                            {year}
-                        </option>
-                    ))}
-                </select>
+                <CyberDropdown
+                    label={selectedYear || 'Tutti gli anni'}
+                    items={yearItems}
+                    onSelect={(val) => onYearChange({ target: { value: val } })}
+                    activeKey={selectedYear?.toString() || ''}
+                    variant="outline-secondary"
+                    className="w-100"
+                />
             </div>
 
             <button className={styles.resetBtn} onClick={onReset} data-text="RESET FILTRI">

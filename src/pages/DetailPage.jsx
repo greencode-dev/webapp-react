@@ -125,7 +125,10 @@ const DetailPage = () => {
                     {filterRating && (
                         <div className="mb-3 d-flex align-items-center justify-content-between">
                             <span className="text-muted small">
-                                Filtro attivo: <strong>{filterRating} stelle</strong>
+                                Filtro attivo:{' '}
+                                <strong>
+                                    {filterRating} {filterRating === 1 ? 'stella' : 'stelle'}
+                                </strong>
                             </span>
                             <button
                                 className="btn btn-link btn-sm text-neon-primary p-0 text-decoration-none"
