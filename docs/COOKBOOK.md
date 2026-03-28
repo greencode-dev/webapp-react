@@ -113,6 +113,14 @@ Per implementare una transizione fluida quando l'utente lascia la pagina:
 3. Applica manualmente la classe al container della pagina (`document.querySelector`).
 4. Usa un `setTimeout` per ritardare il `navigate()` di circa 400ms.
 
+## 20. Navigazione Verticale (ScrollToTop)
+
+Per facilitare la navigazione in pagine lunghe:
+
+1. Usa il componente `ScrollToTop` che monitora l'evento `scroll` globale.
+2. Implementa uno stato di visibilità basato sulla soglia di 400px.
+3. Utilizza `window.scrollTo({ behavior: 'smooth' })` per la transizione fluida.
+
 ## 16. Sistema di Bozze (Persistence)
 
 Per migliorare la UX nei form lunghi:

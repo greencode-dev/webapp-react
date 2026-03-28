@@ -1,0 +1,69 @@
+.scrollWrapper {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scrollButton {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: var(--bg-darker);
+    border: 1px solid var(--primary-neon);
+    color: var(--primary-neon);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 0 15px var(--primary-glow);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.scrollButton:hover {
+    background: var(--primary-neon);
+    color: var(--bg-darker);
+    box-shadow: 0 0 25px var(--primary-neon);
+    transform: scale(1.1);
+}
+
+.neonRing {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 1px solid var(--secondary-neon);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: orbit 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes orbit {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 0.3;
+    }
+}

@@ -24,4 +24,6 @@ fine - Aggiungi un effetto di transizione (Fade) tra la HomePage e la DetailPage
 
 fine -Implementa una transizione fluida (Fade) tra la HomePage e la DetailPage utilizzando React Router Transitions o CSS puro.
 
-Implementa una transizione di uscita (Fade-out) quando l'utente lascia la pagina cliccando su un link.
+fine - Implementa una transizione di uscita (Fade-out) quando l'utente lascia la pagina cliccando su un link.
+
+fine - Implementa un componente ScrollToTop automatico che utilizzi una transizione neon durante lo scorrimento.
