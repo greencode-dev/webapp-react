@@ -1,0 +1,220 @@
+.sidebar {
+    flex: 0 0 240px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+    animation: slideIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
+    z-index: 10;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+        filter: blur(10px);
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+.filterTitle {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    color: var(--primary-neon);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 210, 255, 0.2);
+    padding-bottom: 0.5rem;
+}
+
+.filterGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.groupLabel {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.yearSelect {
+    background: var(--glass-bg, rgba(255, 255, 255, 0.03));
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main, #fff);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    width: 100%;
+    font-size: 0.8rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none; /* Rimuove lo stile di default del browser */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300d2ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+}
+
+.yearSelect:focus {
+    border-color: var(--secondary-neon);
+    box-shadow: 0 0 15px var(--secondary-glow);
+}
+
+.resetBtn {
+    margin-top: 2rem;
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--secondary-neon);
+    color: var(--secondary-neon);
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.resetBtn:hover {
+    background: rgba(189, 0, 255, 0.1);
+    box-shadow: 0 0 15px var(--secondary-glow);
+    text-shadow: 0 0 5px var(--secondary-neon);
+}
+
+.resetBtn::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--secondary-neon);
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.resetBtn:hover::before {
+    animation: btn-glitch 0.3s infinite;
+    transform: translateX(0);
+}
+
+@keyframes btn-glitch {
+    0% {
+        clip-path: inset(20% 0 50% 0);
+        transform: translate(-5px);
+    }
+    20% {
+        clip-path: inset(60% 0 10% 0);
+        transform: translate(5px);
+    }
+    40% {
+        clip-path: inset(10% 0 70% 0);
+        transform: translate(-5px);
+    }
+    60% {
+        clip-path: inset(80% 0 5% 0);
+        transform: translate(5px);
+    }
+    80% {
+        clip-path: inset(30% 0 40% 0);
+        transform: translate(-5px);
+    }
+    100% {
+        clip-path: inset(20% 0 50% 0);
+        transform: translate(0);
+    }
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.customCheck {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--glass-border);
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkboxLabel input {
+    display: none;
+}
+
+.checkboxLabel input:checked + .customCheck {
+    border-color: var(--primary-neon);
+    background: rgba(0, 210, 255, 0.1);
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.checkboxLabel input:checked + .customCheck::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: var(--primary-neon);
+    border-radius: 1px;
+    box-shadow: 0 0 8px var(--primary-neon);
+}
+
+.checkboxLabel:hover {
+    color: var(--text-main);
+}
+
+.checkboxLabel:hover .customCheck {
+    border-color: rgba(0, 210, 255, 0.5);
+}
+
+@media (max-width: 991px) {
+    .sidebar {
+        position: static;
+        flex: 1 1 100%;
+        margin-bottom: 2rem;
+        animation: fadeIn 0.8s ease both;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

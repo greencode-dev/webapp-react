@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-import { postReview } from '../services/api';
+import { postReview } from '../api/api';
 import styles from './ReviewForm.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faStar } from '@fortawesome/free-solid-svg-icons';
@@ -61,9 +61,6 @@ const ReviewForm = ({ movieId, onReviewSuccess }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        console.log('Invio dati recensione:', { ...formData, movieId });
-
         setIsSubmitting(true);
         setStatus({ type: '', message: '' });
 

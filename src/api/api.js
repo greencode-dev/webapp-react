@@ -5,7 +5,14 @@ const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
 });
 
-export function getMovies(page = 1, limit = 10, search = '', sortBy = 'latest') {
+export function getMovies(
+    page = 1,
+    limit = 10,
+    search = '',
+    sortBy = 'latest',
+    genres = [],
+    year = '',
+) {
     // In sviluppo, se non è configurata un'API, usiamo i dati locali con ritardo simulato
     if (import.meta.env.DEV && !import.meta.env.VITE_API_URL) {
         return new Promise((resolve) => {
@@ -31,6 +38,19 @@ export function getMovies(page = 1, limit = 10, search = '', sortBy = 'latest') 
                 );
             }
 
+            // Filtro per Generi (se presenti)
+            if (genres && genres.length > 0) {
+                filtered = filtered.filter((m) => {
+                    const movieGenres = m.genre.split('/').map((g) => g.trim());
+                    return genres.some((selectedGenre) => movieGenres.includes(selectedGenre));
+                });
+            }
+
+            // Filtro per Anno
+            if (year) {
+                filtered = filtered.filter((m) => m.release_year.toString() === year);
+            }
+
             // Ordinamento
             if (sortBy === 'latest') filtered.sort((a, b) => b.release_year - a.release_year);
             if (sortBy === 'oldest') filtered.sort((a, b) => a.release_year - b.release_year);
@@ -53,7 +73,7 @@ export function getMovies(page = 1, limit = 10, search = '', sortBy = 'latest') 
     }
     // Invio dei parametri come query string: /movies?page=1&limit=3&search=abc
     return api
-        .get('/movies', { params: { page, limit, search, sortBy } })
+        .get('/movies', { params: { page, limit, search, sortBy, genres: genres.join(','), year } })
         .then((response) => response.data);
 }
 

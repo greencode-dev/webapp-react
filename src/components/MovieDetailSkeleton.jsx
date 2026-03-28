@@ -1,6 +1,5 @@
-import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import styles from '../pages/MovieDetailSkeleton.module.css';
+import styles from './MovieDetailSkeleton.module.css';
 
 function MovieDetailSkeleton() {
     return (

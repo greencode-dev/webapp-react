@@ -1,22 +1,27 @@
 import { useState, useEffect } from 'react';
 import MovieCard from '../components/MovieCard';
-import { Row, Col, Container, Pagination } from 'react-bootstrap';
-import { getMovies } from '../services/api';
+import { Container, Pagination } from 'react-bootstrap';
+import { getMovies } from '../api/api';
 import useFetch from '../hooks/useFetch';
 import ErrorDisplay from '../components/ErrorDisplay';
 import SearchBar from '../components/SearchBar';
 import MovieCardSkeleton from '../components/MovieCardSkeleton';
 import SortSelector from '../components/SortSelector';
 import ScrollToTop from '../components/ScrollToTop';
+import Sidebar from '../components/Sidebar';
+import moviesData from '../data/cards'; // Per estrarre gli anni disponibili
 import styles from './HomePage.module.css';
 
 function HomePage() {
     const [searchTerm, setSearchTerm] = useState(''); // Nuovo stato per il termine di ricerca
-    const [isExiting, setIsExiting] = useState(false);
     const [debouncedSearch, setDebouncedSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1); // Stato per la pagina corrente
     const [sortBy, setSortBy] = useState('latest'); // Stato per l'ordinamento
-    const moviesPerPage = 3; // Numero di film da mostrare per pagina
+    const [selectedGenres, setSelectedGenres] = useState([]); // Filtri categoria
+    const [selectedYear, setSelectedYear] = useState(''); // Filtro anno
+
+    // Impostiamo 12 film per pagina per riempire bene la griglia ad alta densità
+    const moviesPerPage = 12;
 
     // Debounce: aggiorna debouncedSearch dopo 500ms di inattività nell'input
     useEffect(() => {
@@ -30,11 +35,24 @@ function HomePage() {
         loading,
         error,
         refetch: fetchMovies,
-    } = useFetch(getMovies, [currentPage, moviesPerPage, debouncedSearch, sortBy]);
+    } = useFetch(getMovies, [
+        currentPage,
+        moviesPerPage,
+        debouncedSearch,
+        sortBy,
+        selectedGenres,
+        selectedYear,
+    ]);
 
     // I dati ora arrivano già filtrati e paginati dal server
     const moviesList = data?.data || [];
     const totalPages = data ? Math.ceil(data.total / moviesPerPage) : 0;
+
+    // Setup dati per la Sidebar
+    const availableGenres = ['Sci-Fi', 'Action', 'Drama', 'Crime', 'Romance'];
+    const availableYears = [...new Set(moviesData.map((m) => m.release_year))].sort(
+        (a, b) => b - a,
+    );
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -51,12 +69,30 @@ function HomePage() {
         setCurrentPage(1);
     };
 
+    const handleGenreToggle = (genre) => {
+        setSelectedGenres((prev) =>
+            prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre],
+        );
+        setCurrentPage(1);
+    };
+
+    const handleYearChange = (e) => {
+        setSelectedYear(e.target.value);
+        setCurrentPage(1);
+    };
+
+    const handleResetFilters = () => {
+        setSelectedGenres([]);
+        setSelectedYear('');
+        setCurrentPage(1);
+    };
+
     if (error) {
         return <ErrorDisplay message={error} onRetry={fetchMovies} />;
     }
 
     return (
-        <Container className={`py-5 page-fade-in ${isExiting ? 'page-fade-out' : ''}`}>
+        <Container className="py-5 page-fade-in">
             <div className={`${styles.heroSection} ${styles.heroTextAnimate}`}>
                 <h1
                     className={`display-4 mb-4 text-neon-primary fw-bold ${styles.glitchTitle}`}
@@ -88,58 +124,69 @@ function HomePage() {
                 <SortSelector value={sortBy} onChange={handleSortChange} />
             </div>
 
-            <Row
-                className={`g-4 ${styles.movieGrid} ${styles.resultsTransition} ${loading ? styles.resultsLoading : ''}`}>
-                {loading ? (
-                    // Mostriamo 3 skeleton durante il caricamento
-                    [...Array(moviesPerPage)].map((_, index) => (
-                        <Col key={index} md={6} lg={4}>
-                            <MovieCardSkeleton />
-                        </Col>
-                    ))
-                ) : moviesList.length > 0 ? (
-                    moviesList.map((movie, index) => (
-                        <Col
-                            key={movie.id}
-                            md={6}
-                            lg={4}
-                            className={styles.movieCardAppearance}
-                            style={{ '--entry-index': index }}>
-                            <MovieCard movie={movie} />
-                        </Col>
-                    ))
-                ) : (
-                    <Col>
-                        <p className="text-muted text-center">
-                            Nessun film trovato con il termine "{debouncedSearch}".
-                        </p>
-                    </Col>
-                )}
-            </Row>
+            <div className={styles.mainLayout}>
+                <Sidebar
+                    availableGenres={availableGenres}
+                    selectedGenres={selectedGenres}
+                    onGenreToggle={handleGenreToggle}
+                    availableYears={availableYears}
+                    selectedYear={selectedYear}
+                    onYearChange={handleYearChange}
+                    onReset={handleResetFilters}
+                />
 
-            {/* Paginazione */}
-            {!loading && totalPages > 1 && (
-                <div className="d-flex justify-content-center mt-5">
-                    <Pagination>
-                        <Pagination.Prev
-                            disabled={currentPage === 1}
-                            onClick={() => handlePageChange(currentPage - 1)}
-                        />
-                        {[...Array(totalPages)].map((_, index) => (
-                            <Pagination.Item
-                                key={index + 1}
-                                active={index + 1 === currentPage}
-                                onClick={() => handlePageChange(index + 1)}>
-                                {index + 1}
-                            </Pagination.Item>
-                        ))}
-                        <Pagination.Next
-                            disabled={currentPage === totalPages}
-                            onClick={() => handlePageChange(currentPage + 1)}
-                        />
-                    </Pagination>
+                <div className={styles.gridContent}>
+                    <div
+                        className={`${styles.movieGrid} ${styles.resultsTransition} ${loading ? styles.resultsLoading : ''}`}>
+                        {loading ? (
+                            [...Array(6)].map((_, index) => (
+                                <div key={index} className={styles.movieCardAppearance}>
+                                    <MovieCardSkeleton />
+                                </div>
+                            ))
+                        ) : moviesList.length > 0 ? (
+                            moviesList.map((movie, index) => (
+                                <div
+                                    key={movie.id}
+                                    className={styles.movieCardAppearance}
+                                    style={{ '--entry-index': index }}>
+                                    <MovieCard movie={movie} index={index} />
+                                </div>
+                            ))
+                        ) : (
+                            <div className="w-100 text-center py-5">
+                                <p className="text-muted">
+                                    Nessun film trovato con i filtri selezionati.
+                                </p>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Paginazione interna al contenuto griglia */}
+                    {!loading && totalPages > 1 && (
+                        <div className="d-flex justify-content-center mt-5">
+                            <Pagination>
+                                <Pagination.Prev
+                                    disabled={currentPage === 1}
+                                    onClick={() => handlePageChange(currentPage - 1)}
+                                />
+                                {[...Array(totalPages)].map((_, index) => (
+                                    <Pagination.Item
+                                        key={index + 1}
+                                        active={index + 1 === currentPage}
+                                        onClick={() => handlePageChange(index + 1)}>
+                                        {index + 1}
+                                    </Pagination.Item>
+                                ))}
+                                <Pagination.Next
+                                    disabled={currentPage === totalPages}
+                                    onClick={() => handlePageChange(currentPage + 1)}
+                                />
+                            </Pagination>
+                        </div>
+                    )}
                 </div>
-            )}
+            </div>
 
             <ScrollToTop />
         </Container>

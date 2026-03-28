@@ -1,6 +1,6 @@
 import MovieCard from '../components/MovieCard';
 import { Row, Col } from 'react-bootstrap';
-import { getMovies } from '../services/api';
+import { getMovies } from '../api/api';
 import { useEffect, useRef } from 'react';
 import useFetch from '../hooks/useFetch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

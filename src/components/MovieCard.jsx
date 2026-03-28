@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faFilm } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import styles from './MovieCard.module.css';
+import MovieBadge from './MovieBadge';
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, index }) => {
     const navigate = useNavigate();
 
     const handleNavigation = (e) => {
+        // Implementazione della transizione di uscita (Cookbook 19)
         e.preventDefault();
         // Cerchiamo il container della pagina per applicare il fade-out
         const pageContainer = document.querySelector('.page-fade-in');
@@ -20,9 +21,16 @@ const MovieCard = ({ movie }) => {
     };
 
     return (
-        <a href={`/details/${movie.id}`} onClick={handleNavigation} className={styles.cardLink}>
-            <div className={`card ${styles.movieCard}`}>
+        <a
+            href={`/details/${movie.id}`}
+            onClick={handleNavigation}
+            className={styles.cardLink}
+            style={{ '--entry-index': index }}>
+            <div className={styles.card}>
                 <div className={styles.posterWrapper}>
+                    {/* Nuovo Componente Badge gestito esternamente */}
+                    <MovieBadge movie={movie} />
+
                     <img
                         src={movie.image}
                         alt={movie.title}
@@ -32,23 +40,19 @@ const MovieCard = ({ movie }) => {
 
                     <div className={styles.cyberOverlay}>
                         <div className={styles.scanLine}></div>
-                        <span className={styles.ctaText} data-text="ACCEDI AI DATI">
-                            ACCEDI AI DATI
+                        <span className={styles.ctaText} data-text="ACCEDI AI DETTAGLI">
+                            ACCEDI AI DETTAGLI
                         </span>
                     </div>
                 </div>
-
-                <div className="card-body p-3">
-                    <h5 className="text-neon-primary mb-2 text-truncate">{movie.title}</h5>
-                    <div className="d-flex justify-content-between align-items-center">
-                        <span className="text-muted small">
-                            <FontAwesomeIcon icon={faFilm} className="me-1 text-neon-secondary" />
-                            {movie.genre}
+                <div className={styles.info}>
+                    <div className={styles.title}>{movie.title}</div>
+                    <div className={styles.meta}>
+                        <span className={styles.rating}>
+                            <FontAwesomeIcon icon={faStar} className={styles.starIcon} />
+                            {movie.average_vote ? movie.average_vote.toFixed(1) : '0.0'}
                         </span>
-                        <span className="text-warning small">
-                            <FontAwesomeIcon icon={faStar} className="me-1" />
-                            {movie.average_vote?.toFixed(1) || 'N/A'}
-                        </span>
+                        <span className={styles.year}>{movie.release_year}</span>
                     </div>
                 </div>
             </div>

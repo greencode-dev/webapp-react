@@ -97,8 +97,9 @@
     margin-bottom: 2rem;
     border-bottom: 1px solid var(--glass-border);
     padding-bottom: 1rem;
-    position: relative;
-    z-index: auto; /* IMPORTANTE: Permette ai figli di competere nel contesto globale senza creare un muro */
+    position: relative; /* Crea un nuovo stacking context */
+    z-index: 1100; /* Superiore a .movieCardAppearance e garantisce spazio al dropdown (1050) */
+    background: transparent;
 }
 
 @media (min-width: 768px) {
@@ -108,11 +109,31 @@
 }
 
 .movieGrid {
-    position: relative;
-    z-index: 1;
-    padding-top: 1rem;
-    /* Assicura che nessun contenitore intermedio tagli i bagliori neon */
-    overflow: visible !important;
+    display: grid;
+    /* La combinazione di 140px e gap permette di avere 5-6 card su desktop standard */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 24px;
+    justify-content: center;
+    padding: 20px 0;
+    width: 100%;
+}
+
+/* Layout con Sidebar */
+.mainLayout {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.gridContent {
+    flex: 1;
+}
+
+/* Centriamo il contenuto se le card sono meno della riga intera */
+.gridContainer {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
 .movieCardAppearance {

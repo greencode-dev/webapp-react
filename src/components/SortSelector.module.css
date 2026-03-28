@@ -73,12 +73,16 @@
     transition: all 0.2s ease;
 }
 
-.dropdownMenu :global(.dropdown-item):hover {
+.dropdownMenu :global(.dropdown-item):hover,
+.dropdownMenu :global(.dropdown-item):focus {
     background: rgba(189, 0, 255, 0.1) !important;
     color: var(--secondary-neon) !important;
+    outline: none;
 }
 
-.dropdownMenu :global(.dropdown-item).active {
-    background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon)) !important;
-    color: white !important;
+.dropdownMenu :global(.dropdown-item).active,
+.dropdownMenu :global(.dropdown-item):active {
+    background: var(--secondary-neon) !important;
+    color: #000 !important;
+    box-shadow: 0 0 10px var(--secondary-glow);
 }

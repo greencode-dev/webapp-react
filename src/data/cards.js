@@ -11,6 +11,7 @@ const movies = [
             "Un ladro che ruba segreti aziendali attraverso l'uso della tecnologia di condivisione dei sogni riceve l'incarico inverso di piantare un'idea nella mente di un CEO.",
         image: '/movies_cover/inception.jpg',
         reviews: [
+            // Aggiunto per coerenza con il resto del progetto
             {
                 id: 1,
                 author: 'Marco Rossi',
@@ -37,6 +38,7 @@ const movies = [
             "Un team di esploratori viaggia attraverso un wormhole nello spazio nel tentativo di garantire la sopravvivenza dell'umanità.",
         image: '/movies_cover/interstellar.jpg',
         reviews: [
+            // Aggiunto per coerenza con il resto del progetto
             {
                 id: 3,
                 author: 'Luca Verdi',
@@ -63,6 +65,7 @@ const movies = [
             'Un hacker scopre da misteriosi ribelli la vera natura della sua realtà e il suo ruolo nella guerra contro i suoi controllori.',
         image: '/movies_cover/matrix.jpg',
         reviews: [
+            // Aggiunto per coerenza con il resto del progetto
             {
                 id: 5,
                 author: 'Giovanni Gialli',
@@ -83,6 +86,7 @@ const movies = [
             "L'anziano patriarca di una dinastia della criminalità organizzata trasferisce il controllo del suo impero clandestino al figlio riluttante.",
         image: '/movies_cover/the_godfather.jpg',
         reviews: [
+            // Aggiunto per coerenza con il resto del progetto
             { id: 6, author: 'Antonio Viola', rating: 5, text: 'Il miglior film di sempre.' },
         ],
     },
@@ -98,6 +102,7 @@ const movies = [
             "Un'aristocratica di diciassette anni si innamora di un artista gentile ma povero a bordo del lussuoso e sfortunato R.M.S. Titanic.",
         image: '/movies_cover/titanic.jpg',
         reviews: [
+            // Aggiunto per coerenza con il resto del progetto
             {
                 id: 7,
                 author: 'Giulia Rosa',
@@ -118,6 +123,7 @@ const movies = [
             'Le vite di due sicari, un pugile, la moglie di un gangster e due banditi si intrecciano in quattro storie di violenza e redenzione.',
         image: '/movies_cover/pulp_fiction.webp',
         reviews: [
+            // Aggiunto per coerenza con il resto del progetto
             {
                 id: 8,
                 author: 'Roberto Blu',
@@ -138,6 +144,7 @@ const movies = [
             'Due uomini imprigionati instaurano un legame nel corso di diversi anni, trovando consolazione e alla fine la redenzione attraverso atti di comune decenza.',
         image: '/movies_cover/the_shawshank_redemption.webp',
         reviews: [
+            // Aggiunto per coerenza con il resto del progetto
             {
                 id: 9,
                 author: 'Paola Arancio',
@@ -158,6 +165,7 @@ const movies = [
             'Batman deve accettare una delle più grandi sfide psicologiche e fisiche della sua lotta contro l’ingiustizia quando il Joker semina il caos a Gotham City.',
         image: '/movies_cover/the_dark_knight.webp',
         reviews: [
+            // Aggiunto per coerenza con il resto del progetto
             {
                 id: 10,
                 author: 'Fabio Grigio',
@@ -178,6 +186,7 @@ const movies = [
             'Un impiegato d’ufficio insonne e un eccentrico produttore di sapone formano un club di combattimento sotterraneo che si trasforma in qualcosa di molto più oscuro.',
         image: '/movies_cover/fight_club.webp',
         reviews: [
+            // Aggiunto per coerenza con il resto del progetto
             { id: 11, author: 'Sandro Marrone', rating: 4, text: 'Provocatorio e visionario.' },
         ],
     },
@@ -193,6 +202,7 @@ const movies = [
             'La storia di un uomo con un basso quoziente intellettivo che assiste e influenza involontariamente diversi eventi storici del XX secolo negli Stati Uniti.',
         image: '/movies_cover/forrest_gump.webp',
         reviews: [
+            // Aggiunto per coerenza con il resto del progetto
             { id: 12, author: 'Caterina Viola', rating: 5, text: 'Commovente e intramontabile.' },
         ],
     },

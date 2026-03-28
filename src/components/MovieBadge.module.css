@@ -1,0 +1,45 @@
+.statusTags {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 20;
+}
+
+.badgeNew,
+.badgeHot {
+    font-size: 0.55rem;
+    font-weight: bold;
+    padding: 3px 10px;
+    clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+    color: #000;
+    letter-spacing: 1px;
+    backdrop-filter: blur(4px);
+}
+
+.badgeNew {
+    background: var(--primary-neon, #00d2ff);
+    box-shadow: 0 0 10px var(--primary-glow);
+    animation: cyberPulse 2s infinite ease-in-out;
+}
+
+.badgeHot {
+    background: var(--secondary-neon, #bd00ff);
+    box-shadow: 0 0 10px var(--secondary-glow);
+    animation: cyberPulse 2s infinite ease-in-out 1s;
+}
+
+@keyframes cyberPulse {
+    0%,
+    100% {
+        opacity: 0.9;
+        filter: brightness(1);
+    }
+    50% {
+        opacity: 1;
+        filter: brightness(1.2);
+        transform: translateX(2px);
+    }
+}

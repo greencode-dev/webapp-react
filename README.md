@@ -1,148 +1,40 @@
-# 🎬 CineLab - Neon Cinematic Experience
+# 🎬 CineLab - Cyberpunk Movie Experience
 
-![Anteprima Home Page](./docs/images/homepage-preview.png)
+CineLab è una web application sperimentale costruita con **React** e **Vite**, progettata per offrire un'esperienza cinematografica immersiva con un'interfaccia utente ispirata al design olografico e cyberpunk.
 
-Benvenuto in **CineLab**, la tua piattaforma definitiva per esplorare il mondo del cinema con un'interfaccia moderna, immersiva e premium. Il progetto adotta un **Neon Theme** completo con effetti glassmorphism, animazioni fluide e una palette cyan/magenta curata.
+## 🚀 Caratteristiche Principali
 
----
-
-## ✨ Caratteristiche del Design
-
-| Elemento              | Dettaglio                                                                            |
-| :-------------------- | :----------------------------------------------------------------------------------- |
-| **Neon Aesthetic**    | Palette vibrante (Cyan `#00d2ff` & Magenta `#bd00ff`) con effetti di bagliore (glow) |
-| **Glitch & Flicker**  | Animazioni digitali e bagliori pulsanti per un effetto neon realistico               |
-| **3D Tilt & Light**   | Card interattive con inclinazione 3D e spotlight dinamico basato sul mouse           |
-| **Holographic Entry** | Materializzazione delle card con scansione laser perimetrale e blur dinamico         |
-| **Holographic CTA**   | Interazione full-card con overlay olografico e scansione laser (No Buttons)          |
-| **Smart Drafts**      | Salvataggio automatico delle recensioni in locale per evitare perdite di dati        |
-| **Neon Scroll**       | Sistema di navigazione verticale con feedback visivo olografico                      |
-| **Page Transitions**  | Cambio pagina fluido con dissolvenza e slide-up olografico                           |
-| **Dynamic Filtering** | Riepilogo voti interattivo con filtraggio delle recensioni in tempo reale            |
-| **Typography**        | Font Orbitron e Exo 2                                                                |
-| **Micro-animations**  | Hover interattivi, scroll-reveal con IntersectionObserver, anelli orbitanti          |
-| **Data Fetching**     | Custom Hook `useFetch` con gestione centralizzata di Loading e Error states          |
-| **Features**          | Ricerca multi-campo (Attori, Regista, Genere), Ordinamento Custom e Skeleton Loaders |
-| **UX**                | Paginazione server-side (simulata) e Dropdown con effetto Glassmorphism avanzato     |
-
----
-
-## 📂 Struttura del Progetto
-
-```
-src/
-├── assets/               # Immagini e risorse statiche
-│   ├── about-hero.png
-│   ├── logo-neon.png
-│   └── main-bg.png
-├── components/
-│   ├── Header.jsx        # Navbar con logo neon e nav-link animati
-│   ├── Footer.jsx        # Footer con branding neon
-│   ├── MovieCard.jsx     # Card film in stile glassmorphism con poster zoom
-│   └── ReviewCard.jsx    # Card recensione con avatar e stelle
-│   ├── SortSelector.jsx  # Selettore ordinamento custom con effetto blur
-│   ├── SearchBar.jsx     # Barra di ricerca neon con debouncing
-├── data/
-│   └── cards.js          # Dati mock dei film (titolo, regista, trama, recensioni)
-├── layouts/
-│   └── DefaultLayout.jsx # Layout con Header + Outlet + Footer
-├── pages/
-│   ├── HomePage.jsx      # Vetrina principale dei film
-│   ├── About.jsx         # Pagina About con hero, stats, mission e features
-│   ├── DetailPage.jsx    # Dettaglio film con trama e recensioni
-│   └── NotFound.jsx      # Pagina 404
-├── index.css             # Design system completo (variabili CSS, utility, animazioni)
-├── main.jsx              # Entry point React
-└── App.jsx               # Routing (React Router v7)
-```
-
----
-
-## 🎨 Design System (Quick Guide)
-
-Classi utility riutilizzabili definite in `index.css`:
-
-| Classe                 | Effetto                                                 |
-| :--------------------- | :------------------------------------------------------ |
-| `.text-neon-primary`   | Testo cyan con text-shadow glow                         |
-| `.text-neon-secondary` | Testo magenta con text-shadow glow                      |
-| `.text-gradient`       | Gradiente cyan → magenta con `-webkit-background-clip`  |
-| `.card`                | Base globale per i contenitori glassmorphism            |
-| `.btn-primary`         | Bottone con gradiente neon e hover animato              |
-| `.poster-wrapper`      | Contenitore poster con aspect-ratio 2:3 e zoom on hover |
-| `.about-animate`       | Scroll-reveal fade-in (richiede `IntersectionObserver`) |
-
-### Variabili CSS principali
-
-```css
---bg-dark: #070815 --primary-neon: #00d2ff --secondary-neon: #bd00ff
-    --glass-bg: rgba(255, 255, 255, 0.03) --glass-border: rgba(255, 255, 255, 0.08);
-```
-
----
-
-## 🗺️ Pagine e Routing
-
-| Percorso       | Componente   | Descrizione                                            |
-| :------------- | :----------- | :----------------------------------------------------- |
-| `/`            | `HomePage`   | Griglia dei film con card interattive                  |
-| `/about`       | `About`      | Hero animato, statistiche, missione e film in evidenza |
-| `/details/:id` | `DetailPage` | Dettaglio singolo film con poster, trama e recensioni  |
-| `*`            | `NotFound`   | Pagina 404 con redirect alla home                      |
-
----
+- **UI Neon Premium**: Design basato su "Glassmorphism", effetti glitch e animazioni olografiche accelerate via GPU.
+- **Advanced Filtering**: Sidebar interattiva per filtrare film per categorie multiple e anno di rilascio.
+- **Sistema di Recensioni**: Inserimento recensioni con calcolo del voto medio in tempo reale e salvataggio automatico delle bozze in `localStorage`.
+- **Performance Ottimizzate**: Lighthouse score eccellente grazie al lazy loading delle immagini, skeleton loaders e debouncing della ricerca.
+- **Responsive Design**: Griglia fluida ottimizzata per 8 colonne su desktop e layout adattivo per mobile.
 
 ## 🛠️ Stack Tecnologico
 
-- **React 19** — UI library
-- **React Router 7** — Navigazione SPA con rotte dinamiche
-- **CSS Modules** — Scoping locale degli stili e ottimizzazione performance
-- **Font Awesome** — Set di icone SVG scalabili e accessibili
-- **React Bootstrap 2** — Componenti layout (Grid, Navbar, Card)
-- **Bootstrap 5.3** — Utilities CSS di base
-- **Vite 8** — Build tool e dev server
-- **ESLint 9** — Linting
+- **Frontend**: React 18, React Router 6.
+- **Styling**: CSS Modules (zero inline styles), React-Bootstrap (layout base), FontAwesome.
+- **API**: Axios con sistema di Mocking integrato per lo sviluppo locale.
+- **Animazioni**: CSS Keyframes, Clip-path animations, Staggered entrance.
+
+## 📁 Struttura del Progetto
+
+- `src/api/`: Logica di comunicazione con il backend e mock dei dati.
+- `src/components/`: Componenti atomici e molecolari (MovieCard, Sidebar, ReviewForm, ecc.).
+- `src/pages/`: View principali dell'applicazione (HomePage, DetailPage).
+- `src/hooks/`: Custom hooks per il fetching dei dati e la gestione degli stati complessi.
+- `docs/`: Documentazione tecnica e Cookbook per sviluppatori.
+
+## 🔧 Installazione
+
+1. Clona il repository.
+2. Installa le dipendenze: `npm install`.
+3. Avvia l'ambiente di sviluppo: `npm run dev`.
+
+## 📖 Cookbook
+
+Per approfondire i pattern architetturali e i trick CSS utilizzati, consulta il Cookbook.
 
 ---
 
-## 🚀 Comandi Rapidi
-
-```bash
-# Installa le dipendenze
-npm install
-
-# Avvia il server di sviluppo (HMR su http://localhost:5173)
-npm run dev
-
-# Build di produzione
-npm run build
-
-# Anteprima della build
-npm run preview
-
-# Lint del codice
-npm run lint
-```
-
----
-
-## 📝 Aggiungere un Nuovo Film
-
-Aggiungi un oggetto al file `src/data/cards.js`:
-
-```js
-{
-    id: 6,
-    title: "Il Nuovo Film",
-    director: "Nome Regista",
-    genre: "Genre",
-    release_year: 2025,
-    abstract: "Una breve descrizione della trama...",
-    image: "/movies_cover/nome_file.jpg",
-    reviews: [
-        { id: 8, author: "Autore", rating: 5, text: "Commento..." }
-    ]
-}
-```
-
-Inserisci la locandina nella cartella `public/movies_cover/`. La pagina di dettaglio verrà generata automaticamente grazie alle rotte dinamiche.
+_Sviluppato con ❤️ durante il corso Boolean._
