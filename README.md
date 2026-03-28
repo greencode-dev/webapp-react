@@ -16,6 +16,7 @@ Benvenuto in **CineLab**, la tua piattaforma definitiva per esplorare il mondo d
 | **Holographic Entry** | Materializzazione delle card con scansione laser perimetrale e blur dinamico         |
 | **Holographic CTA**   | Interazione full-card con overlay olografico e scansione laser (No Buttons)          |
 | **Smart Drafts**      | Salvataggio automatico delle recensioni in locale per evitare perdite di dati        |
+| **Page Transitions**  | Cambio pagina fluido con dissolvenza e slide-up olografico                           |
 | **Dynamic Filtering** | Riepilogo voti interattivo con filtraggio delle recensioni in tempo reale            |
 | **Typography**        | Font Orbitron e Exo 2                                                                |
 | **Micro-animations**  | Hover interattivi, scroll-reveal con IntersectionObserver, anelli orbitanti          |

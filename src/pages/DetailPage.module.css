@@ -86,6 +86,17 @@
     }
 }
 
+@keyframes glitch-anim-2 {
+    0% {
+        clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+        transform: translate(3px, 2px);
+    }
+    100% {
+        clip-path: polygon(0 80%, 100% 80%, 100% 95%, 0 95%);
+        transform: translate(-3px, -2px);
+    }
+}
+
 .filterInfo {
     border-bottom: 1px solid rgba(0, 210, 255, 0.1);
     padding-bottom: 0.5rem;

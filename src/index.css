@@ -62,6 +62,25 @@
     outline: none;
 }
 
+/* ==========================================================================
+   PAGE TRANSITIONS
+   ========================================================================== */
+
+.page-fade-in {
+    animation: page-fade-in 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes page-fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Global Design System Utilities */
 * {
     margin: 0;

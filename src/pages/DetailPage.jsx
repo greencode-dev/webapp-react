@@ -47,7 +47,7 @@ const DetailPage = () => {
     if (!movie) return <div className="p-5 text-center">Film non trovato nel database.</div>;
 
     return (
-        <Container className="py-5">
+        <Container className="py-5 page-fade-in">
             <Row
                 className={`mb-5 align-items-center ${styles.movieCardAppearance}`}
                 style={{ '--entry-index': 1 }}>

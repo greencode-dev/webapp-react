@@ -54,7 +54,7 @@ function HomePage() {
     }
 
     return (
-        <Container className="py-5">
+        <Container className="py-5 page-fade-in">
             <div className={`${styles.heroSection} ${styles.heroTextAnimate}`}>
                 <h1
                     className={`display-4 mb-4 text-neon-primary fw-bold ${styles.glitchTitle}`}

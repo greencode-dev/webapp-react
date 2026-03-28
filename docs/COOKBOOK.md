@@ -96,6 +96,14 @@ Per sostituire i pulsanti CTA standard nelle card:
 3. Aggiungi una `.scanLine` animata verticalmente per simulare una scansione laser.
 4. Mostra l'overlay solo su `:hover` dell'elemento genitore.
 
+## 18. Transizioni di Pagina (Fade-in)
+
+Per rendere il passaggio tra le rotte fluido:
+
+1. Applica la classe globale `.page-fade-in` al container principale della pagina.
+2. La classe utilizza un'animazione di opacità e un leggero movimento sull'asse Y.
+3. Si integra con le animazioni a cascata degli elementi interni per un effetto "layered".
+
 ## 16. Sistema di Bozze (Persistence)
 
 Per migliorare la UX nei form lunghi:
