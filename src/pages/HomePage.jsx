@@ -7,6 +7,7 @@ import ErrorDisplay from '../components/ErrorDisplay';
 import SearchBar from '../components/SearchBar';
 import MovieCardSkeleton from '../components/MovieCardSkeleton';
 import SortSelector from '../components/SortSelector';
+import ScrollToTop from '../components/ScrollToTop';
 import styles from './HomePage.module.css';
 
 function HomePage() {
@@ -139,6 +140,8 @@ function HomePage() {
                     </Pagination>
                 </div>
             )}
+
+            <ScrollToTop />
         </Container>
     );
 }

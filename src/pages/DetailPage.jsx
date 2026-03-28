@@ -6,6 +6,7 @@ import { getMovie } from '../services/api';
 import ReviewForm from '../components/ReviewForm';
 import ReviewCard from '../components/ReviewCard';
 import RatingBreakdown from '../components/RatingBreakdown';
+import ScrollToTop from '../components/ScrollToTop';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './DetailPage.module.css';
 import { faStar, faCalendarAlt, faFilm, faUserTie } from '@fortawesome/free-solid-svg-icons';
@@ -161,6 +162,8 @@ const DetailPage = () => {
                     <ReviewForm movieId={id} onReviewSuccess={refetch} />
                 </Col>
             </Row>
+
+            <ScrollToTop />
         </Container>
     );
 };
