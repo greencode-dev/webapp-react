@@ -155,7 +155,16 @@ Per migliorare la navigazione nei filtri:
 3. Usa il `CountUp` all'interno dei label delle checkbox per un effetto "scansione dati" durante il filtraggio.
 4. Utilizza `CyberScrollList` per elenchi lunghi (es. Anni) per facilitare il confronto rapido.
 
-## 21. Cyber UI - CyberScrollList
+## 21. Cyber UI - CyberAccordion
+
+Pattern per gestire gruppi di filtri multipli:
+
+1. Utilizza uno stato `openSection` per permettere l'apertura di un solo modulo alla volta.
+2. Implementa una transizione fluida dell'altezza usando `grid-template-rows: 0fr -> 1fr`.
+3. Mostra un riepilogo della selezione (`selectedSummary`) quando il modulo è chiuso per mantenere il contesto informativo.
+4. Utilizza un `activeIndicator` (pallino neon pulsante) accanto al chevron quando la sezione è chiusa ma contiene filtri attivi.
+
+## 22. Cyber UI - CyberScrollList
 
 Pattern per liste a scorrimento interno:
 

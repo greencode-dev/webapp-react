@@ -36,10 +36,97 @@
     padding-bottom: 0.5rem;
 }
 
+.accordionItem {
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.accordionItem.isOpen {
+    border-color: rgba(0, 210, 255, 0.3);
+    background: rgba(0, 210, 255, 0.03);
+}
+
+.accordionHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.activeIndicator {
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--primary-glow);
+    animation: indicatorPulse 2s infinite ease-in-out;
+}
+
+@keyframes indicatorPulse {
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(0.9);
+        box-shadow: 0 0 4px var(--primary-glow);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+        box-shadow: 0 0 12px var(--primary-glow);
+    }
+}
+
+.selectedSummary {
+    font-size: 0.75rem;
+    color: var(--primary-neon);
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 5px var(--primary-glow);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.chevron {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    transition: transform 0.3s ease;
+}
+
+.isOpen .chevron {
+    transform: rotate(180deg);
+    color: var(--primary-neon);
+}
+
+.accordionContent {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+}
+
+.isOpen .accordionContent {
+    grid-template-rows: 1fr;
+}
+
 .filterGroup {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    padding: 0 1rem 1rem 1rem;
 }
 
 .groupLabel {
@@ -47,8 +134,7 @@
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 0.5rem;
-    display: block;
+    margin-bottom: 0;
 }
 
 .resetBtn {

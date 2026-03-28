@@ -51,3 +51,5 @@ Come posso aggiungere un effetto 'flicker' casuale ai numeri durante l'animazion
 Come posso gestire il caricamento asincrono delle categorie della Sidebar direttamente da un'API esterna?
 
 Come posso implementare la stessa CyberScrollList anche per le categorie al posto delle checkbox per un look più uniforme?
+
+Come posso rendere la Sidebar completamente a scomparsa (off-canvas) su dispositivi mobile mantendo lo stile cyberpunk?
