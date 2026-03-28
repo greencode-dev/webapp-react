@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { Container, Row, Col, Badge } from 'react-bootstrap';
 import useFetch from '../hooks/useFetch';
 import { getMovie } from '../services/api';
@@ -13,6 +13,7 @@ import { faStar, faCalendarAlt, faFilm, faUserTie } from '@fortawesome/free-soli
 const DetailPage = () => {
     const { id } = useParams();
     const [filterRating, setFilterRating] = useState(null);
+    const [isExiting, setIsExiting] = useState(false);
 
     // Pattern Milestone 3: uso di refetch per ricaricare i dati dopo l'invio della recensione
     const { data: movie, loading, error, refetch } = useFetch(getMovie, id);
@@ -47,7 +48,7 @@ const DetailPage = () => {
     if (!movie) return <div className="p-5 text-center">Film non trovato nel database.</div>;
 
     return (
-        <Container className="py-5 page-fade-in">
+        <Container className={`py-5 page-fade-in ${isExiting ? 'page-fade-out' : ''}`}>
             <Row
                 className={`mb-5 align-items-center ${styles.movieCardAppearance}`}
                 style={{ '--entry-index': 1 }}>
@@ -57,7 +58,7 @@ const DetailPage = () => {
                         <img
                             src={movie.image}
                             alt={movie.title}
-                            className="img-fluid w-100 object-fit-cover"
+                            className={`img-fluid w-100 ${styles.posterImage}`}
                         />
                     </div>
                 </Col>

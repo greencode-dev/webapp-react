@@ -20,4 +20,8 @@ Implementa un sistema di salvataggio bozza nel localStorage per non perdere la r
 
 Applica un leggero effetto di sfocatura (backdrop-filter) alla sectionHeader per rendere il passaggio delle card ancora più cinematico.
 
-Aggiungi un effetto di transizione (Fade) tra la HomePage e la DetailPage per rendere il cambio pagina più fluido.
+fine - Aggiungi un effetto di transizione (Fade) tra la HomePage e la DetailPage per rendere il cambio pagina più fluido.
+
+fine -Implementa una transizione fluida (Fade) tra la HomePage e la DetailPage utilizzando React Router Transitions o CSS puro.
+
+Implementa una transizione di uscita (Fade-out) quando l'utente lascia la pagina cliccando su un link.

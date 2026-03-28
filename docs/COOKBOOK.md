@@ -104,6 +104,15 @@ Per rendere il passaggio tra le rotte fluido:
 2. La classe utilizza un'animazione di opacità e un leggero movimento sull'asse Y.
 3. Si integra con le animazioni a cascata degli elementi interni per un effetto "layered".
 
+## 19. Transizioni di Uscita (Fade-out)
+
+Per implementare una transizione fluida quando l'utente lascia la pagina:
+
+1. Aggiungi la classe `.page-fade-out` in `index.css`.
+2. Intercetta il click sul link/card.
+3. Applica manualmente la classe al container della pagina (`document.querySelector`).
+4. Usa un `setTimeout` per ritardare il `navigate()` di circa 400ms.
+
 ## 16. Sistema di Bozze (Persistence)
 
 Per migliorare la UX nei form lunghi:

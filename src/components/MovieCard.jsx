@@ -1,11 +1,26 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faFilm } from '@fortawesome/free-solid-svg-icons';
 import styles from './MovieCard.module.css';
 
 const MovieCard = ({ movie }) => {
+    const navigate = useNavigate();
+
+    const handleNavigation = (e) => {
+        e.preventDefault();
+        // Cerchiamo il container della pagina per applicare il fade-out
+        const pageContainer = document.querySelector('.page-fade-in');
+        if (pageContainer) {
+            pageContainer.classList.add('page-fade-out');
+        }
+        setTimeout(() => {
+            navigate(`/details/${movie.id}`);
+        }, 400); // Match della durata CSS
+    };
+
     return (
-        <Link to={`/details/${movie.id}`} className={styles.cardLink}>
+        <a href={`/details/${movie.id}`} onClick={handleNavigation} className={styles.cardLink}>
             <div className={`card ${styles.movieCard}`}>
                 <div className={styles.posterWrapper}>
                     <img
@@ -37,7 +52,7 @@ const MovieCard = ({ movie }) => {
                     </div>
                 </div>
             </div>
-        </Link>
+        </a>
     );
 };
 

@@ -11,6 +11,7 @@ import styles from './HomePage.module.css';
 
 function HomePage() {
     const [searchTerm, setSearchTerm] = useState(''); // Nuovo stato per il termine di ricerca
+    const [isExiting, setIsExiting] = useState(false);
     const [debouncedSearch, setDebouncedSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1); // Stato per la pagina corrente
     const [sortBy, setSortBy] = useState('latest'); // Stato per l'ordinamento
@@ -54,7 +55,7 @@ function HomePage() {
     }
 
     return (
-        <Container className="py-5 page-fade-in">
+        <Container className={`py-5 page-fade-in ${isExiting ? 'page-fade-out' : ''}`}>
             <div className={`${styles.heroSection} ${styles.heroTextAnimate}`}>
                 <h1
                     className={`display-4 mb-4 text-neon-primary fw-bold ${styles.glitchTitle}`}
