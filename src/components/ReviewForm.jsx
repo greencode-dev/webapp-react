@@ -93,7 +93,9 @@ const ReviewForm = ({ movieId, onReviewSuccess }) => {
             {/* Mostra le particelle solo quando il caricamento ha successo */}
             {status.type === 'success' && <HologramParticles />}
 
-            <h3 className="glitch-title mb-4 text-neon-primary" data-text="Lascia una Recensione">
+            <h3
+                className={`${styles.glitchTitle} mb-4 text-neon-primary`}
+                data-text="Lascia una Recensione">
                 Lascia una Recensione
             </h3>
 

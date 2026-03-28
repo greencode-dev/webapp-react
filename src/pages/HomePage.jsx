@@ -57,7 +57,7 @@ function HomePage() {
         <Container className="py-5">
             <div className={`${styles.heroSection} ${styles.heroTextAnimate}`}>
                 <h1
-                    className={`display-4 mb-4 text-neon-primary fw-bold `}
+                    className={`display-4 mb-4 text-neon-primary fw-bold ${styles.glitchTitle}`}
                     data-text="Scopri il Cinema con CineLab">
                     Scopri il Cinema con{' '}
                     <span className="text-neon-secondary neon-pulse">CineLab</span>

@@ -7,6 +7,7 @@ import ReviewForm from '../components/ReviewForm';
 import ReviewCard from '../components/ReviewCard';
 import RatingBreakdown from '../components/RatingBreakdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styles from './DetailPage.module.css';
 import { faStar, faCalendarAlt, faFilm, faUserTie } from '@fortawesome/free-solid-svg-icons';
 
 const DetailPage = () => {
@@ -48,12 +49,11 @@ const DetailPage = () => {
     return (
         <Container className="py-5">
             <Row
-                className="mb-5 align-items-center movie-card-appearance"
+                className={`mb-5 align-items-center ${styles.movieCardAppearance}`}
                 style={{ '--entry-index': 1 }}>
                 <Col lg={4} className="mb-4 mb-lg-0">
                     <div
-                        className="poster-wrapper rounded-4 overflow-hidden border border-info shadow-lg"
-                        style={{ boxShadow: '0 0 25px var(--primary-glow)' }}>
+                        className={`poster-wrapper rounded-4 overflow-hidden border border-info shadow-lg ${styles.posterContainer}`}>
                         <img
                             src={movie.image}
                             alt={movie.title}
@@ -61,8 +61,8 @@ const DetailPage = () => {
                         />
                     </div>
                 </Col>
-                <Col lg={8} className="movie-card-appearance" style={{ '--entry-index': 2 }}>
-                    <h1 className="glitch-title mb-3" data-text={movie.title}>
+                <Col lg={8} className={styles.movieCardAppearance} style={{ '--entry-index': 2 }}>
+                    <h1 className={`${styles.glitchTitle} mb-3`} data-text={movie.title}>
                         {movie.title}
                     </h1>
 
@@ -107,7 +107,7 @@ const DetailPage = () => {
 
             <hr className="my-5 border-secondary opacity-25" />
 
-            <Row className="movie-card-appearance" style={{ '--entry-index': 3 }}>
+            <Row className={styles.movieCardAppearance} style={{ '--entry-index': 3 }}>
                 <Col lg={7} className="mb-5 mb-lg-0">
                     <h3 className="text-neon-primary mb-4">
                         Recensioni{' '}

@@ -19,3 +19,5 @@ Aggiungi un pulsante per cancellare rapidamente tutto il testo nel ReviewForm co
 Implementa un sistema di salvataggio bozza nel localStorage per non perdere la recensione se si ricarica la pagina.
 
 Applica un leggero effetto di sfocatura (backdrop-filter) alla sectionHeader per rendere il passaggio delle card ancora più cinematico.
+
+Aggiungi un effetto di transizione (Fade) tra la HomePage e la DetailPage per rendere il cambio pagina più fluido.

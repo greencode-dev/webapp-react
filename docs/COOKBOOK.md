@@ -72,46 +72,6 @@ Per ottimizzare il caricamento della pagina ed evitare il Layout Shift:
 2. Assicurati che il contenitore dell'immagine abbia un `aspect-ratio` definito via CSS (es. `2/3` per i poster).
 3. Fornisci sempre un attributo `alt` descrittivo per l'accessibilità.
 
-## 12. Sistema di Rating Interattivo
-
-Per i form di valutazione, sostituiamo i dropdown con icone `faStar`:
-
-- Usa uno stato `hoverRating` per il feedback visivo al passaggio del mouse.
-- Applica classi CSS con `drop-shadow` per l'effetto neon sulle stelle attive.
-- Gestisci il click per persistere la scelta nell'oggetto di stato del form.
-
-## 13. Filtri Dinamici su Dati Derivati
-
-Quando implementi filtri sulla UI (es. RatingBreakdown):
-
-1. Usa `useMemo` per calcolare la lista filtrata basandoti su uno stato di filtro (es. `filterRating`).
-2. Implementa una funzione di "toggle" (clicca per attivare, clicca di nuovo per disattivare).
-3. Fornisci sempre un feedback visivo dell'azione e un pulsante di reset rapido.
-4. Gestisci il caso "Empty State" se il filtro non produce risultati.
-
-## 14. Animazione Neon Pulse (Breathing Glow)
-
-Per simulare un'atmosfera cyberpunk realistica senza affaticare l'utente, applichiamo l'effetto "respiro" solo agli elementi di branding:
-
-1. Usa la classe `.neon-pulse` per applicare un'animazione di respiro al bagliore.
-2. L'animazione varia dolcemente il `text-shadow` e l' `opacity` per creare un effetto "vivo".
-
-## 15. Risoluzione Clipping e Z-Index
-
-Quando le card si sollevano (`translateY`) e vengono tagliate o finiscono sotto altri elementi:
-
-1. Assicurati che il contenitore (`movieGrid`) abbia `overflow: visible`.
-2. Rimuovi `clip-path` al termine delle animazioni di ingresso (`100% { clip-path: none; }`).
-3. Gestisci gli `z-index` globalmente impostando i contenitori padri su `z-index: auto` e gli elementi in hover su un valore superiore (es. `20`).
-
-## 16. Sistema di Bozze (Persistence)
-
-Per migliorare la UX nei form:
-
-1. Usa `localStorage` per salvare lo stato del form in tempo reale tramite `useEffect`.
-2. Implementa una funzione "Reset Matrix" per permettere all'utente di pulire i dati salvati.
-3. Rimuovi la chiave dal storage solo dopo una risposta positiva dal server.
-
 ## 14. Animazione Neon Pulse (Breathing Glow)
 
 Per simulare un'atmosfera cyberpunk realistica senza affaticare l'utente, applichiamo l'effetto "respiro" solo agli elementi di branding:
@@ -119,13 +79,22 @@ Per simulare un'atmosfera cyberpunk realistica senza affaticare l'utente, applic
 1. Usa la classe `.neon-pulse` per applicare un'animazione di respiro al bagliore.
 2. L'animazione varia dolcemente il `text-shadow` e l' `opacity` per creare un effetto "vivo" e meno aggressivo del flicker.
 
-## 15. Risoluzione Conflitti Z-Index (Lifting Pattern)
+## 15. Risoluzione Conflitti Z-Index e Clipping
 
-Per gestire correttamente sovrapposizioni tra card animate e menu a tendina:
+Per gestire correttamente sovrapposizioni tra card animate e testate:
 
-1. **Spaziatura (Clearance)**: Usa `padding-top` o `margin-top` sul contenitore della griglia per dare spazio alle card di sollevarsi senza toccare la sezione precedente.
-2. **Priorità Funzionale**: La testata (`sectionHeader`) deve avere uno `z-index` superiore alla griglia per permettere ai dropdown di aprirsi sopra i contenuti.
-3. **Animazioni 3D**: Ricorda che `transform` crea un nuovo stacking context; la spaziatura fisica è spesso più affidabile del solo `z-index`.
+1. **Z-Index**: Imposta la testata su `z-index: auto` e gli elementi interattivi (card in hover) su un valore superiore (es. `20`).
+2. **Clip-Path**: Rimuovi `clip-path` al termine delle animazioni di ingresso (`100% { clip-path: none; }`) per evitare il taglio netto degli elementi durante il movimento.
+3. **Overflow**: Assicurati che il contenitore principale abbia `overflow: visible`.
+
+## 17. Overlay Olografico Interattivo
+
+Per sostituire i pulsanti CTA standard nelle card:
+
+1. Avvolgi l'intero contenuto in un `Link`.
+2. Crea un `.cyberOverlay` con `opacity: 0` e `backdrop-filter`.
+3. Aggiungi una `.scanLine` animata verticalmente per simulare una scansione laser.
+4. Mostra l'overlay solo su `:hover` dell'elemento genitore.
 
 ## 16. Sistema di Bozze (Persistence)
 

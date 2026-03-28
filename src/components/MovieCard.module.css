@@ -1,202 +1,76 @@
-.glassCard {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    border-radius: 1.25rem;
-    box-shadow: var(--card-shadow);
-    /* Separiamo le transizioni: 
-       - transform mantiene l'effetto bouncy 
-       - box-shadow usa un ease-in-out più lungo e morbido per il ritorno */
+.cardLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.movieCard {
     transition:
-        transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-        box-shadow 0.5s ease-in-out,
-        border-color 0.3s ease;
-    /* Base transform per una transizione fluida dallo stato non hover */
-    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px);
-    overflow: hidden;
-    height: 100%;
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     position: relative;
 }
 
-/* Effetto scia luminosa (Spotlight) */
-.glassCard::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    /* Crea un gradiente circolare centrato sulla posizione del mouse */
-    background: radial-gradient(
-        600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
-        rgba(0, 210, 255, 0.08),
-        transparent 40%
-    );
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-    z-index: 3;
-}
-
-.glassCard:hover::before {
-    opacity: 1;
-}
-
-.glassCard:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--primary-neon) !important;
-    transform: perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg))
-        translateY(-8px);
-    box-shadow: 0 0 40px var(--primary-glow);
-    animation: cardBorderFlicker 2s infinite;
-}
-
-.cardGlitchText {
-    position: relative;
-}
-
-.glassCard:hover .cardGlitchText::before,
-.glassCard:hover .cardGlitchText::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.7;
-    z-index: -1;
-}
-
-.glassCard:hover .cardGlitchText::before {
-    color: var(--secondary-neon);
-    animation: miniGlitch 0.3s infinite;
-    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-    transform: translate(-1px, 0);
-}
-
-.glassCard:hover .cardGlitchText::after {
-    color: var(--accent-cyan);
-    animation: miniGlitch 0.3s infinite reverse;
-    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
-    transform: translate(1px, 0);
-}
-
-@keyframes cardBorderFlicker {
-    0%,
-    19%,
-    21%,
-    23%,
-    25%,
-    54%,
-    56%,
-    100% {
-        border-color: var(--glass-border);
-        box-shadow: 0 0 20px var(--primary-glow);
-    }
-    20%,
-    24%,
-    55% {
-        border-color: var(--primary-neon);
-        box-shadow: 0 0 40px var(--primary-glow);
-    }
-}
-
-@keyframes miniGlitch {
-    0% {
-        transform: translate(0);
-    }
-    20% {
-        transform: translate(-2px, 1px);
-    }
-    40% {
-        transform: translate(-2px, -1px);
-    }
-    60% {
-        transform: translate(2px, 1px);
-    }
-    80% {
-        transform: translate(2px, -1px);
-    }
-    100% {
-        transform: translate(0);
-    }
-}
-
-/* Poster Styles */
 .posterWrapper {
     position: relative;
-    width: 100%;
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 2/3;
     overflow: hidden;
-    background-color: var(--bg-darker);
-    border-radius: 1rem 1rem 0 0;
 }
 
-.posterImg {
+.poster {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.5s ease;
 }
 
-.glassCard:hover .posterImg {
+.cardLink:hover .poster {
     transform: scale(1.1);
 }
 
-.posterOverlay {
+.cyberOverlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 60%, rgba(7, 8, 21, 0.8));
-    pointer-events: none;
+    background: rgba(0, 210, 255, 0.2);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.3s ease;
+    z-index: 2;
 }
 
-.glassCard:hover .posterOverlay {
+.cardLink:hover .cyberOverlay {
     opacity: 1;
 }
 
-.posterDetail {
-    border-radius: 1.25rem;
-    box-shadow: 0 0 30px rgba(0, 210, 255, 0.2);
-    border: 1px solid var(--glass-border);
-    transition: box-shadow 0.4s ease;
-    overflow: hidden;
-}
-
-.posterDetail:hover {
-    box-shadow: 0 0 40px var(--primary-glow);
-}
-
-.cardBody {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    background: transparent;
-}
-
-.subtitle {
-    margin-bottom: 0.5rem;
-    color: var(--text-muted);
-    opacity: 0.75;
-}
-
-.abstract {
-    color: var(--text-muted);
-    flex-grow: 1;
-}
-
-.footer {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.genreBadge {
-    background-color: var(--primary-neon);
-    color: var(--bg-dark);
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
+.ctaText {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-neon);
     font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.scanLine {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-neon);
+    box-shadow: 0 0 15px var(--primary-neon);
+    top: 0;
+    animation: scanMove 2s linear infinite;
+}
+
+@keyframes scanMove {
+    0% {
+        top: -10%;
+    }
+    100% {
+        top: 110%;
+    }
 }

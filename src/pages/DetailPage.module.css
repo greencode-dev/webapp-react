@@ -12,6 +12,80 @@
     object-fit: cover;
 }
 
+/* --- Shared Cyberpunk Effects --- */
+.movieCardAppearance {
+    position: relative;
+    animation: cyber-materialize 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
+    animation-delay: calc(var(--entry-index, 0) * 0.1s);
+}
+
+@keyframes cyber-materialize {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+        filter: brightness(2) blur(10px);
+        clip-path: inset(100% 0 0 0);
+    }
+    40% {
+        opacity: 1;
+        filter: brightness(1.5) blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: brightness(1) blur(0);
+        clip-path: none;
+    }
+}
+
+.glitchTitle {
+    position: relative;
+    cursor: default;
+}
+
+.glitchTitle::before,
+.glitchTitle::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    display: none;
+    z-index: -1;
+}
+
+.glitchTitle:hover::before,
+.glitchTitle:hover::after {
+    display: block;
+}
+
+.glitchTitle:hover::before {
+    color: var(--primary-neon);
+    animation: glitch-anim-1 0.4s infinite linear alternate-reverse;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    transform: translate(-3px, -2px);
+}
+
+.glitchTitle:hover::after {
+    color: var(--secondary-neon);
+    animation: glitch-anim-2 0.4s infinite linear alternate-reverse;
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    transform: translate(3px, 2px);
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        transform: translate(-3px, -2px);
+    }
+    100% {
+        clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%);
+        transform: translate(3px, 2px);
+    }
+}
+
 .filterInfo {
     border-bottom: 1px solid rgba(0, 210, 255, 0.1);
     padding-bottom: 0.5rem;

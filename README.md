@@ -14,7 +14,7 @@ Benvenuto in **CineLab**, la tua piattaforma definitiva per esplorare il mondo d
 | **Glitch & Flicker**  | Animazioni digitali e bagliori pulsanti per un effetto neon realistico               |
 | **3D Tilt & Light**   | Card interattive con inclinazione 3D e spotlight dinamico basato sul mouse           |
 | **Holographic Entry** | Materializzazione delle card con scansione laser perimetrale e blur dinamico         |
-| **Glassmorphism**     | Card con effetto vetro sfumato (`backdrop-filter: blur`) e bordi semi-trasparenti    |
+| **Holographic CTA**   | Interazione full-card con overlay olografico e scansione laser (No Buttons)          |
 | **Smart Drafts**      | Salvataggio automatico delle recensioni in locale per evitare perdite di dati        |
 | **Dynamic Filtering** | Riepilogo voti interattivo con filtraggio delle recensioni in tempo reale            |
 | **Typography**        | Font Orbitron e Exo 2                                                                |

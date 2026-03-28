@@ -4,6 +4,66 @@
     overflow: hidden;
 }
 
+/* --- Glitch Effect --- */
+.glitchTitle {
+    position: relative;
+    cursor: default;
+}
+
+.glitchTitle::before,
+.glitchTitle::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    display: none;
+    z-index: -1;
+}
+
+.glitchTitle:hover::before,
+.glitchTitle:hover::after {
+    display: block;
+}
+
+.glitchTitle:hover::before {
+    color: var(--primary-neon);
+    animation: glitch-anim-1 0.4s infinite linear alternate-reverse;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    transform: translate(-3px, -2px);
+}
+
+.glitchTitle:hover::after {
+    color: var(--secondary-neon);
+    animation: glitch-anim-2 0.4s infinite linear alternate-reverse;
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    transform: translate(3px, 2px);
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        transform: translate(-3px, -2px);
+    }
+    100% {
+        clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%);
+        transform: translate(3px, 2px);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+        transform: translate(3px, 2px);
+    }
+    100% {
+        clip-path: polygon(0 80%, 100% 80%, 100% 95%, 0 95%);
+        transform: translate(-3px, -2px);
+    }
+}
+
 .neonInput {
     background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid var(--glass-border) !important;
