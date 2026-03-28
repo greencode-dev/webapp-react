@@ -129,14 +129,14 @@ Per migliorare la UX nei form lunghi:
 2. Usa chiavi univoche basate sull'ID della risorsa (es. `review_draft_${movieId}`).
 3. Rimuovi la bozza solo dopo un invio con successo o tramite azione esplicita di "Clear".
 
-## 17. Cyber UI - CyberDropdown
+## 17. Cyber UI - CyberDropdown (Holographic Reveal)
 
 Per mantenere la coerenza dei menu a tendina:
 
 1. Usa il componente `CyberDropdown` invece di gestire manualmente i `Dropdown` di Bootstrap.
 2. Supporta icone personalizzate via prop `items: [{ key, label, icon }]`.
 3. Gestisce il caricamento asincrono tramite la prop `fetchItems`.
-4. Utilizza animazioni "Cyber Reveal" basate su `clip-path` per evitare conflitti con Popper.js.
+4. Utilizza animazioni basate su `clip-path` per svelare il contenuto senza causare scatti di layout (layout shift).
 
 ## 18. Cyber UI - CountUp (Olographic Counters)
 
@@ -146,10 +146,19 @@ Per visualizzare statistiche o contatori dinamici:
 2. Implementa un easing `easeOutQuart` per simulare una scansione olografica.
 3. Ideale per Sidebar, rating e dashboard dati.
 
-## 19. Sidebar - Dynamic Filtering Feedback
+## 19. Sidebar - Cyber Selection & Real-time Counts
 
 Per migliorare la navigazione nei filtri:
 
 1. Passa un oggetto `genreCounts` alla Sidebar.
 2. I conteggi devono aggiornarsi in tempo reale in base agli altri filtri attivi (es. Anno).
 3. Usa il `CountUp` all'interno dei label delle checkbox per un effetto "scansione dati" durante il filtraggio.
+4. Utilizza `CyberScrollList` per elenchi lunghi (es. Anni) per facilitare il confronto rapido.
+
+## 21. Cyber UI - CyberScrollList
+
+Pattern per liste a scorrimento interno:
+
+1. Utilizza una scrollbar custom minimalista e neon.
+2. Ogni item supporta un label, un'icona e un contatore `CountUp` integrato.
+3. Gestisce lo stato attivo con ombre olografiche interne (`inset box-shadow`).

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faUndo, faCalendarAlt, faGlobe } from '@fortawesome/free-solid-svg-icons';
-import CyberDropdown from './CyberDropdown';
+import CyberScrollList from './CyberScrollList';
 import CountUp from './CountUp';
 import styles from './Sidebar.module.css';
 
@@ -14,14 +14,17 @@ const Sidebar = ({
     onYearChange,
     onReset,
     genreCounts = {},
+    yearCounts = {},
+    totalCount = 0,
 }) => {
-    // Prepariamo gli anni per il CyberDropdown
+    // Configurazione items per la CyberScrollList degli anni
     const yearItems = [
-        { key: '', label: 'Tutti gli anni', icon: faGlobe },
+        { key: '', label: 'Tutti', icon: faGlobe, count: totalCount },
         ...availableYears.map((year) => ({
             key: year.toString(),
             label: year.toString(),
             icon: faCalendarAlt,
+            count: yearCounts[year] || 0,
         })),
     ];
 
@@ -53,13 +56,11 @@ const Sidebar = ({
 
             <div className={`${styles.filterGroup} mt-4`}>
                 <span className={styles.groupLabel}>Anno di rilascio</span>
-                <CyberDropdown
-                    label={selectedYear || 'Tutti gli anni'}
+                <CyberScrollList
                     items={yearItems}
-                    onSelect={(val) => onYearChange({ target: { value: val } })}
                     activeKey={selectedYear?.toString() || ''}
-                    variant="outline-secondary"
-                    className="w-100"
+                    onSelect={(val) => onYearChange({ target: { value: val } })}
+                    maxHeight="200px"
                 />
             </div>
 

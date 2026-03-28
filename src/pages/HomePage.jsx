@@ -52,12 +52,19 @@ function HomePage() {
     const moviesList = data?.data || [];
     const totalPages = data ? Math.ceil(data.total / moviesPerPage) : 0;
 
-    // Calcolo dinamico dei contatori generi basato sui risultati attuali
-    const genreCounts = useMemo(() => {
-        return AVAILABLE_GENRES.reduce((acc, genre) => {
-            acc[genre] = moviesList.filter((m) => m.genre.includes(genre)).length;
-            return acc;
-        }, {});
+    // Calcolo dinamico dei contatori (generi e anni) basato sui risultati della pagina corrente
+    const { genreCounts, yearCounts, totalOnPage } = useMemo(() => {
+        return {
+            genreCounts: AVAILABLE_GENRES.reduce((acc, genre) => {
+                acc[genre] = moviesList.filter((m) => m.genre.includes(genre)).length;
+                return acc;
+            }, {}),
+            yearCounts: AVAILABLE_YEARS.reduce((acc, year) => {
+                acc[year] = moviesList.filter((m) => m.release_year === year).length;
+                return acc;
+            }, {}),
+            totalOnPage: moviesList.length,
+        };
     }, [moviesList]);
 
     const handlePageChange = (pageNumber) => {
@@ -140,6 +147,8 @@ function HomePage() {
                     onYearChange={handleYearChange}
                     onReset={handleResetFilters}
                     genreCounts={genreCounts}
+                    yearCounts={yearCounts}
+                    totalCount={totalOnPage}
                 />
 
                 <div className={styles.gridContent}>

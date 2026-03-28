@@ -49,3 +49,5 @@ Crea un componente CyberInput per sostituire i campi di testo in ReviewForm e Se
 Come posso aggiungere un effetto 'flicker' casuale ai numeri durante l'animazione di CountUp per simulare un segnale instabile?
 
 Come posso gestire il caricamento asincrono delle categorie della Sidebar direttamente da un'API esterna?
+
+Come posso implementare la stessa CyberScrollList anche per le categorie al posto delle checkbox per un look più uniforme?
