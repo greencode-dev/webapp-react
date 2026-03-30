@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faFilter,
-    faUndo,
-    faCalendarAlt,
-    faGlobe,
-    faChevronDown,
-} from '@fortawesome/free-solid-svg-icons';
-import CyberScrollList from './CyberScrollList';
+import { faFilter, faUndo, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import CountUp from './CountUp';
 import styles from './Sidebar.module.css';
 
@@ -16,25 +9,14 @@ const Sidebar = ({
     selectedGenres,
     onGenreToggle,
     availableYears,
-    selectedYear,
-    onYearChange,
+    selectedYears,
+    onYearToggle,
     onReset,
     genreCounts = {},
     yearCounts = {},
     totalCount = 0,
 }) => {
-    const [openSection, setOpenSection] = useState('genres'); // 'genres' | 'years' | null
-
-    // Configurazione items per la CyberScrollList degli anni
-    const yearItems = [
-        { key: '', label: 'Tutti', icon: faGlobe, count: totalCount },
-        ...availableYears.map((year) => ({
-            key: year.toString(),
-            label: year.toString(),
-            icon: faCalendarAlt,
-            count: yearCounts[year] || 0,
-        })),
-    ];
+    const [openSection, setOpenSection] = useState(null); // Di base tutto chiuso
 
     const toggleSection = (section) => {
         setOpenSection(openSection === section ? null : section);
@@ -96,16 +78,18 @@ const Sidebar = ({
             <div
                 className={`${styles.accordionItem} ${openSection === 'years' ? styles.isOpen : ''}`}>
                 <button className={styles.accordionHeader} onClick={() => toggleSection('years')}>
-                    <span
-                        className={
-                            openSection === 'years' ? styles.groupLabel : styles.selectedSummary
-                        }>
-                        {openSection === 'years'
-                            ? 'Anno di rilascio'
-                            : selectedYear || 'Anno di rilascio'}
-                    </span>
+                    <div className={styles.headerLabels}>
+                        <span className={styles.groupLabel}>Anno di rilascio</span>
+                        {openSection !== 'years' && selectedYears.length > 0 && (
+                            <span className={styles.selectedSummary}>
+                                {selectedYears.length <= 2
+                                    ? selectedYears.join(', ')
+                                    : `${selectedYears.length} Selezionate`}
+                            </span>
+                        )}
+                    </div>
                     <div className={styles.headerActions}>
-                        {openSection !== 'years' && selectedYear && (
+                        {openSection !== 'years' && selectedYears.length > 0 && (
                             <span className={styles.activeIndicator}></span>
                         )}
                         <FontAwesomeIcon icon={faChevronDown} className={styles.chevron} />
@@ -113,12 +97,24 @@ const Sidebar = ({
                 </button>
                 <div className={styles.accordionContent}>
                     <div className={styles.filterGroup}>
-                        <CyberScrollList
-                            items={yearItems}
-                            activeKey={selectedYear?.toString() || ''}
-                            onSelect={(val) => onYearChange({ target: { value: val } })}
-                            maxHeight="200px"
-                        />
+                        <div className={styles.yearsScroll}>
+                            {availableYears.map((year) => (
+                                <label key={year} className={styles.checkboxLabel}>
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedYears.includes(year.toString())}
+                                        onChange={() => onYearToggle(year.toString())}
+                                    />
+                                    <span className={styles.customCheck}></span>
+                                    <span className={styles.genreName}>
+                                        {year}
+                                        <span className={styles.genreCount}>
+                                            (<CountUp end={yearCounts[year] || 0} />)
+                                        </span>
+                                    </span>
+                                </label>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ CineLab è una web application sperimentale costruita con **React** e **Vite**, 
 ### 🛠️ Componenti Cyber UI
 
 - **CyberDropdown**: Menu a tendina con animazione "Reveal" olografica e supporto icone.
-- **CyberAccordion**: Sistema di filtri collassabili con apertura esclusiva e riepilogo selezione.
+- **CyberAccordion**: Filtri collassabili (chiusi di default) con intestazioni dinamiche che mostrano titolo e selezioni attive.
 - **CountUp**: Animazione fluida dei contatori numerici con easing quadratico.
 - **CyberScrollList**: Lista olografica a scorrimento interno per la selezione rapida dei dati.
 - **ReviewForm**: Sistema di recensioni con salvataggio bozza e particelle olografiche.

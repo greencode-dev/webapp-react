@@ -22,7 +22,7 @@ function HomePage() {
     const [currentPage, setCurrentPage] = useState(1); // Stato per la pagina corrente
     const [sortBy, setSortBy] = useState('latest'); // Stato per l'ordinamento
     const [selectedGenres, setSelectedGenres] = useState([]); // Filtri categoria
-    const [selectedYear, setSelectedYear] = useState(''); // Filtro anno
+    const [selectedYears, setSelectedYears] = useState([]); // Filtri anno
 
     // Impostiamo 12 film per pagina per riempire bene la griglia ad alta densità
     const moviesPerPage = 12;
@@ -45,7 +45,7 @@ function HomePage() {
         debouncedSearch,
         sortBy,
         selectedGenres,
-        selectedYear,
+        selectedYears,
     ]);
 
     // I dati ora arrivano già filtrati e paginati dal server
@@ -60,7 +60,9 @@ function HomePage() {
                 return acc;
             }, {}),
             yearCounts: AVAILABLE_YEARS.reduce((acc, year) => {
-                acc[year] = moviesList.filter((m) => m.release_year === year).length;
+                acc[year] = moviesList.filter(
+                    (m) => m.release_year.toString() === year.toString(),
+                ).length;
                 return acc;
             }, {}),
             totalOnPage: moviesList.length,
@@ -89,14 +91,16 @@ function HomePage() {
         setCurrentPage(1);
     };
 
-    const handleYearChange = (e) => {
-        setSelectedYear(e.target.value);
+    const handleYearToggle = (year) => {
+        setSelectedYears((prev) =>
+            prev.includes(year) ? prev.filter((y) => y !== year) : [...prev, year],
+        );
         setCurrentPage(1);
     };
 
     const handleResetFilters = () => {
         setSelectedGenres([]);
-        setSelectedYear('');
+        setSelectedYears([]);
         setCurrentPage(1);
     };
 
@@ -143,8 +147,8 @@ function HomePage() {
                     selectedGenres={selectedGenres}
                     onGenreToggle={handleGenreToggle}
                     availableYears={AVAILABLE_YEARS}
-                    selectedYear={selectedYear}
-                    onYearChange={handleYearChange}
+                    selectedYears={selectedYears}
+                    onYearToggle={handleYearToggle}
                     onReset={handleResetFilters}
                     genreCounts={genreCounts}
                     yearCounts={yearCounts}

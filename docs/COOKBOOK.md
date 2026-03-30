@@ -152,8 +152,7 @@ Per migliorare la navigazione nei filtri:
 
 1. Passa un oggetto `genreCounts` alla Sidebar.
 2. I conteggi devono aggiornarsi in tempo reale in base agli altri filtri attivi (es. Anno).
-3. Usa il `CountUp` all'interno dei label delle checkbox per un effetto "scansione dati" durante il filtraggio.
-4. Utilizza `CyberScrollList` per elenchi lunghi (es. Anni) per facilitare il confronto rapido.
+3. Usa il `CountUp` all'interno dei label delle checkbox per un effetto "scansione dati" durante il filtraggio (applicato a Categorie e Anni).
 
 ## 21. Cyber UI - CyberAccordion
 
@@ -161,7 +160,7 @@ Pattern per gestire gruppi di filtri multipli:
 
 1. Utilizza uno stato `openSection` per permettere l'apertura di un solo modulo alla volta.
 2. Implementa una transizione fluida dell'altezza usando `grid-template-rows: 0fr -> 1fr`.
-3. Mostra un riepilogo della selezione (`selectedSummary`) quando il modulo è chiuso per mantenere il contesto informativo.
+3. Pattern **Stacked Header**: l'etichetta del gruppo rimane sempre visibile, mentre le selezioni appaiono sotto di essa solo quando la sezione è chiusa.
 4. Utilizza un `activeIndicator` (pallino neon pulsante) accanto al chevron quando la sezione è chiusa ma contiene filtri attivi.
 
 ## 22. Cyber UI - CyberScrollList
