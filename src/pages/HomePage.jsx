@@ -60,8 +60,8 @@ function HomePage() {
                 return acc;
             }, {}),
             yearCounts: AVAILABLE_YEARS.reduce((acc, year) => {
-                acc[year] = moviesList.filter(
-                    (m) => m.release_year.toString() === year.toString(),
+                acc[year] = (moviesList || []).filter(
+                    (m) => m.release_year?.toString() === year.toString(),
                 ).length;
                 return acc;
             }, {}),

@@ -9,7 +9,7 @@ const Sidebar = ({
     selectedGenres,
     onGenreToggle,
     availableYears,
-    selectedYears,
+    selectedYears = [],
     onYearToggle,
     onReset,
     genreCounts = {},
@@ -33,18 +33,16 @@ const Sidebar = ({
             <div
                 className={`${styles.accordionItem} ${openSection === 'genres' ? styles.isOpen : ''}`}>
                 <button className={styles.accordionHeader} onClick={() => toggleSection('genres')}>
-                    <span
-                        className={
-                            openSection === 'genres' ? styles.groupLabel : styles.selectedSummary
-                        }>
-                        {openSection === 'genres'
-                            ? 'Categorie'
-                            : selectedGenres.length > 0
-                              ? selectedGenres.length === 1
-                                  ? selectedGenres[0]
-                                  : `${selectedGenres.length} Selezionate`
-                              : 'Categorie'}
-                    </span>
+                    <div className={styles.headerLabels}>
+                        <span className={styles.groupLabel}>Categorie</span>
+                        {openSection !== 'genres' && selectedGenres.length > 0 && (
+                            <span className={styles.selectedSummary}>
+                                {selectedGenres.length <= 2
+                                    ? selectedGenres.join(', ')
+                                    : `${selectedGenres.length} Selezionate`}
+                            </span>
+                        )}
+                    </div>
                     <div className={styles.headerActions}>
                         {openSection !== 'genres' && selectedGenres.length > 0 && (
                             <span className={styles.activeIndicator}></span>

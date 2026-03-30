@@ -54,7 +54,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start; /* Allineamento in alto per gestire i sottotitoli */
     padding: 0.75rem 1rem;
     background: transparent;
     border: none;
@@ -73,6 +73,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    padding-top: 2px; /* Allinea icone alla prima riga di testo */
 }
 
 .activeIndicator {
