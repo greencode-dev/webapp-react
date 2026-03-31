@@ -1,8 +1,11 @@
 import axios from 'axios';
 import moviesData from '../data/cards'; // Assumiamo che il file esporti l'array predefinito
 
+const VITE_API_URL = import.meta.env.VITE_API_URL;
+const DEFAULT_API_URL = 'http://localhost:3000/api';
+
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
+    baseURL: VITE_API_URL || DEFAULT_API_URL,
 });
 
 /**
@@ -87,18 +90,16 @@ export function getMovies(
         });
     }
     // Invio dei parametri come query string: /movies?page=1&limit=3&search=abc
-    return api
-        .get('/movies', {
-            params: {
-                page,
-                limit,
-                search,
-                sortBy,
-                genres: genres.join(','),
-                years: years.join(','),
-            },
-        })
-        .then((response) => response.data);
+    const params = {
+        page,
+        limit,
+        ...(search && { search }),
+        ...(sortBy && { sortBy }),
+        ...(genres.length > 0 && { genres: genres.join(',') }),
+        ...(years.length > 0 && { years: years.join(',') }),
+    };
+
+    return api.get('/movies', { params }).then((response) => response.data);
 }
 
 export function getMovie(id) {

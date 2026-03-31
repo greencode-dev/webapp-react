@@ -32,7 +32,8 @@ Il progetto simula il comportamento di un server reale. Quando aggiungi filtri:
 
 1. Passa le dipendenze al hook `useFetch` come array: `useFetch(getMovies, [page, limit, search, sortBy])`.
 2. L'hook rigenererà la chiamata automaticamente al cambio di uno dei parametri.
-3. Usa il **debouncing** per la ricerca testuale per evitare chiamate eccessive.
+3. **Hybrid Mode**: Se `VITE_API_URL` è presente nel file `.env`, l'app interroga il backend. In caso contrario, utilizza i dati statici in `src/data/cards.js`.
+4. **Parametri URL**: I filtri multipli vengono serializzati come stringhe separate da virgola per la massima compatibilità con i controller Express.
 
 ## 5. Skeleton Loaders
 
