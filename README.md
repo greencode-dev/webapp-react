@@ -17,6 +17,8 @@ CineLab è una web application sperimentale costruita con **React** e **Vite**, 
 - **CyberAccordion**: Filtri collassabili (chiusi di default) con intestazioni dinamiche che mostrano titolo e selezioni attive.
 - **CountUp**: Animazione fluida dei contatori numerici con easing quadratico.
 - **CyberScrollList**: Lista olografica a scorrimento interno per la selezione rapida dei dati.
+- **CyberInput**: Campi di input olografici con varianti di stato (Success, Error, Gold) e glitch al focus.
+- **ReviewItem**: Card recensione con entrata a cascata e formattazione data localizzata.
 - **ReviewForm**: Sistema di recensioni con salvataggio bozza e particelle olografiche.
 
 ## 🛠️ Stack Tecnologico

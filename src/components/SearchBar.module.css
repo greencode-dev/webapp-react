@@ -3,26 +3,24 @@
     margin: 0 auto;
 }
 
-.neonSearchGroup {
+.searchGlitchWrapper {
+    position: relative;
     background: var(--glass-bg);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
     border-radius: 50px !important;
-    padding: 4px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: var(--card-shadow);
-    position: relative;
-    overflow: hidden;
 }
 
-.neonSearchGroup:focus-within {
-    border-color: var(--primary-neon);
+.searchGlitchWrapper:focus-within {
+    border-color: var(--primary-neon) !important;
     box-shadow: 0 0 25px var(--primary-glow);
     transform: scale(1.02);
 }
 
-.neonSearchGroup::after {
+.searchGlitchWrapper::after {
     content: '';
     position: absolute;
     top: -20px;
@@ -36,9 +34,57 @@
     transition: opacity 0.3s ease;
 }
 
-.neonSearchGroup:focus-within::after {
+.searchGlitchWrapper:focus-within::after {
     opacity: 1;
     animation: searchScanline 2.5s linear infinite;
+}
+
+/* Reset margin del CyberInput all'interno della SearchBar */
+.searchGlitchWrapper > div {
+    margin-bottom: 0 !important;
+    border-radius: 50px;
+}
+
+/* Icona di ricerca posizionata all'interno del CyberInput */
+.searchIconInside {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    color: var(--primary-neon);
+    text-shadow: 0 0 10px var(--primary-glow);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.cyberSearchInput {
+    padding-left: 55px !important;
+    padding-right: 45px !important;
+    border-radius: 50px !important;
+    border: none !important;
+}
+
+.searchClearInside {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    background: transparent;
+    border: none;
+    color: var(--secondary-neon);
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+.searchClearInside:hover {
+    text-shadow:
+        0 0 10px var(--secondary-glow),
+        2px 0 red,
+        -2px 0 cyan;
+    transform: translateY(-50%) scale(1.1);
 }
 
 @keyframes searchScanline {
@@ -50,63 +96,7 @@
     }
 }
 
-.neonSearchIcon {
-    background: transparent !important;
-    border: none !important;
-    font-size: 1.2rem;
-    padding-left: 20px !important;
-    color: var(--primary-neon);
-    text-shadow: 0 0 10px var(--primary-glow);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 55px; /* Evita scatti nel layout durante il cambio icona */
-}
-
-.neonSearchIcon svg {
-    transition:
-        transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-        color 0.3s ease;
-}
-
 .loadingIcon {
     color: var(--secondary-neon) !important;
     text-shadow: 0 0 15px var(--secondary-glow) !important;
-    transform: scale(1.1);
-}
-
-.neonSearchInput {
-    background: transparent !important;
-    border: none !important;
-    color: white !important;
-    box-shadow: none !important;
-    padding: 12px 20px !important;
-    font-size: 1.1rem;
-}
-
-.neonSearchInput::placeholder {
-    color: rgba(255, 255, 255, 0.4) !important;
-    transition: all 0.3s ease;
-}
-
-.neonSearchInput:focus::placeholder {
-    animation: placeholderFlicker 4s linear infinite;
-}
-
-.glitchClearBtn {
-    background: transparent;
-    border: none;
-    color: var(--secondary-neon);
-    padding: 0 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1.1rem;
-}
-
-.glitchClearBtn:hover {
-    text-shadow:
-        0 0 10px var(--secondary-glow),
-        2px 0 red,
-        -2px 0 cyan;
 }

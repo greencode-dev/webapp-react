@@ -1,0 +1,175 @@
+.wrapper {
+    margin-bottom: 1.5rem;
+}
+
+.cyberLabel {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    border-radius: inherit;
+    overflow: hidden;
+}
+
+.cyberInput {
+    background: rgba(10, 10, 15, 0.7) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: #fff !important;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    padding: 12px 15px !important;
+    transition: all 0.3s ease !important;
+    position: relative;
+    z-index: 2;
+}
+
+.cyberInput:focus {
+    border-color: var(--primary-neon) !important;
+    box-shadow: 0 0 15px var(--primary-glow) !important;
+    background: rgba(15, 15, 25, 0.8) !important;
+}
+
+.invalid {
+    border-color: var(--secondary-neon) !important;
+    box-shadow: 0 0 10px rgba(189, 0, 255, 0.2) !important;
+}
+
+.critical {
+    border-color: var(--secondary-neon) !important;
+    box-shadow: 0 0 20px var(--secondary-glow) !important;
+    animation: criticalAlert 0.2s infinite alternate !important;
+    color: var(--secondary-neon) !important;
+}
+
+.critical::placeholder {
+    color: var(--secondary-neon) !important;
+    opacity: 0.6;
+}
+
+/* L'overlay glitch è sempre visibile e più intenso in modalità critica */
+.critical + .glitchOvr {
+    opacity: 0.7 !important;
+}
+
+.critical + .glitchOvr .glitchLayer {
+    animation-duration: 0.15s !important; /* Più veloce e nervoso */
+    border-width: 2px;
+}
+
+.gold {
+    border-color: #ffcc00 !important;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.3) !important;
+    color: #ffcc00 !important;
+    animation: goldShimmer 3s infinite alternate;
+    padding-right: 40px !important;
+}
+
+.gold::placeholder {
+    color: #ffcc00 !important;
+    opacity: 0.5;
+}
+
+.gold:focus {
+    border-color: #fffb00 !important;
+    box-shadow: 0 0 25px rgba(255, 251, 0, 0.5) !important;
+    background: rgba(40, 30, 0, 0.4) !important;
+}
+
+.goldIcon {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #ffcc00;
+    z-index: 4;
+    pointer-events: none;
+    filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.8));
+    font-size: 0.85rem;
+}
+
+/* Layer glitch personalizzati per la variante Gold */
+.gold + .glitchOvr .red {
+    border-color: #fffb00; /* Giallo brillante invece del rosso */
+    animation-duration: 0.5s;
+}
+
+.gold + .glitchOvr .cyan {
+    border-color: #ffffff; /* Bianco per un effetto luce pura */
+}
+
+.glitchOvr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    border-radius: inherit;
+}
+
+.cyberInput:focus + .glitchOvr {
+    opacity: 0.4;
+}
+
+.glitchLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid transparent;
+    border-radius: inherit;
+}
+
+.red {
+    border-color: #ff0055;
+    animation: glitchAction 0.3s infinite;
+}
+
+.cyan {
+    border-color: #00fff2;
+    animation: glitchAction 0.3s infinite reverse;
+}
+
+@keyframes glitchAction {
+    0% {
+        clip-path: inset(10% 0 40% 0);
+        transform: translate(-2px);
+    }
+    50% {
+        clip-path: inset(60% 0 5% 0);
+        transform: translate(2px, -1px);
+    }
+    100% {
+        clip-path: inset(10% 0 40% 0);
+        transform: translate(0);
+    }
+}
+
+@keyframes criticalAlert {
+    0% {
+        background: rgba(189, 0, 255, 0.05);
+        text-shadow: 0 0 5px var(--secondary-glow);
+    }
+    100% {
+        background: rgba(189, 0, 255, 0.2);
+        text-shadow:
+            0 0 15px var(--secondary-glow),
+            0 0 25px var(--secondary-glow);
+    }
+}
+
+@keyframes goldShimmer {
+    0% {
+        background: rgba(255, 204, 0, 0.03);
+    }
+    100% {
+        background: rgba(255, 204, 0, 0.12);
+    }
+}

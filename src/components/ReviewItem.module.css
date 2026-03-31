@@ -1,0 +1,161 @@
+.reviewCard {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    /* Animazione di entrata a cascata */
+    animation: reviewEntrance 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--index) * 0.12s);
+}
+
+/* Indicatore neon laterale tipico delle interfacce cyber */
+.reviewCard::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: var(--primary-neon);
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.reviewHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.authorInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    font-size: 1.8rem;
+    color: var(--primary-neon);
+    filter: drop-shadow(0 0 5px var(--primary-glow));
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.authorName {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+.date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.ratingStars {
+    display: flex;
+    gap: 4px;
+}
+
+.starActive {
+    color: #ffcc00;
+    filter: drop-shadow(0 0 5px rgba(255, 204, 0, 0.4));
+    font-size: 0.85rem;
+}
+
+.starInactive {
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+}
+
+.reviewBody {
+    position: relative;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(0, 210, 255, 0.1);
+}
+
+.commentText {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+}
+
+.deleteBtn {
+    background: transparent;
+    border: none;
+    color: var(--secondary-neon);
+    cursor: pointer;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.deleteBtn:hover {
+    opacity: 1;
+    color: #ff0055;
+    text-shadow:
+        2px 0 #00fff2,
+        -2px 0 #ff0055;
+    animation: glitchAction 0.2s infinite;
+}
+
+@keyframes glitchAction {
+    0% {
+        transform: translate(0);
+        clip-path: inset(0 0 0 0);
+    }
+    25% {
+        transform: translate(-2px, 1px);
+        clip-path: inset(15% 0 45% 0);
+    }
+    50% {
+        transform: translate(2px, -1px);
+        clip-path: inset(45% 0 15% 0);
+    }
+    75% {
+        transform: translate(-1px, -2px);
+        clip-path: inset(30% 0 30% 0);
+    }
+    100% {
+        transform: translate(0);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes reviewEntrance {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px) scale(0.98);
+        filter: brightness(2) blur(8px);
+    }
+    70% {
+        filter: brightness(1.5) blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: brightness(1) blur(0);
+    }
+}

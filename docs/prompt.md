@@ -4,9 +4,9 @@
 
 fine - Integra ReviewForm all'interno del componente DetailPage.jsx e gestisci la funzione di refresh dei dati.
 
-Aggiungi un'animazione di successo con particelle olografiche quando la recensione viene inviata correttamente.
+fine - Aggiungi un'animazione di successo con particelle olografiche quando la recensione viene inviata correttamente.
 
-Implementa un effetto di transizione fluida (Fade/Slide) quando le nuove recensioni appaiono nella lista dopo il refetch.
+fine - Implementa un effetto di transizione fluida (Fade/Slide) quando le nuove recensioni appaiono nella lista dopo il refetch.
 
 fine - Crea un componente ProgressBar per visualizzare graficamente la distribuzione dei voti (es. quante recensioni da 5 stelle, quante da 4, ecc.).
 
@@ -14,9 +14,9 @@ fine - Crea un componente di riepilogo che mostri la percentuale di voti per ogn
 
 fine - Aggiungi un contatore di caratteri in tempo reale per il campo commento nel ReviewForm.
 
-Aggiungi un pulsante per cancellare rapidamente tutto il testo nel ReviewForm con un effetto glitch.
+fine - Aggiungi un pulsante per cancellare rapidamente tutto il testo nel ReviewForm con un effetto glitch.
 
-Implementa un sistema di salvataggio bozza nel localStorage per non perdere la recensione se si ricarica la pagina.
+fine - Implementa un sistema di salvataggio bozza nel localStorage per non perdere la recensione se si ricarica la pagina.
 
 Applica un leggero effetto di sfocatura (backdrop-filter) alla sectionHeader per rendere il passaggio delle card ancora più cinematico.
 
@@ -28,7 +28,7 @@ fine - Implementa una transizione di uscita (Fade-out) quando l'utente lascia la
 
 fine - Implementa un componente ScrollToTop automatico che utilizzi una transizione neon durante lo scorrimento.
 
-Configura un file di test per verificare che la media dei voti venga calcolata correttamente in api.js.
+fine - Configura un file di test per verificare che la media dei voti venga calcolata correttamente in api.js.
 
 Aggiungi un effetto di distorsione glitch più marcato sul poster della MovieCard quando l'utente passa il mouse.
 
@@ -38,7 +38,7 @@ Puoi aiutarmi a creare una variante 'Magenta' del CyberDropdown da usare specifi
 
 Crea un componente CyberInput per sostituire i campi di testo in ReviewForm e SearchBar con effetti di glitch al focus.
 
-Puoi aggiungere un effetto 'glitch' alle icone della Sidebar quando l'utente passa il mouse sopra le categorie?
+fine - Puoi aggiungere un effetto 'glitch' alle icone della Sidebar quando l'utente passa il mouse sopra le categorie?
 
 Come posso implementare un contatore numerico accanto a ogni categoria (es: Sci-Fi (12)) che si aggiorna in tempo reale?
 
@@ -55,3 +55,23 @@ Come posso implementare la stessa CyberScrollList anche per le categorie al post
 Come posso rendere la Sidebar completamente a scomparsa (off-canvas) su dispositivi mobile mantendo lo stile cyberpunk?
 
 Aggiungi un feedback visuale di "Nessun risultato trovato" con un'estetica cyberpunk quando la ricerca fallisce
+
+Configura un file di test per verificare il calcolo della media dei voti in api.js
+
+Crea l'effetto di transizione Fade/Slide per le nuove recensioni quando appaiono nella lista
+
+Aggiungi un pulsante di eliminazione per le proprie recensioni con un effetto di distorsione glitch sull'hover
+
+Aggiungi un pulsante di eliminazione per le proprie recensioni in ReviewItem con un effetto di distorsione glitch sull'hover
+
+fine - Integra il componente ReviewItem nella lista delle recensioni di DetailPage.jsx passando correttamente l'indice
+
+Implementa un grafico a barre olografico (ProgressBar) in DetailPage per mostrare la distribuzione dei voti (1-5 stelle)
+
+fine - Crea un componente CyberInput per sostituire i campi di testo in ReviewForm con effetti di glitch al focus
+
+fine - Implementa un grafico a barre olografico (ProgressBar) in DetailPage per mostrare la distribuzione dei voti (1-5 stelle)
+
+Configura un file di test per verificare che l'icona del diamante venga renderizzata solo quando isGold è true
+
+Aggiungi un'animazione di rotazione lenta all'icona del diamante per renderla più 'viva'

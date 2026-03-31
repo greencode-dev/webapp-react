@@ -5,6 +5,17 @@ const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
 });
 
+/**
+ * Calcola la media dei voti partendo da un array di recensioni.
+ * @param {Array} reviews - Array di oggetti recensione con proprietà rating.
+ * @returns {number} Media dei voti o 0 se non ci sono recensioni.
+ */
+export function calculateAverageVote(reviews) {
+    if (!reviews || reviews.length === 0) return 0;
+    const totalRating = reviews.reduce((acc, rev) => acc + rev.rating, 0);
+    return totalRating / reviews.length;
+}
+
 export function getMovies(
     page = 1,
     limit = 10,
@@ -18,9 +29,7 @@ export function getMovies(
         return new Promise((resolve) => {
             // Calcoliamo la media dei voti dinamicamente per ogni film (simulando AVG() del DB)
             const processedData = moviesData.map((m) => {
-                const totalRating = m.reviews?.reduce((acc, rev) => acc + rev.rating, 0) || 0;
-                const avg = m.reviews?.length ? totalRating / m.reviews.length : 0;
-                return { ...m, average_vote: avg };
+                return { ...m, average_vote: calculateAverageVote(m.reviews) };
             });
 
             let filtered = [...processedData];
@@ -99,9 +108,7 @@ export function getMovie(id) {
         // Calcoliamo la media dinamica anche per il dettaglio
         let movie = null;
         if (found) {
-            const totalRating = found.reviews?.reduce((acc, rev) => acc + rev.rating, 0) || 0;
-            const avg = found.reviews?.length ? totalRating / found.reviews.length : 0;
-            movie = { ...found, average_vote: avg };
+            movie = { ...found, average_vote: calculateAverageVote(found.reviews) };
         }
 
         return new Promise((resolve) => {
@@ -127,6 +134,22 @@ export function postReview(id, data) {
         });
     }
     return api.post(`/movies/${id}/reviews`, data).then((response) => response.data);
+}
+
+export function deleteReview(movieId, reviewId) {
+    if (import.meta.env.DEV && !import.meta.env.VITE_API_URL) {
+        // Simulazione eliminazione nel mock locale
+        const movie = moviesData.find((m) => m.id === parseInt(movieId));
+        if (movie && movie.reviews) {
+            movie.reviews = movie.reviews.filter((r) => r.id !== reviewId);
+        }
+
+        return new Promise((resolve) => {
+            console.log(`Mock API: Eliminazione recensione ${reviewId} dal film ${movieId}`);
+            setTimeout(() => resolve({ success: true }), 400);
+        });
+    }
+    return api.delete(`/movies/${movieId}/reviews/${reviewId}`).then((response) => response.data);
 }
 
 export default api;

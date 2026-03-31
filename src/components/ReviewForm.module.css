@@ -1,128 +1,142 @@
 .formContainer {
-    border: 1px solid var(--glass-border);
     position: relative;
     overflow: hidden;
+    border: 1px solid var(--glass-border);
+    transition: all 0.5s ease;
 }
 
-/* --- Glitch Effect --- */
-.glitchTitle {
-    position: relative;
-    cursor: default;
+/* Success Animation Container */
+.hologramContainer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    background: rgba(0, 210, 255, 0.05);
+    animation: containerFlash 0.5s ease-out;
 }
 
-.glitchTitle::before,
-.glitchTitle::after {
-    content: attr(data-text);
+.hologramContainer::after {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    opacity: 0.8;
-    display: none;
-    z-index: -1;
+    height: 2px;
+    background: var(--primary-neon);
+    box-shadow: 0 0 15px var(--primary-glow);
+    animation: scanMove 1.5s linear infinite;
 }
 
-.glitchTitle:hover::before,
-.glitchTitle:hover::after {
-    display: block;
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background: var(--primary-neon);
+    left: var(--x);
+    top: var(--y);
+    opacity: 0;
+    box-shadow: 0 0 10px var(--primary-glow);
+    animation: particleFly var(--duration) ease-out infinite;
+    animation-delay: var(--delay);
 }
 
-.glitchTitle:hover::before {
-    color: var(--primary-neon);
-    animation: glitch-anim-1 0.4s infinite linear alternate-reverse;
-    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-    transform: translate(-3px, -2px);
-}
-
-.glitchTitle:hover::after {
-    color: var(--secondary-neon);
-    animation: glitch-anim-2 0.4s infinite linear alternate-reverse;
-    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
-    transform: translate(3px, 2px);
-}
-
-@keyframes glitch-anim-1 {
+@keyframes containerFlash {
     0% {
-        clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-        transform: translate(-3px, -2px);
+        background: rgba(0, 210, 255, 0.4);
     }
     100% {
-        clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%);
-        transform: translate(3px, 2px);
+        background: rgba(0, 210, 255, 0.05);
     }
 }
 
-@keyframes glitch-anim-2 {
+@keyframes scanMove {
     0% {
-        clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
-        transform: translate(3px, 2px);
+        top: 0;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
     }
     100% {
-        clip-path: polygon(0 80%, 100% 80%, 100% 95%, 0 95%);
-        transform: translate(-3px, -2px);
+        top: 100%;
+        opacity: 0;
     }
+}
+
+@keyframes particleFly {
+    0% {
+        transform: translateY(20px) scaleY(1);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120px) scaleY(0);
+        opacity: 0;
+    }
+}
+
+/* Form Elements Styles */
+.glitchTitle {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .neonInput {
-    background: rgba(255, 255, 255, 0.05) !important;
+    background: rgba(10, 10, 15, 0.7) !important;
     border: 1px solid var(--glass-border) !important;
-    color: white !important;
-    transition: all 0.3s ease;
+    color: #fff !important;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease !important;
 }
 
 .neonInput:focus {
-    background: rgba(255, 255, 255, 0.1) !important;
     border-color: var(--primary-neon) !important;
-    box-shadow: 0 0 10px rgba(0, 210, 255, 0.3) !important;
-    outline: none;
+    box-shadow: 0 0 15px var(--primary-glow) !important;
 }
 
-.neonInput.invalid {
-    border-color: #ff0055 !important;
-    box-shadow: 0 0 5px rgba(255, 0, 85, 0.2) !important;
+.invalid {
+    border-color: var(--secondary-neon) !important;
+    box-shadow: 0 0 10px rgba(189, 0, 255, 0.2) !important;
 }
 
-.neonAlert {
-    background: rgba(0, 210, 255, 0.1);
-    border: 1px solid var(--primary-neon);
-    color: var(--primary-neon);
-    backdrop-filter: blur(5px);
-}
-
-.neonInput option {
-    background: var(--bg-dark);
-    color: white;
-}
-
-/* --- Interactive Star Rating --- */
 .starRatingContainer {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 0;
+    gap: 8px;
+    margin: 10px 0;
 }
 
 .interactiveStar {
     font-size: 1.5rem;
     cursor: pointer;
-    transition: all 0.2s ease;
     color: rgba(255, 255, 255, 0.1);
-    filter: drop-shadow(0 0 0 transparent);
+    transition: all 0.2s ease;
+}
+
+.interactiveStar:hover {
+    transform: scale(1.2);
+    color: rgba(0, 210, 255, 0.5);
 }
 
 .activeStar {
-    color: #ffcc00;
-    filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.6));
-    transform: scale(1.1);
+    color: var(--primary-neon);
+    filter: drop-shadow(0 0 8px var(--primary-glow));
 }
 
-/* --- Character Counter --- */
 .counterContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 5px;
+    margin-top: 8px;
+}
+
+.charCounter {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: 'Orbitron', sans-serif;
 }
 
 .glitchClearBtn {
@@ -132,87 +146,21 @@
     font-family: 'Orbitron', sans-serif;
     font-size: 0.65rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
     cursor: pointer;
-    position: relative;
-    padding: 0;
+    opacity: 0.7;
+    transition: all 0.3s ease;
 }
 
 .glitchClearBtn:hover {
-    text-shadow:
-        2px 0 #00ffff,
-        -2px 0 #ff0055;
-    animation: button-glitch 0.3s infinite;
-}
-
-@keyframes button-glitch {
-    0% {
-        transform: translate(0);
-    }
-    20% {
-        transform: translate(-2px, 1px);
-    }
-    40% {
-        transform: translate(2px, -1px);
-    }
-    60% {
-        transform: translate(-1px, -1px);
-    }
-    80% {
-        transform: translate(1px, 1px);
-    }
-    100% {
-        transform: translate(0);
-    }
-}
-
-.charCounter {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.7rem;
-    color: var(--primary-neon);
-    opacity: 0.6;
-    letter-spacing: 1px;
-}
-
-.counterWarning {
-    color: #ff0055;
     opacity: 1;
-    text-shadow: 0 0 8px rgba(255, 0, 85, 0.5);
+    text-shadow:
+        2px 0 red,
+        -2px 0 cyan;
 }
 
-/* --- Holographic Particles Animation --- */
-.hologramContainer {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 10;
-    overflow: hidden;
-}
-
-.particle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 3px;
-    height: 15px;
-    background: var(--primary-neon);
-    box-shadow: 0 0 15px var(--primary-neon);
-    border-radius: 2px;
-    opacity: 0;
-    animation: holographic-burst 1.2s ease-out forwards;
-}
-
-@keyframes holographic-burst {
-    0% {
-        transform: rotate(calc(var(--i) * 24deg)) translateY(0) scaleY(0);
-        opacity: 0;
-    }
-    20% {
-        opacity: 1;
-        transform: rotate(calc(var(--i) * 24deg)) translateY(0) scaleY(1.5);
-    }
-    100% {
-        transform: rotate(calc(var(--i) * 24deg)) translateY(-200px) scaleY(0);
-        opacity: 0;
-    }
+.neonAlert {
+    background: rgba(0, 210, 255, 0.1);
+    border: 1px solid var(--primary-neon);
+    color: var(--primary-neon);
+    font-family: 'Orbitron', sans-serif;
 }

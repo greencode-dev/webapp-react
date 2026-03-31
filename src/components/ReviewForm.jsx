@@ -4,12 +4,22 @@ import { postReview } from '../api/api';
 import styles from './ReviewForm.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faStar } from '@fortawesome/free-solid-svg-icons';
+import CyberInput from './CyberInput';
 
 // Semplice componente per le particelle olografiche (Bonus Animation)
 const HologramParticles = () => (
     <div className={styles.hologramContainer}>
-        {[...Array(15)].map((_, i) => (
-            <div key={i} className={styles.particle} style={{ '--i': i }} />
+        {[...Array(25)].map((_, i) => (
+            <div
+                key={i}
+                className={styles.particle}
+                style={{
+                    '--x': `${Math.random() * 100}%`,
+                    '--y': `${Math.random() * 100}%`,
+                    '--delay': `${Math.random() * 1}s`,
+                    '--duration': `${1 + Math.random() * 2}s`,
+                }}
+            />
         ))}
     </div>
 );
@@ -103,18 +113,17 @@ const ReviewForm = ({ movieId, onReviewSuccess }) => {
             )}
 
             <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3">
-                    <Form.Label className="text-neon-secondary">Nome Utente</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="author"
-                        value={formData.author}
-                        onChange={handleChange}
-                        placeholder="Inserisci il tuo nome..."
-                        className={`${styles.neonInput} ${formData.author && formData.author.length < 2 ? styles.invalid : ''}`}
-                        required
-                    />
-                </Form.Group>
+                <CyberInput
+                    label="Nome Utente"
+                    labelClass="text-neon-secondary"
+                    type="text"
+                    name="author"
+                    value={formData.author}
+                    onChange={handleChange}
+                    placeholder="Inserisci il tuo nome..."
+                    isInvalid={formData.author && formData.author.length < 2}
+                    required
+                />
 
                 <Form.Group className="mb-3">
                     <Form.Label className="text-neon-secondary">Voto (1-5)</Form.Label>
@@ -136,37 +145,34 @@ const ReviewForm = ({ movieId, onReviewSuccess }) => {
                     </div>
                 </Form.Group>
 
-                <Form.Group className="mb-4">
-                    <Form.Label className="text-neon-secondary">Il tuo Commento</Form.Label>
-                    <div className="position-relative">
-                        <Form.Control
-                            as="textarea"
-                            rows={4}
-                            name="text"
-                            value={formData.text}
-                            onChange={handleChange}
-                            maxLength={MAX_CHARS}
-                            placeholder="Cosa ne pensi del film?"
-                            className={`${styles.neonInput} ${formData.text && formData.text.length < 5 ? styles.invalid : ''}`}
-                            required
-                        />
-                        <div className={styles.counterContainer}>
-                            {formData.text.length > 0 && (
-                                <button
-                                    type="button"
-                                    className={styles.glitchClearBtn}
-                                    onClick={clearDraft}
-                                    data-text="Reset Matrix">
-                                    Reset Matrix
-                                </button>
-                            )}
-                            <span
-                                className={`${styles.charCounter} ${formData.text.length >= MAX_CHARS * 0.9 ? styles.counterWarning : ''}`}>
-                                {formData.text.length} / {MAX_CHARS}
-                            </span>
-                        </div>
+                <CyberInput
+                    label="Il tuo Commento"
+                    labelClass="text-neon-secondary"
+                    type="textarea"
+                    rows={4}
+                    name="text"
+                    value={formData.text}
+                    onChange={handleChange}
+                    maxLength={MAX_CHARS}
+                    placeholder="Cosa ne pensi del film?"
+                    isInvalid={formData.text && formData.text.length < 5}
+                    required>
+                    <div className={styles.counterContainer}>
+                        {formData.text.length > 0 && (
+                            <button
+                                type="button"
+                                className={styles.glitchClearBtn}
+                                onClick={clearDraft}
+                                data-text="Reset Matrix">
+                                Reset Matrix
+                            </button>
+                        )}
+                        <span
+                            className={`${styles.charCounter} ${formData.text.length >= MAX_CHARS * 0.9 ? styles.counterWarning : ''}`}>
+                            {formData.text.length} / {MAX_CHARS}
+                        </span>
                     </div>
-                </Form.Group>
+                </CyberInput>
 
                 <Button
                     type="submit"

@@ -72,14 +72,14 @@ Per ottimizzare il caricamento della pagina ed evitare il Layout Shift:
 2. Assicurati che il contenitore dell'immagine abbia un `aspect-ratio` definito via CSS (es. `2/3` per i poster).
 3. Fornisci sempre un attributo `alt` descrittivo per l'accessibilità.
 
-## 14. Animazione Neon Pulse (Breathing Glow)
+## 10. Animazione Neon Pulse (Breathing Glow)
 
 Per simulare un'atmosfera cyberpunk realistica senza affaticare l'utente, applichiamo l'effetto "respiro" solo agli elementi di branding:
 
 1. Usa la classe `.neon-pulse` per applicare un'animazione di respiro al bagliore.
 2. L'animazione varia dolcemente il `text-shadow` e l' `opacity` per creare un effetto "vivo" e meno aggressivo del flicker.
 
-## 15. Risoluzione Conflitti Z-Index e Clipping
+## 11. Risoluzione Conflitti Z-Index e Clipping
 
 Per gestire correttamente sovrapposizioni tra card animate e testate:
 
@@ -87,7 +87,7 @@ Per gestire correttamente sovrapposizioni tra card animate e testate:
 2. **Clip-Path**: Rimuovi `clip-path` al termine delle animazioni di ingresso (`100% { clip-path: none; }`) per evitare il taglio netto degli elementi durante il movimento.
 3. **Overflow**: Assicurati che il contenitore principale abbia `overflow: visible`.
 
-## 17. Overlay Olografico Interattivo
+## 12. Overlay Olografico Interattivo
 
 Per sostituire i pulsanti CTA standard nelle card:
 
@@ -96,7 +96,7 @@ Per sostituire i pulsanti CTA standard nelle card:
 3. Aggiungi una `.scanLine` animata verticalmente per simulare una scansione laser.
 4. Mostra l'overlay solo su `:hover` dell'elemento genitore.
 
-## 18. Transizioni di Pagina (Fade-in)
+## 13. Transizioni di Pagina (Fade-in)
 
 Per rendere il passaggio tra le rotte fluido:
 
@@ -104,7 +104,7 @@ Per rendere il passaggio tra le rotte fluido:
 2. La classe utilizza un'animazione di opacità e un leggero movimento sull'asse Y.
 3. Si integra con le animazioni a cascata degli elementi interni per un effetto "layered".
 
-## 19. Transizioni di Uscita (Fade-out)
+## 14. Transizioni di Uscita (Fade-out)
 
 Per implementare una transizione fluida quando l'utente lascia la pagina:
 
@@ -113,7 +113,7 @@ Per implementare una transizione fluida quando l'utente lascia la pagina:
 3. Applica manualmente la classe al container della pagina (`document.querySelector`).
 4. Usa un `setTimeout` per ritardare il `navigate()` di circa 400ms.
 
-## 20. Navigazione Verticale (ScrollToTop)
+## 15. Navigazione Verticale (ScrollToTop)
 
 Per facilitare la navigazione in pagine lunghe:
 
@@ -129,15 +129,24 @@ Per migliorare la UX nei form lunghi:
 2. Usa chiavi univoche basate sull'ID della risorsa (es. `review_draft_${movieId}`).
 3. Rimuovi la bozza solo dopo un invio con successo o tramite azione esplicita di "Clear".
 
-## 23. Glitch Clear Pattern
+## 17. Glitch Clear Pattern
 
 Per i campi di input che richiedono una cancellazione rapida:
 
-1. Inserisci un tag `button` all'interno dell' `InputGroup`.
+1. Inserisci un tag `button` all'interno dell' `InputGroup` o come figlio del componente `CyberInput`.
 2. Applica un effetto `text-shadow` multi-livello (rosso e cyan) sull'hover per simulare l'aberrazione cromatica.
 3. Assicurati che il pulsante sia accessibile via tastiera e che emetta un evento di cambio valore compatibile con i gestori React.
 
-## 17. Cyber UI - CyberDropdown (Holographic Reveal)
+## 18. Review Entrance Transition
+
+Per le liste di recensioni che si aggiornano dinamicamente:
+
+1. Utilizza una variabile CSS `--index` iniettata via style inline durante il mapping dell'array.
+2. Applica un'animazione che combini `translateX` e `brightness`.
+3. L'effetto "staggered" (ritardato) si ottiene con `animation-delay: calc(var(--index) * 0.1s)`.
+4. Assicurati di usare una funzione di timing `cubic-bezier` per un movimento fluido e "organico".
+
+## 19. Cyber UI - CyberDropdown
 
 Per mantenere la coerenza dei menu a tendina:
 
@@ -146,7 +155,7 @@ Per mantenere la coerenza dei menu a tendina:
 3. Gestisce il caricamento asincrono tramite la prop `fetchItems`.
 4. Utilizza animazioni basate su `clip-path` per svelare il contenuto senza causare scatti di layout (layout shift).
 
-## 18. Cyber UI - CountUp (Olographic Counters)
+## 20. Cyber UI - CountUp
 
 Per visualizzare statistiche o contatori dinamici:
 
@@ -154,7 +163,7 @@ Per visualizzare statistiche o contatori dinamici:
 2. Implementa un easing `easeOutQuart` per simulare una scansione olografica.
 3. Ideale per Sidebar, rating e dashboard dati.
 
-## 19. Sidebar - Cyber Selection & Real-time Counts
+## 21. Sidebar - Cyber Selection & Real-time Counts
 
 Per migliorare la navigazione nei filtri:
 
@@ -162,7 +171,7 @@ Per migliorare la navigazione nei filtri:
 2. I conteggi devono aggiornarsi in tempo reale in base agli altri filtri attivi (es. Anno).
 3. Usa il `CountUp` all'interno dei label delle checkbox per un effetto "scansione dati" durante il filtraggio (applicato a Categorie e Anni).
 
-## 21. Cyber UI - CyberAccordion
+## 22. Cyber UI - CyberAccordion
 
 Pattern per gestire gruppi di filtri multipli:
 
@@ -171,10 +180,27 @@ Pattern per gestire gruppi di filtri multipli:
 3. Pattern **Stacked Header**: l'etichetta del gruppo rimane sempre visibile, mentre le selezioni appaiono sotto di essa solo quando la sezione è chiusa.
 4. Utilizza un `activeIndicator` (pallino neon pulsante) accanto al chevron quando la sezione è chiusa ma contiene filtri attivi.
 
-## 22. Cyber UI - CyberScrollList
+## 23. Cyber UI - CyberScrollList
 
 Pattern per liste a scorrimento interno:
 
 1. Utilizza una scrollbar custom minimalista e neon.
 2. Ogni item supporta un label, un'icona e un contatore `CountUp` integrato.
 3. Gestisce lo stato attivo con ombre olografiche interne (`inset box-shadow`).
+
+## 23. CyberInput Variants
+
+Il componente `CyberInput` supporta diverse varianti estetiche per comunicare stati differenti:
+
+- **Default**: Cyan (`--primary-neon`).
+- **isInvalid**: Bordi magenta soft per errori di validazione.
+- **isCritical**: Magenta vibrante con animazione di allarme e glitch persistente.
+- **isGold**: Variante oro/ambra per contenuti "Premium" o campi in evidenza, con glitch bianco-giallo e shimmer di sottofondo.
+
+## 25. Unit & Integration Testing
+
+Il progetto utilizza **Vitest** per validare la logica di business:
+
+1. Funzioni pure (es. `calculateAverageVote`) vengono testate in isolamento.
+2. Le chiamate API asincrone vengono testate simulando il comportamento delle `Promise` e verificando l'integrità del filtraggio e della paginazione.
+3. Esegui i test con `npm run test`.
