@@ -11,7 +11,7 @@ export function getMovies(
     search = '',
     sortBy = 'latest',
     genres = [],
-    year = '',
+    years = [],
 ) {
     // In sviluppo, se non è configurata un'API, usiamo i dati locali con ritardo simulato
     if (import.meta.env.DEV && !import.meta.env.VITE_API_URL) {
@@ -31,7 +31,9 @@ export function getMovies(
                 filtered = filtered.filter(
                     (m) =>
                         m.title.toLowerCase().includes(s) ||
-                        m.genre.toLowerCase().includes(s) ||
+                        (Array.isArray(m.genre)
+                            ? m.genre.some((g) => g.toLowerCase().includes(s))
+                            : m.genre.toLowerCase().includes(s)) ||
                         m.director.toLowerCase().includes(s) ||
                         m.release_year.toString().includes(s) ||
                         (m.actors && m.actors.some((a) => a.toLowerCase().includes(s))),
@@ -41,14 +43,18 @@ export function getMovies(
             // Filtro per Generi (se presenti)
             if (genres && genres.length > 0) {
                 filtered = filtered.filter((m) => {
-                    const movieGenres = m.genre.split('/').map((g) => g.trim());
+                    const movieGenres = Array.isArray(m.genre)
+                        ? m.genre
+                        : m.genre.split('/').map((g) => g.trim());
                     return genres.some((selectedGenre) => movieGenres.includes(selectedGenre));
                 });
             }
 
             // Filtro per Anno
-            if (year) {
-                filtered = filtered.filter((m) => m.release_year.toString() === year);
+            if (years && years.length > 0) {
+                filtered = filtered.filter((m) =>
+                    years.some((y) => y.toString() === m.release_year.toString()),
+                );
             }
 
             // Ordinamento
@@ -73,7 +79,16 @@ export function getMovies(
     }
     // Invio dei parametri come query string: /movies?page=1&limit=3&search=abc
     return api
-        .get('/movies', { params: { page, limit, search, sortBy, genres: genres.join(','), year } })
+        .get('/movies', {
+            params: {
+                page,
+                limit,
+                search,
+                sortBy,
+                genres: genres.join(','),
+                years: years.join(','),
+            },
+        })
         .then((response) => response.data);
 }
 

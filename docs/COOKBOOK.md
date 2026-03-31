@@ -7,7 +7,7 @@ Raccolta di pattern e soluzioni tecniche utilizzate nel progetto.
 Per ogni nuova pagina che richiede dati dal backend, usa l'hook `useFetch`.
 
 ```javascript
-const { data, loading, error, refetch } = useFetch(apiFunction, arg1, arg2);
+const { data, loading, error, refetch } = useFetch(apiFunction, [arg1, arg2]);
 ```
 
 ## 2. Gestione Errori
@@ -128,6 +128,14 @@ Per migliorare la UX nei form lunghi:
 1. Usa `localStorage.setItem` agganciato a un `useEffect` che osserva lo stato del form.
 2. Usa chiavi univoche basate sull'ID della risorsa (es. `review_draft_${movieId}`).
 3. Rimuovi la bozza solo dopo un invio con successo o tramite azione esplicita di "Clear".
+
+## 23. Glitch Clear Pattern
+
+Per i campi di input che richiedono una cancellazione rapida:
+
+1. Inserisci un tag `button` all'interno dell' `InputGroup`.
+2. Applica un effetto `text-shadow` multi-livello (rosso e cyan) sull'hover per simulare l'aberrazione cromatica.
+3. Assicurati che il pulsante sia accessibile via tastiera e che emetta un evento di cambio valore compatibile con i gestori React.
 
 ## 17. Cyber UI - CyberDropdown (Holographic Reveal)
 

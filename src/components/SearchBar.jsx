@@ -1,10 +1,12 @@
 import React from 'react';
 import { Form, InputGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faCircleNotch, faXmark } from '@fortawesome/free-solid-svg-icons';
 import styles from './SearchBar.module.css';
 
 function SearchBar({ value, onChange, placeholder, loading }) {
+    const handleClear = () => onChange({ target: { value: '' } });
+
     return (
         <div className={`${styles.searchContainer} mb-5`}>
             <InputGroup className={styles.neonSearchGroup}>
@@ -22,6 +24,14 @@ function SearchBar({ value, onChange, placeholder, loading }) {
                     onChange={onChange}
                     className={styles.neonSearchInput}
                 />
+                {value && (
+                    <button
+                        className={styles.glitchClearBtn}
+                        onClick={handleClear}
+                        title="Cancella ricerca">
+                        <FontAwesomeIcon icon={faXmark} />
+                    </button>
+                )}
             </InputGroup>
         </div>
     );

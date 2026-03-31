@@ -48,26 +48,55 @@ function HomePage() {
         selectedYears,
     ]);
 
-    // I dati ora arrivano già filtrati e paginati dal server
-    const moviesList = data?.data || [];
-    const totalPages = data ? Math.ceil(data.total / moviesPerPage) : 0;
+    // Gestione robusta dei dati: supporta sia l'oggetto {data, total} che l'array diretto
+    const moviesList = Array.isArray(data) ? data : data?.data || [];
+    const totalCount = data?.total ?? (Array.isArray(data) ? data.length : 0);
+    const totalPages = totalCount > 0 ? Math.ceil(totalCount / moviesPerPage) : 0;
 
-    // Calcolo dinamico dei contatori (generi e anni) basato sui risultati della pagina corrente
-    const { genreCounts, yearCounts, totalOnPage } = useMemo(() => {
+    // Calcolo dinamico dei contatori basato sull'intero dataset moviesData
+    // Implementa il cross-filtering: i conteggi dei generi rispettano gli anni selezionati e viceversa
+    const { genreCounts, yearCounts } = useMemo(() => {
+        const safeMoviesData = moviesData || [];
+
+        const applySearch = (list) =>
+            list.filter(
+                (m) =>
+                    !debouncedSearch ||
+                    m.title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+                    (Array.isArray(m.genre)
+                        ? m.genre.some((g) =>
+                              g.toLowerCase().includes(debouncedSearch.toLowerCase()),
+                          )
+                        : m.genre?.toLowerCase().includes(debouncedSearch.toLowerCase())),
+            );
+
+        const baseSearchData = applySearch(safeMoviesData);
+
         return {
             genreCounts: AVAILABLE_GENRES.reduce((acc, genre) => {
-                acc[genre] = moviesList.filter((m) => m.genre.includes(genre)).length;
-                return acc;
-            }, {}),
-            yearCounts: AVAILABLE_YEARS.reduce((acc, year) => {
-                acc[year] = (moviesList || []).filter(
-                    (m) => m.release_year?.toString() === year.toString(),
+                // Conta i film di questo genere filtrati per ricerca e ANNI selezionati
+                acc[genre] = baseSearchData.filter(
+                    (m) =>
+                        (Array.isArray(m.genre)
+                            ? m.genre.includes(genre)
+                            : m.genre?.includes(genre)) &&
+                        (selectedYears.length === 0 ||
+                            selectedYears.some((y) => y.toString() === m.release_year?.toString())),
                 ).length;
                 return acc;
             }, {}),
-            totalOnPage: moviesList.length,
+            yearCounts: AVAILABLE_YEARS.reduce((acc, year) => {
+                // Conta i film di questo anno filtrati per ricerca e GENERI selezionati
+                acc[year] = baseSearchData.filter(
+                    (m) =>
+                        m.release_year?.toString() === year.toString() &&
+                        (selectedGenres.length === 0 ||
+                            selectedGenres.some((g) => m.genre?.includes(g))),
+                ).length;
+                return acc;
+            }, {}),
         };
-    }, [moviesList]);
+    }, [debouncedSearch, selectedGenres, selectedYears]);
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -152,14 +181,14 @@ function HomePage() {
                     onReset={handleResetFilters}
                     genreCounts={genreCounts}
                     yearCounts={yearCounts}
-                    totalCount={totalOnPage}
+                    totalCount={totalCount}
                 />
 
                 <div className={styles.gridContent}>
                     <div
                         className={`${styles.movieGrid} ${styles.resultsTransition} ${loading ? styles.resultsLoading : ''}`}>
                         {loading ? (
-                            [...Array(6)].map((_, index) => (
+                            [...Array(moviesPerPage)].map((_, index) => (
                                 <div key={index} className={styles.movieCardAppearance}>
                                     <MovieCardSkeleton />
                                 </div>

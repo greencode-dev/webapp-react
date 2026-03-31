@@ -19,7 +19,7 @@ import styles from './About.module.css';
 
 function AboutPage() {
     const { data } = useFetch(getMovies, [1, 3]);
-    const featuredMovies = data?.data || [];
+    const featuredMovies = Array.isArray(data) ? data : data?.data || [];
     const observerRef = useRef(null);
 
     useEffect(() => {
@@ -83,9 +83,7 @@ function AboutPage() {
                         <span className="text-neon-primary">Cine</span>
                         <span className="text-neon-secondary">Lab</span>
                     </h1>
-                    <p
-                        className="fs-4 mb-4 text-light opacity-80"
-                        style={{ maxWidth: '600px', margin: '0 auto' }}>
+                    <p className={`fs-4 mb-4 text-light opacity-80 ${styles.heroDescription}`}>
                         Sperimenta la magia del cinema. Scopri, analizza e vivi ogni fotogramma.
                     </p>
                     <div className="about-hero-divider mx-auto"></div>
@@ -99,7 +97,7 @@ function AboutPage() {
                         <Col key={index} sm={6} lg={3}>
                             <div
                                 className={`${styles.aboutStatCard} card text-center ${styles.aboutAnimate}`}
-                                style={{ animationDelay: `${index * 0.1}s` }}>
+                                style={{ '--delay': `${index * 0.1}s` }}>
                                 <div className={styles.aboutStatIcon}>
                                     <FontAwesomeIcon icon={stat.icon} />
                                 </div>
@@ -119,13 +117,13 @@ function AboutPage() {
                         <h2 className="display-4 fw-bold mb-4">
                             <span className="text-gradient">La Nostra Missione</span>
                         </h2>
-                        <p className="lead text-light mb-4" style={{ lineHeight: 1.8 }}>
+                        <p className={`lead text-light mb-4 ${styles.missionText}`}>
                             CineLab nasce dalla passione per il racconto cinematografico. Il nostro
                             obiettivo è creare un ecosistema dove gli appassionati possano scoprire
                             nuovi capolavori, condividere opinioni sincere e approfondire la
                             conoscenza della settima arte.
                         </p>
-                        <p className="text-secondary" style={{ lineHeight: 1.8 }}>
+                        <p className={`text-secondary ${styles.missionSubtext}`}>
                             Ogni film è una finestra su un mondo diverso. Noi ti forniamo gli
                             strumenti per aprirle tutte, con una libreria in costante espansione e
                             una comunità vibrante.
@@ -158,7 +156,7 @@ function AboutPage() {
                         <Col key={index} md={4}>
                             <div
                                 className={`${styles.aboutFeatureCard} card h-100 ${styles.aboutAnimate}`}
-                                style={{ animationDelay: `${index * 0.15}s` }}>
+                                style={{ '--delay': `${index * 0.15}s` }}>
                                 <div className={styles.aboutFeatureIcon}>
                                     <FontAwesomeIcon icon={feature.icon} />
                                 </div>

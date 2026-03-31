@@ -35,12 +35,20 @@ const Sidebar = ({
                 <button className={styles.accordionHeader} onClick={() => toggleSection('genres')}>
                     <div className={styles.headerLabels}>
                         <span className={styles.groupLabel}>Categorie</span>
-                        {openSection !== 'genres' && selectedGenres.length > 0 && (
-                            <span className={styles.selectedSummary}>
-                                {selectedGenres.length <= 2
-                                    ? selectedGenres.join(', ')
-                                    : `${selectedGenres.length} Selezionate`}
-                            </span>
+                        {openSection !== 'genres' && (
+                            <div className={styles.selectionSummaryList}>
+                                {selectedGenres.map((genre) => (
+                                    <div key={genre} className={styles.summaryRow}>
+                                        <span className={styles.summaryCheck}></span>
+                                        <span className={styles.summaryName}>
+                                            {genre}
+                                            <span className={styles.genreCount}>
+                                                (<CountUp end={genreCounts[genre] || 0} />)
+                                            </span>
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
                         )}
                     </div>
                     <div className={styles.headerActions}>
@@ -78,12 +86,20 @@ const Sidebar = ({
                 <button className={styles.accordionHeader} onClick={() => toggleSection('years')}>
                     <div className={styles.headerLabels}>
                         <span className={styles.groupLabel}>Anno di rilascio</span>
-                        {openSection !== 'years' && selectedYears.length > 0 && (
-                            <span className={styles.selectedSummary}>
-                                {selectedYears.length <= 2
-                                    ? selectedYears.join(', ')
-                                    : `${selectedYears.length} Selezionate`}
-                            </span>
+                        {openSection !== 'years' && (
+                            <div className={styles.selectionSummaryList}>
+                                {selectedYears.map((year) => (
+                                    <div key={year} className={styles.summaryRow}>
+                                        <span className={styles.summaryCheck}></span>
+                                        <span className={styles.summaryName}>
+                                            {year}
+                                            <span className={styles.genreCount}>
+                                                (<CountUp end={yearCounts[year] || 0} />)
+                                            </span>
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
                         )}
                     </div>
                     <div className={styles.headerActions}>

@@ -7,6 +7,7 @@ CineLab è una web application sperimentale costruita con **React** e **Vite**, 
 - **UI Neon Premium**: Design basato su "Glassmorphism", effetti glitch e animazioni olografiche accelerate via GPU.
 - **Advanced Filtering**: Sidebar interattiva per filtrare film per categorie multiple e anno di rilascio.
 - **Sistema di Recensioni**: Form avanzato con feedback particellare, calcolo della distribuzione voti e persistenza delle bozze.
+- **Robust Data Handling**: Sistema di filtraggio resiliente che gestisce formati dati misti (array/stringhe) e cross-filtering dinamico.
 - **Performance Ottimizzate**: Lighthouse score eccellente grazie al lazy loading delle immagini, skeleton loaders e debouncing della ricerca.
 - **Responsive Design**: Griglia fluida ottimizzata per 8 colonne su desktop e layout adattivo per mobile.
 

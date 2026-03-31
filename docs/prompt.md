@@ -53,3 +53,5 @@ Come posso gestire il caricamento asincrono delle categorie della Sidebar dirett
 Come posso implementare la stessa CyberScrollList anche per le categorie al posto delle checkbox per un look più uniforme?
 
 Come posso rendere la Sidebar completamente a scomparsa (off-canvas) su dispositivi mobile mantendo lo stile cyberpunk?
+
+Aggiungi un feedback visuale di "Nessun risultato trovato" con un'estetica cyberpunk quando la ricerca fallisce

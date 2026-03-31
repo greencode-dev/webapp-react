@@ -93,3 +93,20 @@
 .neonSearchInput:focus::placeholder {
     animation: placeholderFlicker 4s linear infinite;
 }
+
+.glitchClearBtn {
+    background: transparent;
+    border: none;
+    color: var(--secondary-neon);
+    padding: 0 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.glitchClearBtn:hover {
+    text-shadow:
+        0 0 10px var(--secondary-glow),
+        2px 0 red,
+        -2px 0 cyan;
+}
